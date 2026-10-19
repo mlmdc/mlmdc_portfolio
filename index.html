@@ -73,28 +73,72 @@
       transition: box-shadow 180ms ease, background-color 180ms ease;
     }
 
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: clamp(14px, 2.6vw, 28px);
+    }
+
     .topbar.is-scrolled {
       background: #f5f3eff5;
       box-shadow: 0 8px 24px #2026240c;
     }
 
     .wordmark {
-      font-size: 0.95rem;
-      font-weight: 750;
-      letter-spacing: -0.03em;
+      font-size: clamp(1.35rem, 2.5vw, 1.8rem);
+      font-weight: 800;
+      letter-spacing: -0.055em;
       text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .topbar nav {
+      display: flex;
+      align-items: center;
     }
 
     .topbar nav a {
+      position: relative;
       color: var(--muted);
       font-size: 0.92rem;
       text-decoration: none;
       transition: color 180ms ease;
     }
 
+    .topbar nav a + a {
+      margin-left: 20px;
+      padding-left: 20px;
+    }
+
+    .topbar nav a + a::before {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      color: #20262442;
+      content: "·";
+      font-size: 0.95rem;
+      transform: translateY(-50%);
+    }
+
     .topbar nav a[aria-current="location"],
     .topbar nav a:hover {
       color: var(--accent-dark);
+    }
+
+    .cv-link {
+      padding: 8px 14px;
+      border: 1px solid var(--line);
+      border-radius: 7px;
+      color: var(--accent-dark);
+      font-size: 0.9rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: border-color 180ms ease, background-color 180ms ease;
+    }
+
+    .cv-link:hover {
+      border-color: #b8c9c0;
+      background: var(--highlight);
     }
 
     .project-link:hover {
@@ -349,6 +393,35 @@
       content: "−";
     }
 
+    .see-more {
+      display: inline-flex;
+      min-height: 38px;
+      align-items: center;
+      justify-content: center;
+      margin-top: 18px;
+      padding: 7px 13px;
+      border: 1px solid var(--accent);
+      border-radius: 7px;
+      color: var(--accent-dark);
+      font-size: 0.87rem;
+      font-weight: 700;
+      transition: color 180ms ease, background-color 180ms ease;
+    }
+
+    .project-card summary:hover .see-more {
+      background: var(--accent);
+      color: white;
+    }
+
+    .see-more::after {
+      margin-left: 8px;
+      content: "↓";
+    }
+
+    .project-card[open] .see-more::after {
+      content: "↑";
+    }
+
     .project-details {
       padding: 24px 30px 28px;
       border-top: 1px solid var(--line);
@@ -481,6 +554,12 @@
       white-space: nowrap;
     }
 
+    .contact-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
     footer {
       display: flex;
       justify-content: space-between;
@@ -577,6 +656,35 @@
         padding-left: 14px;
       }
 
+      .topbar {
+        align-items: flex-start;
+        flex-wrap: wrap;
+        gap: 16px 12px;
+      }
+
+      .wordmark {
+        font-size: 1.4rem;
+      }
+
+      .header-actions {
+        width: 100%;
+        justify-content: space-between;
+        gap: 8px;
+      }
+
+      .topbar nav a {
+        font-size: 0.86rem;
+      }
+
+      .topbar nav a + a {
+        margin-left: 12px;
+        padding-left: 12px;
+      }
+
+      .cv-link {
+        padding: 7px 10px;
+      }
+
       .project-card summary {
         grid-template-columns: 1fr;
       }
@@ -614,12 +722,15 @@
 <body>
   <div class="page">
     <header class="topbar">
-      <a class="wordmark" href="#accueil">Maël — Portfolio</a>
-      <nav aria-label="Navigation principale">
-        <a class="nav-link" href="#accueil" aria-current="location">Accueil</a>
-        <a class="nav-link" href="#projets">Projets</a>
-        <a class="nav-link" href="#contact">Contact</a>
-      </nav>
+      <a class="wordmark" href="#accueil">Mael Madec</a>
+      <div class="header-actions">
+        <nav aria-label="Navigation principale">
+          <a class="nav-link" href="#accueil" aria-current="location">Accueil</a>
+          <a class="nav-link" href="#projets">Projets</a>
+          <a class="nav-link" href="#contact">Contact</a>
+        </nav>
+        <a class="cv-link" href="#contact">CV</a>
+      </div>
     </header>
 
     <main>
@@ -651,6 +762,7 @@
                 <h3>Tangram robotisé avec UR5e</h3>
                 <p>Composer un tangram sur écran, puis faire assembler ses sept pièces par un robot UR5e.</p>
                 <span class="expand-hint">Plus de détails</span>
+                <span class="see-more">Voir plus</span>
               </div>
             </summary>
             <div class="project-details">
@@ -695,6 +807,7 @@
                 <h3>Asservissement d’un moteur CC</h3>
                 <p>Mesurer et réguler la vitesse d’un moteur à courant continu avec une carte STM32F411.</p>
                 <span class="expand-hint">Plus de détails</span>
+                <span class="see-more">Voir plus</span>
               </div>
             </summary>
             <div class="project-details">
@@ -732,6 +845,7 @@
                 <h3>Modélisation floue d’un hélicrane</h3>
                 <p>Identifier par modèles flous locaux la dynamique d’un hélicrane et explorer la commande fondée sur ce modèle.</p>
                 <span class="expand-hint">Plus de détails</span>
+                <span class="see-more">Voir plus</span>
               </div>
             </summary>
             <div class="project-details">
@@ -776,6 +890,7 @@
                 <h3>Reignib — gouverner un pays fictif</h3>
                 <p>Gouverner un pays fictif en arbitrant les conséquences de chaque décision.</p>
                 <span class="expand-hint">Plus de détails</span>
+                <span class="see-more">Voir plus</span>
               </div>
             </summary>
             <div class="project-details">
@@ -817,6 +932,7 @@
                 <h3>Classification par PSO et réseau de neurones</h3>
                 <p>Comparer PSO et réseau de neurones pour classer des masses mammaires à partir de 30 mesures cellulaires.</p>
                 <span class="expand-hint">Plus de détails</span>
+                <span class="see-more">Voir plus</span>
               </div>
             </summary>
             <div class="project-details">
@@ -858,6 +974,7 @@
                 <h3>Régression, ACP et PCR</h3>
                 <p>Étudier comment l’échelle et la corrélation des variables influencent l’identification d’un procédé.</p>
                 <span class="expand-hint">Plus de détails</span>
+                <span class="see-more">Voir plus</span>
               </div>
             </summary>
             <div class="project-details">
@@ -898,6 +1015,7 @@
                 <h3>Triangulation par distances</h3>
                 <p>Estimer la position d’un téléphone à partir des distances à trois stations de base.</p>
                 <span class="expand-hint">Plus de détails</span>
+                <span class="see-more">Voir plus</span>
               </div>
             </summary>
             <div class="project-details">
@@ -937,9 +1055,12 @@
         <div>
           <p class="eyebrow">Contact</p>
           <h2 id="contact-title">Parlons de vos projets.</h2>
-          <p>Pour échanger autour d’un projet ou d’une collaboration, retrouvez-moi sur GitHub.</p>
+          <p>Pour échanger autour d’un projet ou d’une collaboration, retrouvez-moi sur GitHub ou LinkedIn.</p>
         </div>
-        <a class="hero-button contact-link" href="https://github.com/mlmdc" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a>
+        <div class="contact-links">
+          <a class="hero-button contact-link" href="https://github.com/mlmdc" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a>
+          <a class="hero-button hero-button--secondary contact-link" href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn (lien temporaire)">LinkedIn <span aria-hidden="true">↗</span></a>
+        </div>
       </section>
     </main>
 
@@ -1016,12 +1137,19 @@
       }
 
       document.querySelectorAll(".project-card").forEach(card => {
+        const updateSeeMoreLabel = () => {
+          const label = card.querySelector(".see-more");
+          if (label) label.textContent = card.open ? "Voir moins" : "Voir plus";
+        };
+
+        card.addEventListener("toggle", updateSeeMoreLabel);
         card.querySelector("summary").addEventListener("click", () => {
           if (!card.open) {
             document.querySelectorAll(".project-card[open]").forEach(otherCard => {
               if (otherCard !== card) otherCard.open = false;
             });
           }
+          window.setTimeout(updateSeeMoreLabel, 0);
         });
       });
     })();
