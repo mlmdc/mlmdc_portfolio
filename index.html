@@ -354,8 +354,78 @@
       border-top: 1px solid var(--line);
     }
 
-    .project-details p {
+    .project-pitch {
       max-width: 760px;
+      margin-bottom: 0;
+      padding-left: 18px;
+      border-left: 3px solid var(--accent);
+      color: var(--ink) !important;
+      font-size: 1.08rem !important;
+      font-weight: 600;
+    }
+
+    .detail-section + .detail-section {
+      margin-top: 26px;
+    }
+
+    .detail-section h4 {
+      margin: 0 0 11px;
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .detail-section > p,
+    .detail-section > ul {
+      max-width: 820px;
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    .detail-section ul {
+      display: grid;
+      gap: 8px;
+      padding-left: 20px;
+    }
+
+    .project-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr));
+      gap: 14px;
+    }
+
+    .project-gallery figure {
+      min-width: 0;
+      margin: 0;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 9px;
+      background: #dfe3e1;
+    }
+
+    .project-gallery img {
+      display: block;
+      width: 100%;
+      height: 190px;
+      object-fit: contain;
+    }
+
+    .project-gallery figcaption {
+      padding: 9px 12px;
+      background: var(--card);
+      color: var(--muted);
+      font-size: 0.82rem;
+    }
+
+    .gallery-placeholder {
+      display: grid;
+      height: 190px;
+      place-items: center;
+      padding: 20px;
+      color: #606a66;
+      font-size: 0.9rem;
+      text-align: center;
     }
 
     .project-link {
@@ -581,7 +651,35 @@
               </div>
             </summary>
             <div class="project-details">
-              <p>L’application de bureau en Python relie la composition en 2D au mouvement physique du robot via TCP/IP. Le projet met en pratique la transformation d’une disposition définie par l’utilisateur en séquence de prise et de dépôt.</p>
+              <section class="detail-section" aria-label="Pitch">
+                <h4>Pitch</h4>
+                <p class="project-pitch">Composer un tangram sur écran et faire assembler ses pièces par un robot UR5e.</p>
+              </section>
+              <section class="detail-section" aria-label="Contexte et objectifs">
+                <h4>Contexte et objectifs</h4>
+                <p>Développé dans le cadre d’un cours de commande robotique, le projet fait le lien entre une disposition 2D définie par l’utilisateur et une manipulation réelle. L’objectif est de convertir le tangram en poses cibles, puis d’ordonner les opérations de prise et de dépôt des sept pièces.</p>
+              </section>
+              <section class="detail-section" aria-label="Quelques images">
+                <h4>Quelques images</h4>
+                <div class="project-gallery">
+                  <figure>
+                    <img src="assets/projects/tangram-ur5e.svg" alt="Architecture de l’interface, de la communication TCP/IP et du robot UR5e" loading="lazy">
+                    <figcaption>Architecture générale du système robotisé.</figcaption>
+                  </figure>
+                  <figure>
+                    <img src="assets/projects/tangram-editor.png" alt="Interface de composition Tangram avec les sept pièces manipulables" loading="lazy">
+                    <figcaption>Éditeur et pièces du tangram.</figcaption>
+                  </figure>
+                </div>
+              </section>
+              <section class="detail-section" aria-label="Décisions techniques et résultats">
+                <h4>Décisions techniques et résultats</h4>
+                <ul>
+                  <li>Une interface de bureau en Python permet de construire et vérifier la disposition avant son exécution.</li>
+                  <li>Une liaison TCP/IP transmet au robot les poses cibles et la séquence de prise et de dépôt.</li>
+                  <li>Le projet relie la commande logicielle à une démonstration de manipulation physique par un UR5e.</li>
+                </ul>
+              </section>
               <a class="project-link" href="https://github.com/mlmdc/UR_tangram_control" target="_blank" rel="noopener noreferrer">Voir le code sur GitHub <span aria-hidden="true">↗</span></a>
             </div>
           </details>
@@ -597,7 +695,31 @@
               </div>
             </summary>
             <div class="project-details">
-              <p>Le firmware échantillonne l’encodeur et une entrée analogique reliée à la mesure de courant, met à jour un régulateur PID discret, pilote le moteur en PWM et échange consignes et mesures via USART2. Le dépôt contient aussi des notebooks pour la simulation et l’analyse de données série.</p>
+              <section class="detail-section" aria-label="Pitch">
+                <h4>Pitch</h4>
+                <p class="project-pitch">Mesurer et réguler la vitesse d’un moteur à courant continu avec une carte STM32F411.</p>
+              </section>
+              <section class="detail-section" aria-label="Contexte et objectifs">
+                <h4>Contexte et objectifs</h4>
+                <p>Le projet porte sur la réalisation embarquée d’un système d’asservissement en vitesse, en interaction avec un moteur, son encodeur et un étage de puissance. Il vise à acquérir les mesures du moteur, appliquer une commande et rendre les données disponibles pour l’analyse.</p>
+              </section>
+              <section class="detail-section" aria-label="Quelques images">
+                <h4>Quelques images</h4>
+                <div class="project-gallery">
+                  <figure>
+                    <div class="gallery-placeholder" role="img" aria-label="Aucune image fournie dans le dépôt du projet">Aucune image fournie dans le dépôt du projet.</div>
+                    <figcaption>Illustrations matérielles non disponibles.</figcaption>
+                  </figure>
+                </div>
+              </section>
+              <section class="detail-section" aria-label="Décisions techniques et résultats">
+                <h4>Décisions techniques et résultats</h4>
+                <ul>
+                  <li>Un encodeur fournit le retour de vitesse, tandis qu’une entrée ADC mesure la tension liée au courant moteur.</li>
+                  <li>Un PID discret calcule la commande et le PWM pilote le moteur ; USART2 transporte les consignes et la télémétrie.</li>
+                  <li>Des notebooks complètent le firmware pour simuler le moteur et analyser les données série.</li>
+                </ul>
+              </section>
               <a class="project-link" href="https://github.com/mlmdc/S7-stm32-ips" target="_blank" rel="noopener noreferrer">Voir le code sur GitHub <span aria-hidden="true">↗</span></a>
             </div>
           </details>
@@ -613,7 +735,35 @@
               </div>
             </summary>
             <div class="project-details">
-              <p>Cette étude MATLAB explore l’approximation de la dynamique non linéaire d’un hélicrane à l’aide de modèles flous locaux, puis teste un contrôleur fondé sur le modèle. Les résultats incluent des simulations de réponse à des consignes en échelon.</p>
+              <section class="detail-section" aria-label="Pitch">
+                <h4>Pitch</h4>
+                <p class="project-pitch">Construire un modèle flou local de l’hélicrane, puis évaluer une commande fondée sur ce modèle.</p>
+              </section>
+              <section class="detail-section" aria-label="Contexte et objectifs">
+                <h4>Contexte et objectifs</h4>
+                <p>Cette étude MATLAB explore l’identification d’un procédé non linéaire de type hélicrane. L’objectif est d’approcher ses relations entrée-sortie par plusieurs modèles locaux et d’étudier leur utilisation dans un contrôleur au moyen de simulations.</p>
+              </section>
+              <section class="detail-section" aria-label="Quelques images">
+                <h4>Quelques images</h4>
+                <div class="project-gallery">
+                  <figure>
+                    <img src="assets/projects/helicrane-response.png" alt="Réponse du contrôleur et consigne pour plusieurs essais en échelon" loading="lazy">
+                    <figcaption>Réponses du contrôleur aux consignes en échelon.</figcaption>
+                  </figure>
+                  <figure>
+                    <img src="assets/projects/helicrane-chirp.png" alt="Réponse du contrôleur à une consigne de type chirp" loading="lazy">
+                    <figcaption>Simulation avec une consigne de type chirp.</figcaption>
+                  </figure>
+                </div>
+              </section>
+              <section class="detail-section" aria-label="Décisions techniques et résultats">
+                <h4>Décisions techniques et résultats</h4>
+                <ul>
+                  <li>Le procédé non linéaire est identifié à partir de données d’excitation et représenté par des modèles flous locaux.</li>
+                  <li>La commande est évaluée en simulation sur différentes consignes, dont des échelons et un signal chirp.</li>
+                  <li>Les courbes permettent de comparer la réponse simulée du contrôleur à la référence, sans présenter le travail comme un système de vol déployable.</li>
+                </ul>
+              </section>
               <a class="project-link" href="https://github.com/mlmdc/NL_fuzzy_modeling_controling" target="_blank" rel="noopener noreferrer">Voir le code sur GitHub <span aria-hidden="true">↗</span></a>
             </div>
           </details>
@@ -629,7 +779,35 @@
               </div>
             </summary>
             <div class="project-details">
-              <p>Ce jeu de bureau développé en Python s’inspire des jeux à décisions binaires : chaque événement propose deux choix et modifie les indicateurs du pays. La boucle de jeu illustre les effets de décisions durables ou de court terme.</p>
+              <section class="detail-section" aria-label="Pitch">
+                <h4>Pitch</h4>
+                <p class="project-pitch">Gouverner un pays fictif en arbitrant les conséquences de chaque décision.</p>
+              </section>
+              <section class="detail-section" aria-label="Contexte et objectifs">
+                <h4>Contexte et objectifs</h4>
+                <p>Reignib est un jeu de bureau développé en Python autour d’une boucle de décisions : le joueur répond à des événements en choisissant entre deux options. Le projet rend visibles les compromis entre des décisions de court terme et leurs effets sur les équilibres du pays.</p>
+              </section>
+              <section class="detail-section" aria-label="Quelques images">
+                <h4>Quelques images</h4>
+                <div class="project-gallery">
+                  <figure>
+                    <img src="assets/projects/reignib.jpg" alt="Illustration de paysage urbain du jeu Reignib" loading="lazy">
+                    <figcaption>Illustration de l’univers du jeu.</figcaption>
+                  </figure>
+                  <figure>
+                    <img src="assets/projects/reignib-character.png" alt="Portrait de personnage utilisé dans Reignib" loading="lazy">
+                    <figcaption>Un personnage du jeu.</figcaption>
+                  </figure>
+                </div>
+              </section>
+              <section class="detail-section" aria-label="Décisions techniques et résultats">
+                <h4>Décisions techniques et résultats</h4>
+                <ul>
+                  <li>Chaque événement propose deux choix qui influencent quatre indicateurs : industrie, population, climat et finances.</li>
+                  <li>La boucle de jeu met en scène les effets croisés des décisions et permet de parcourir plusieurs événements.</li>
+                  <li>Le résultat est un jeu jouable, accompagné de ses ressources visuelles et de son code Python.</li>
+                </ul>
+              </section>
               <a class="project-link" href="https://github.com/mlmdc/S6_CPO_Game" target="_blank" rel="noopener noreferrer">Voir le code sur GitHub <span aria-hidden="true">↗</span></a>
             </div>
           </details>
@@ -645,7 +823,35 @@
               </div>
             </summary>
             <div class="project-details">
-              <p>Le projet étudie la classification binaire sur le jeu Wisconsin Diagnostic Breast Cancer et compare une somme linéaire seuillée, dont les poids sont optimisés par PSO, à un réseau feedforward MATLAB.</p>
+              <section class="detail-section" aria-label="Pitch">
+                <h4>Pitch</h4>
+                <p class="project-pitch">Comparer une classification optimisée par essaim particulaire à un réseau de neurones.</p>
+              </section>
+              <section class="detail-section" aria-label="Contexte et objectifs">
+                <h4>Contexte et objectifs</h4>
+                <p>Le projet étudie la classification binaire d’échantillons du jeu Wisconsin Diagnostic Breast Cancer. L’objectif est de confronter une approche d’optimisation par essaim particulaire à un réseau de neurones, et d’observer leurs prédictions et erreurs de classification.</p>
+              </section>
+              <section class="detail-section" aria-label="Quelques images">
+                <h4>Quelques images</h4>
+                <div class="project-gallery">
+                  <figure>
+                    <img src="assets/projects/pso-classification.png" alt="Sortie de classification PSO comparée aux classes de référence" loading="lazy">
+                    <figcaption>Prédictions de l’approche PSO et classes de référence.</figcaption>
+                  </figure>
+                  <figure>
+                    <img src="assets/projects/neural-network-confusion.png" alt="Matrice de confusion du réseau de neurones" loading="lazy">
+                    <figcaption>Matrice de confusion du réseau de neurones.</figcaption>
+                  </figure>
+                </div>
+              </section>
+              <section class="detail-section" aria-label="Décisions techniques et résultats">
+                <h4>Décisions techniques et résultats</h4>
+                <ul>
+                  <li>Le PSO optimise les poids d’une somme linéaire seuillée pour produire une classe prédite.</li>
+                  <li>Un réseau feedforward sous MATLAB sert de méthode de comparaison sur le même jeu de données.</li>
+                  <li>Les sorties et matrices de confusion rendent les erreurs visibles ; le dépôt distingue les résultats présentés dans le rapport de ceux exécutés par le script fourni.</li>
+                </ul>
+              </section>
               <a class="project-link" href="https://github.com/mlmdc/PSO_NN_bc" target="_blank" rel="noopener noreferrer">Voir le code sur GitHub <span aria-hidden="true">↗</span></a>
             </div>
           </details>
@@ -661,7 +867,35 @@
               </div>
             </summary>
             <div class="project-details">
-              <p>Le projet MATLAB estime une sortie de procédé à partir de trois variables d’entrée. Il compare les ajustements et erreurs de prédiction selon différentes mises à l’échelle, et observe le comportement des coefficients quand les variables explicatives sont corrélées.</p>
+              <section class="detail-section" aria-label="Pitch">
+                <h4>Pitch</h4>
+                <p class="project-pitch">Étudier l’effet de la réduction de dimension et de la mise à l’échelle sur l’identification d’un procédé.</p>
+              </section>
+              <section class="detail-section" aria-label="Contexte et objectifs">
+                <h4>Contexte et objectifs</h4>
+                <p>Ce projet MATLAB estime la sortie de procédé <code>I_EFF</code> à partir de trois variables d’entrée. Il compare les approches de régression sur un jeu de données de procédé pour comprendre l’influence de la normalisation et de la corrélation entre prédicteurs sur l’ajustement.</p>
+              </section>
+              <section class="detail-section" aria-label="Quelques images">
+                <h4>Quelques images</h4>
+                <div class="project-gallery">
+                  <figure>
+                    <img src="assets/projects/pca-regression.png" alt="Prédictions moindres carrés et ACP sur les données standardisées" loading="lazy">
+                    <figcaption>Comparaison des sorties prédites après standardisation.</figcaption>
+                  </figure>
+                  <figure>
+                    <img src="assets/projects/pca-prediction.png" alt="Erreur de prédiction ACP selon différentes méthodes de standardisation" loading="lazy">
+                    <figcaption>Erreur ACP selon la méthode de mise à l’échelle.</figcaption>
+                  </figure>
+                </div>
+              </section>
+              <section class="detail-section" aria-label="Décisions techniques et résultats">
+                <h4>Décisions techniques et résultats</h4>
+                <ul>
+                  <li>Les moindres carrés, l’ACP et la régression sur composantes principales (PCR) sont comparés sur les données du procédé.</li>
+                  <li>Plusieurs mises à l’échelle sont étudiées pour comparer les erreurs de prédiction.</li>
+                  <li>Les graphiques montrent l’impact marqué de la standardisation et permettent d’examiner l’évolution des paramètres lorsque les entrées sont corrélées.</li>
+                </ul>
+              </section>
               <a class="project-link" href="https://github.com/mlmdc/PCA_PCR_model_identification" target="_blank" rel="noopener noreferrer">Voir le code sur GitHub <span aria-hidden="true">↗</span></a>
             </div>
           </details>
@@ -677,7 +911,35 @@
               </div>
             </summary>
             <div class="project-details">
-              <p>Les coordonnées des stations de base sont connues et les mesures de distance servent à estimer la position du téléphone. Le dépôt présente les cercles associés aux mesures ainsi que le chemin suivi par l’estimation.</p>
+              <section class="detail-section" aria-label="Pitch">
+                <h4>Pitch</h4>
+                <p class="project-pitch">Estimer la position d’un téléphone à partir des distances à trois stations de base.</p>
+              </section>
+              <section class="detail-section" aria-label="Contexte et objectifs">
+                <h4>Contexte et objectifs</h4>
+                <p>Les positions des stations sont connues, mais la position du téléphone doit être retrouvée à partir de mesures de distance. Le projet étudie la triangulation en 2D et compare des méthodes d’optimisation non linéaire pour minimiser l’écart aux distances observées.</p>
+              </section>
+              <section class="detail-section" aria-label="Quelques images">
+                <h4>Quelques images</h4>
+                <div class="project-gallery">
+                  <figure>
+                    <img src="assets/projects/triangulation.png" alt="Cercles des stations et trajectoire estimée par la méthode WLM" loading="lazy">
+                    <figcaption>Estimation de position par WLM.</figcaption>
+                  </figure>
+                  <figure>
+                    <img src="assets/projects/triangulation-lm.png" alt="Cercles de mesure et trajectoire estimée par la méthode LM" loading="lazy">
+                    <figcaption>Estimation de position par LM.</figcaption>
+                  </figure>
+                </div>
+              </section>
+              <section class="detail-section" aria-label="Décisions techniques et résultats">
+                <h4>Décisions techniques et résultats</h4>
+                <ul>
+                  <li>Les mesures sont représentées par des cercles centrés sur les stations ; la position recherchée doit concilier les trois distances.</li>
+                  <li>Les méthodes de Levenberg–Marquardt (LM) et WLM sont comparées à partir des trajectoires d’itération et de leurs erreurs.</li>
+                  <li>Les visualisations permettent d’observer la convergence des estimations et les écarts entre méthodes.</li>
+                </ul>
+              </section>
               <a class="project-link" href="https://github.com/mlmdc/LM_triangulation" target="_blank" rel="noopener noreferrer">Voir le code sur GitHub <span aria-hidden="true">↗</span></a>
             </div>
           </details>
