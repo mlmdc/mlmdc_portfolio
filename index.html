@@ -1,0 +1,1158 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Portfolio de projets en automatisme, systèmes embarqués, modélisation et développement logiciel.">
+  <meta name="theme-color" content="#f5f3ef">
+  <title>Portfolio — Maël</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #202624;
+      --muted: #5c6862;
+      --paper: #f5f3ef;
+      --card: #fffefa;
+      --line: #d9ded7;
+      --accent: #246b58;
+      --accent-dark: #174b3d;
+      --highlight: #dcebe2;
+      --header-height: 76px;
+      scroll-behavior: smooth;
+      scroll-padding-top: calc(var(--header-height) + 18px);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      line-height: 1.6;
+    }
+
+    body::before {
+      position: fixed;
+      z-index: -1;
+      background-image: radial-gradient(#246b5812 0.75px, transparent 0.75px);
+      background-size: 18px 18px;
+      content: "";
+      inset: 0;
+      pointer-events: none;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    a:focus-visible {
+      outline: 3px solid #c27230;
+      outline-offset: 4px;
+    }
+
+    .page {
+      width: min(1080px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      position: sticky;
+      z-index: 10;
+      top: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 0 -20px;
+      padding: 22px 20px;
+      border-bottom: 1px solid var(--line);
+      background: #f5f3efe8;
+      backdrop-filter: blur(14px);
+      transition: box-shadow 180ms ease, background-color 180ms ease;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: clamp(14px, 2.6vw, 28px);
+    }
+
+    .topbar.is-scrolled {
+      background: #f5f3eff5;
+      box-shadow: 0 8px 24px #2026240c;
+    }
+
+    .wordmark {
+      font-size: clamp(1.35rem, 2.5vw, 1.8rem);
+      font-weight: 800;
+      letter-spacing: -0.055em;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .topbar nav {
+      display: flex;
+      align-items: center;
+    }
+
+    .topbar nav a {
+      position: relative;
+      color: var(--muted);
+      font-size: 0.92rem;
+      text-decoration: none;
+      transition: color 180ms ease;
+    }
+
+    .topbar nav a + a {
+      margin-left: 20px;
+      padding-left: 20px;
+    }
+
+    .topbar nav a + a::before {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      color: #20262442;
+      content: "·";
+      font-size: 0.95rem;
+      transform: translateY(-50%);
+    }
+
+    .topbar nav a[aria-current="location"],
+    .topbar nav a:hover {
+      color: var(--accent-dark);
+    }
+
+    .cv-link {
+      padding: 8px 14px;
+      border: 1px solid var(--line);
+      border-radius: 7px;
+      color: var(--accent-dark);
+      font-size: 0.9rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: border-color 180ms ease, background-color 180ms ease;
+    }
+
+    .cv-link:hover {
+      border-color: #b8c9c0;
+      background: var(--highlight);
+    }
+
+    .project-link:hover {
+      color: var(--accent-dark);
+    }
+
+    .hero {
+      position: relative;
+      display: flex;
+      min-height: min(760px, calc(100svh - var(--header-height)));
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      overflow: hidden;
+      padding: 72px 0 96px;
+      isolation: isolate;
+    }
+
+    .hero::after {
+      position: absolute;
+      z-index: -1;
+      top: 50%;
+      right: -7%;
+      width: clamp(240px, 42vw, 500px);
+      aspect-ratio: 1;
+      border: 1px solid #246b5824;
+      border-radius: 50%;
+      background: radial-gradient(circle at 40% 45%, #dcebe2e8, #dcebe255 56%, transparent 70%);
+      content: "";
+      transform: translateY(-50%);
+      animation: float-orbit 9s ease-in-out infinite alternate;
+      pointer-events: none;
+    }
+
+    .eyebrow,
+    .project-type {
+      color: var(--accent);
+      font-size: 0.76rem;
+      font-weight: 750;
+      letter-spacing: 0.11em;
+      text-transform: uppercase;
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin-top: 0;
+    }
+
+    h1 {
+      max-width: 850px;
+      margin-bottom: 18px;
+      font-size: clamp(3rem, 8vw, 7.3rem);
+      line-height: 0.94;
+      letter-spacing: -0.07em;
+    }
+
+    .hero h1 span {
+      color: var(--accent);
+    }
+
+    .hero-subtitle {
+      min-height: 1.7em;
+      margin-bottom: 20px;
+      color: var(--accent);
+      font-size: clamp(1.1rem, 2.4vw, 1.55rem);
+      font-weight: 650;
+      letter-spacing: -0.025em;
+    }
+
+    .hero-subtitle span {
+      display: inline-block;
+      animation: phrase-in 400ms ease both;
+    }
+
+    .hero-copy {
+      max-width: 700px;
+      margin-bottom: 28px;
+      color: var(--muted);
+      font-size: clamp(1.05rem, 2vw, 1.25rem);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .hero-button {
+      display: inline-flex;
+      min-height: 46px;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 17px;
+      border: 1px solid var(--accent);
+      border-radius: 8px;
+      background: var(--accent);
+      color: white;
+      font-size: 0.95rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: transform 180ms ease, background-color 180ms ease, box-shadow 180ms ease;
+    }
+
+    .hero-button:hover {
+      background: var(--accent-dark);
+      box-shadow: 0 8px 20px #174b3d24;
+      transform: translateY(-2px);
+    }
+
+    .hero-button--secondary {
+      background: transparent;
+      color: var(--accent-dark);
+    }
+
+    .hero-button--secondary:hover {
+      background: var(--highlight);
+      box-shadow: none;
+    }
+
+    .projects {
+      padding: 38px 0 88px;
+    }
+
+    .section-heading {
+      display: flex;
+      justify-content: space-between;
+      gap: 24px;
+      align-items: end;
+      margin-bottom: 26px;
+    }
+
+    .section-heading h2 {
+      margin-bottom: 0;
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      letter-spacing: -0.055em;
+    }
+
+    .section-heading p {
+      max-width: 380px;
+      margin-bottom: 3px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .project-list {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .project-card {
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: var(--card);
+      transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+    }
+
+    .project-card:hover {
+      border-color: #b8c9c0;
+      box-shadow: 0 16px 36px #2026240e;
+      transform: translateY(-3px);
+    }
+
+    .project-card summary {
+      display: grid;
+      min-height: 260px;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      cursor: pointer;
+      list-style: none;
+    }
+
+    .project-card summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .project-card summary:focus-visible {
+      outline: 3px solid #c27230;
+      outline-offset: -4px;
+    }
+
+    .project-visual {
+      display: flex;
+      min-height: 260px;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      background: #dfe3e1;
+    }
+
+    .project-visual img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      min-height: 260px;
+      object-fit: contain;
+      transition: transform 350ms ease;
+    }
+
+    .project-card:hover .project-visual img {
+      transform: scale(1.035);
+    }
+
+    .project-visual--placeholder {
+      color: #606a66;
+      font-size: 0.9rem;
+      text-align: center;
+    }
+
+    .project-summary {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 30px;
+    }
+
+    .project-card h3 {
+      margin: 10px 0 9px;
+      font-size: clamp(1.2rem, 2.4vw, 1.55rem);
+      line-height: 1.25;
+      letter-spacing: -0.035em;
+    }
+
+    .project-summary p,
+    .project-details p {
+      margin-bottom: 0;
+      color: var(--muted);
+      font-size: 0.96rem;
+    }
+
+    .expand-hint {
+      display: inline-flex;
+      gap: 8px;
+      align-items: center;
+      margin-top: 20px;
+      color: var(--accent);
+      font-size: 0.9rem;
+      font-weight: 700;
+    }
+
+    .expand-hint::after {
+      content: "+";
+      font-size: 1.2rem;
+      line-height: 1;
+    }
+
+    .project-card[open] .expand-hint::after {
+      content: "−";
+    }
+
+    .see-more {
+      display: inline-flex;
+      min-height: 38px;
+      align-items: center;
+      justify-content: center;
+      margin-top: 18px;
+      padding: 7px 13px;
+      border: 1px solid var(--accent);
+      border-radius: 7px;
+      color: var(--accent-dark);
+      font-size: 0.87rem;
+      font-weight: 700;
+      transition: color 180ms ease, background-color 180ms ease;
+    }
+
+    .project-card summary:hover .see-more {
+      background: var(--accent);
+      color: white;
+    }
+
+    .see-more::after {
+      margin-left: 8px;
+      content: "↓";
+    }
+
+    .project-card[open] .see-more::after {
+      content: "↑";
+    }
+
+    .project-details {
+      padding: 24px 30px 28px;
+      border-top: 1px solid var(--line);
+    }
+
+    .project-details p {
+      max-width: 760px;
+    }
+
+    .project-pitch {
+      margin-bottom: 0;
+      padding-left: 18px;
+      border-left: 3px solid var(--accent);
+      color: var(--ink) !important;
+      font-size: 1.08rem !important;
+      font-weight: 600;
+    }
+
+    .detail-section + .detail-section {
+      margin-top: 26px;
+    }
+
+    .detail-section h4 {
+      margin: 0 0 11px;
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .detail-section > p,
+    .detail-section > ul {
+      max-width: 820px;
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    .detail-section ul {
+      display: grid;
+      gap: 8px;
+      padding-left: 20px;
+    }
+
+    .project-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr));
+      gap: 14px;
+    }
+
+    .project-gallery figure {
+      min-width: 0;
+      margin: 0;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 9px;
+      background: #dfe3e1;
+    }
+
+    .project-gallery img {
+      display: block;
+      width: 100%;
+      height: 190px;
+      object-fit: contain;
+    }
+
+    .project-gallery figcaption {
+      padding: 9px 12px;
+      background: var(--card);
+      color: var(--muted);
+      font-size: 0.82rem;
+    }
+
+    .gallery-placeholder {
+      display: grid;
+      min-height: 190px;
+      place-items: center;
+      padding: 20px;
+      color: #606a66;
+      font-size: 0.9rem;
+      text-align: center;
+    }
+
+    .project-link {
+      display: inline-flex;
+      gap: 8px;
+      align-items: center;
+      margin-top: 16px;
+      color: var(--accent);
+      font-size: 0.92rem;
+      font-weight: 700;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 4px;
+    }
+
+    .project-link:hover {
+      color: var(--accent-dark);
+    }
+
+    .project-link span {
+      font-size: 1.15rem;
+      line-height: 1;
+    }
+
+    .contact {
+      display: flex;
+      justify-content: space-between;
+      gap: 36px;
+      align-items: center;
+      margin-bottom: 42px;
+      padding: clamp(26px, 5vw, 48px);
+      border: 1px solid #c5d8cc;
+      border-radius: 14px;
+      background: var(--highlight);
+    }
+
+    .contact h2 {
+      margin-bottom: 8px;
+      font-size: clamp(1.6rem, 4vw, 2.3rem);
+      letter-spacing: -0.05em;
+    }
+
+    .contact p {
+      max-width: 580px;
+      margin-bottom: 0;
+      color: var(--muted);
+    }
+
+    .contact-link {
+      flex: 0 0 auto;
+      white-space: nowrap;
+    }
+
+    .contact-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    footer {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 28px 0;
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+
+    html.js .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 650ms ease, transform 650ms cubic-bezier(0.2, 0.7, 0.2, 1);
+    }
+
+    html.js .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal-delay-1 { transition-delay: 80ms; }
+    .reveal-delay-2 { transition-delay: 160ms; }
+    .reveal-delay-3 { transition-delay: 240ms; }
+
+    @keyframes float-orbit {
+      from { transform: translateY(-48%) rotate(-8deg) scale(0.96); }
+      to { transform: translateY(-52%) rotate(8deg) scale(1.04); }
+    }
+
+    @keyframes phrase-in {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    footer p {
+      margin: 0;
+    }
+
+    @media (max-width: 700px) {
+      .hero {
+        min-height: min(720px, calc(100svh - var(--header-height)));
+        padding: 58px 0 72px;
+      }
+
+      .hero::after {
+        top: 22%;
+        right: -25%;
+        width: 70vw;
+      }
+
+      .section-heading {
+        display: block;
+      }
+
+      .section-heading p {
+        margin-top: 10px;
+      }
+
+      .project-card summary {
+        min-height: 220px;
+      }
+
+      .project-visual,
+      .project-visual img {
+        min-height: 220px;
+      }
+
+      .project-summary {
+        padding: 22px;
+      }
+
+      .project-details {
+        padding: 20px 22px 24px;
+      }
+
+      .contact {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 20px;
+      }
+    }
+
+    @media (max-width: 420px) {
+      .page {
+        width: min(100% - 28px, 1080px);
+      }
+
+      .topbar {
+        padding: 20px 0;
+      }
+
+      .topbar {
+        padding-right: 14px;
+        padding-left: 14px;
+      }
+
+      .topbar {
+        align-items: flex-start;
+        flex-wrap: wrap;
+        gap: 16px 12px;
+      }
+
+      .wordmark {
+        font-size: 1.4rem;
+      }
+
+      .header-actions {
+        width: 100%;
+        justify-content: space-between;
+        gap: 8px;
+      }
+
+      .topbar nav a {
+        font-size: 0.86rem;
+      }
+
+      .topbar nav a + a {
+        margin-left: 12px;
+        padding-left: 12px;
+      }
+
+      .cv-link {
+        padding: 7px 10px;
+      }
+
+      .project-card summary {
+        grid-template-columns: 1fr;
+      }
+
+      .project-visual {
+        min-height: 210px;
+      }
+
+      .project-visual img {
+        min-height: 210px;
+      }
+
+      footer {
+        flex-direction: column;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+
+      html.js .reveal {
+        opacity: 1;
+        transform: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header class="topbar">
+      <a class="wordmark" href="#accueil">Mael Madec</a>
+      <div class="header-actions">
+        <nav aria-label="Navigation principale">
+          <a class="nav-link" href="#accueil" aria-current="location">Accueil</a>
+          <a class="nav-link" href="#projets">Projets</a>
+          <a class="nav-link" href="#contact">Contact</a>
+        </nav>
+        <a class="cv-link" href="#contact">CV</a>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero" id="accueil" aria-labelledby="intro-title">
+        <div class="hero-content reveal">
+          <p class="eyebrow">Présentation · automatisme · systèmes · logiciel</p>
+          <h1 id="intro-title">Bonjour,<br>moi c’est <span>Maël.</span></h1>
+          <p class="hero-subtitle">Je m’intéresse <span id="dynamic-interest" aria-live="polite">à la robotique et à la commande</span></p>
+          <p class="hero-copy">Je conçois et j’étudie des systèmes, de leur modélisation et leur commande jusqu’à leur mise en œuvre. Ce portfolio réunit des projets en robotique, systèmes embarqués, analyse de données et développement logiciel.</p>
+          <div class="hero-actions">
+            <a class="hero-button" href="#projets">Découvrir mes projets <span aria-hidden="true">↓</span></a>
+            <a class="hero-button hero-button--secondary" href="#contact">Me contacter <span aria-hidden="true">↗</span></a>
+          </div>
+        </div>
+      </section>
+
+      <section class="projects" id="projets" aria-labelledby="projects-title">
+        <div class="section-heading">
+          <h2 id="projects-title">Projets</h2>
+          <p>De la simulation à l’intégration matérielle, en passant par l’analyse de données et le jeu.</p>
+        </div>
+
+        <div class="project-list">
+          <details class="project-card reveal">
+            <summary>
+              <div class="project-visual"><img src="assets/projects/tangram-ur5e.svg" alt="Schéma de l’interface Tangram reliée à un robot UR5e"></div>
+              <div class="project-summary">
+                <span class="project-type">Robotique · commande</span>
+                <h3>Tangram robotisé avec UR5e</h3>
+                <p>Composer un tangram sur écran, puis faire assembler ses sept pièces par un robot UR5e.</p>
+                <span class="expand-hint">Plus de détails</span>
+                <span class="see-more">Voir plus</span>
+              </div>
+            </summary>
+            <div class="project-details">
+              <section class="detail-section" aria-label="Problématique et objectifs">
+                <h4>1. Problématique et objectifs</h4>
+                <p>Une disposition préparée à l’écran doit être convertie en positions et orientations dans le repère du robot. Réaliser cette conversion manuellement pièce par pièce complique les ajustements et leur répétition. L’objectif est de passer d’une composition graphique des sept pièces à une séquence de prises et de dépôts par le robot UR5e.</p>
+              </section>
+              <section class="detail-section" aria-label="Approches et choix techniques">
+                <h4>2. Approches et choix techniques</h4>
+                <p>L’application Python et Pygame fournit un plateau 2D avec déplacement, alignement magnétique, rotations par pas de 15 degrés et commandes d’annulation. À l’export, les coordonnées de l’écran sont converties en poses à six valeurs dans la zone de travail configurée, puis envoyées par TCP au programme PolyScope qui exécute la séquence avec le préhenseur. L’interface et l’édition restent côté PC, l’exécution des mouvements côté contrôleur UR.</p>
+              </section>
+              <section class="detail-section" aria-label="Résultats et limites">
+                <h4>3. Résultats et limites</h4>
+                <p>Le projet relie l’édition visuelle à un programme de prise et de dépôt sur UR5e. La précision physique, la calibration du montage et les performances de bout en bout ne sont pas quantifiées dans le dépôt. La conversion des coordonnées et la zone de travail doivent être adaptées et calibrées ; l’outil ne vérifie ni les collisions ni les contraintes de sécurité du robot.</p>
+              </section>
+              <section class="detail-section" aria-label="Galerie et ressources">
+                <h4>4. Galerie et ressources</h4>
+                <div class="project-gallery">
+                  <figure>
+                    <img src="assets/projects/tangram-ur5e.svg" alt="Architecture de l’interface, de la communication TCP/IP et du robot UR5e" loading="lazy">
+                    <figcaption>Architecture du système.</figcaption>
+                  </figure>
+                  <figure>
+                    <img src="assets/projects/tangram-editor-detail.png" alt="Éditeur Tangram et ses sept pièces manipulables" loading="lazy">
+                    <figcaption>Éditeur de composition.</figcaption>
+                  </figure>
+                  <figure>
+                    <img src="assets/projects/tangram-layout-detail.png" alt="Exemple de disposition composée avec l’éditeur Tangram" loading="lazy">
+                    <figcaption>Exemple de disposition.</figcaption>
+                  </figure>
+                </div>
+                <a class="project-link" href="https://github.com/mlmdc/UR_tangram_control" target="_blank" rel="noopener noreferrer">Code source et ressources <span aria-hidden="true">↗</span></a>
+              </section>
+            </div>
+          </details>
+
+          <details class="project-card reveal reveal-delay-1">
+            <summary>
+              <div class="project-visual project-visual--placeholder" role="img" aria-label="Illustration indisponible pour ce projet">Illustration indisponible</div>
+              <div class="project-summary">
+                <span class="project-type">Systèmes embarqués</span>
+                <h3>Asservissement d’un moteur CC</h3>
+                <p>Mesurer et réguler la vitesse d’un moteur à courant continu avec une carte STM32F411.</p>
+                <span class="expand-hint">Plus de détails</span>
+                <span class="see-more">Voir plus</span>
+              </div>
+            </summary>
+            <div class="project-details">
+              <section class="detail-section" aria-label="Problématique et objectifs">
+                <h4>1. Problématique et objectifs</h4>
+                <p>Asservir un moteur nécessite de commander son actionneur tout en acquérant un retour de vitesse et une mesure liée au courant. Le défi est d’assurer des acquisitions et une boucle de commande périodiques sur un microcontrôleur à ressources limitées. Le projet vise à réunir ces fonctions embarquées et à rendre les mesures disponibles par liaison série.</p>
+              </section>
+              <section class="detail-section" aria-label="Approches et choix techniques">
+                <h4>2. Approches et choix techniques</h4>
+                <p>Le projet STM32F411RE utilise STM32Cube HAL. TIM1 lit l’encodeur, TIM2 cadence la boucle de commande à 10 ms, TIM3 génère le PWM et USART2 transporte commandes et télémétrie à 115200 bauds. ADC1 échantillonne la tension du shunt par DMA ; huit mesures sont lissées par moyenne exponentielle. Un PID discret calcule la commande, limitée à 0–24 V avant conversion en rapport cyclique.</p>
+              </section>
+              <section class="detail-section" aria-label="Résultats et limites">
+                <h4>3. Résultats et limites</h4>
+                <p>Le firmware rassemble la mesure de vitesse, l’acquisition ADC, le PID, la commande PWM et la télémétrie. Les notebooks fournissent des bases pour la simulation du moteur et l’analyse série, mais le dépôt ne présente pas de validation expérimentale quantitative ni de performances d’asservissement mesurées. La tension ADC n’est pas étalonnée en ampères ; la commande bidirectionnelle et l’anti-windup ne sont pas implémentés.</p>
+              </section>
+              <section class="detail-section" aria-label="Galerie et ressources">
+                <h4>4. Galerie et ressources</h4>
+                <div class="project-gallery">
+                  <figure>
+                    <div class="gallery-placeholder" role="img" aria-label="Aucune image ou démonstration disponible dans le dépôt">Aucune image ou démonstration disponible dans le dépôt.</div>
+                    <figcaption>Le dépôt ne fournit pas de visuel ni de démonstration.</figcaption>
+                  </figure>
+                </div>
+                <p>Le dépôt contient le firmware STM32Cube et des notebooks de simulation et d’analyse série.</p>
+                <a class="project-link" href="https://github.com/mlmdc/S7-stm32-ips" target="_blank" rel="noopener noreferrer">Code source et notebooks <span aria-hidden="true">↗</span></a>
+              </section>
+            </div>
+          </details>
+
+          <details class="project-card reveal reveal-delay-2">
+            <summary>
+              <div class="project-visual"><img src="assets/projects/helicrane-response.png" alt="Courbes de réponse du contrôleur lors d’essais en échelon"></div>
+              <div class="project-summary">
+                <span class="project-type">Modélisation · commande</span>
+                <h3>Modélisation floue d’un hélicrane</h3>
+                <p>Identifier par modèles flous locaux la dynamique d’un hélicrane et explorer la commande fondée sur ce modèle.</p>
+                <span class="expand-hint">Plus de détails</span>
+                <span class="see-more">Voir plus</span>
+              </div>
+            </summary>
+            <div class="project-details">
+              <section class="detail-section" aria-label="Problématique et objectifs">
+                <h4>1. Problématique et objectifs</h4>
+                <p>Un modèle linéaire unique ne représente pas nécessairement de façon satisfaisante un procédé non linéaire sur toute sa plage de fonctionnement. L’objectif est d’identifier des dynamiques locales d’un hélicrane, de les combiner par logique floue, puis d’étudier en simulation leur utilisation pour la commande.</p>
+              </section>
+              <section class="detail-section" aria-label="Approches et choix techniques">
+                <h4>2. Approches et choix techniques</h4>
+                <p>Des signaux d’excitation, dont des PRBS, alimentent les essais sur le modèle de procédé. Le clustering de Gustafson–Kessel définit les zones locales ; les moindres carrés pondérés estiment un modèle ARX par zone et un réseau NARX sert de comparaison. Les modèles locaux Takagi–Sugeno sont ensuite utilisés dans une représentation en espace d’état pour simuler un contrôleur fondé sur le modèle, avec saturation de l’entrée.</p>
+              </section>
+              <section class="detail-section" aria-label="Résultats et limites">
+                <h4>3. Résultats et limites</h4>
+                <p>Les résultats enregistrés montrent un suivi qualitatif de consignes en échelons ; avec une consigne de type chirp, l’écart augmente aux fréquences les plus élevées. Le dépôt ne fournit pas de métrique d’erreur agrégée ni les paramètres exacts des exécutions représentées. Les scripts MATLAB, le modèle de procédé compilé et l’absence de graine aléatoire documentée limitent la reproductibilité. Il s’agit d’une étude en simulation, pas d’une validation de vol réel.</p>
+              </section>
+              <section class="detail-section" aria-label="Galerie et ressources">
+                <h4>4. Galerie et ressources</h4>
+                <div class="project-gallery">
+                  <figure>
+                    <img src="assets/projects/helicrane-response.png" alt="Réponse du contrôleur à une consigne en échelons" loading="lazy">
+                    <figcaption>Suivi qualitatif en échelons.</figcaption>
+                  </figure>
+                  <figure>
+                    <img src="assets/projects/helicrane-chirp-detail.png" alt="Réponse du contrôleur à une consigne chirp" loading="lazy">
+                    <figcaption>Réponse à une consigne chirp.</figcaption>
+                  </figure>
+                  <figure>
+                    <img src="assets/projects/helicrane-clustering-detail.png" alt="Zones de fonctionnement identifiées par clustering de Gustafson-Kessel" loading="lazy">
+                    <figcaption>Clustering des zones de fonctionnement.</figcaption>
+                  </figure>
+                </div>
+                <a class="project-link" href="https://github.com/mlmdc/NL_fuzzy_modeling_controling" target="_blank" rel="noopener noreferrer">Code source, figures et ressources <span aria-hidden="true">↗</span></a>
+              </section>
+            </div>
+          </details>
+
+          <details class="project-card reveal reveal-delay-3">
+            <summary>
+              <div class="project-visual"><img src="assets/projects/reignib.jpg" alt="Illustration du jeu Reignib"></div>
+              <div class="project-summary">
+                <span class="project-type">Développement logiciel · jeu</span>
+                <h3>Reignib — gouverner un pays fictif</h3>
+                <p>Gouverner un pays fictif en arbitrant les conséquences de chaque décision.</p>
+                <span class="expand-hint">Plus de détails</span>
+                <span class="see-more">Voir plus</span>
+              </div>
+            </summary>
+            <div class="project-details">
+              <section class="detail-section" aria-label="Problématique et objectifs">
+                <h4>1. Problématique et objectifs</h4>
+                <p>Le projet cherche à intégrer les enjeux du développement durable dans le déroulement d’un jeu plutôt que de les présenter comme une leçon séparée. L’objectif est de rendre visibles les conséquences et les arbitrages d’une succession de décisions politiques au moyen d’un prototype jouable et de contenus originaux.</p>
+              </section>
+              <section class="detail-section" aria-label="Approches et choix techniques">
+                <h4>2. Approches et choix techniques</h4>
+                <p>Dans cette boucle de jeu de bureau, le joueur répond à des événements par un choix à gauche ou à droite. Les effets modifient quatre indicateurs : industrie, population, climat et finances ; atteindre une limite met fin à la partie. Python et Pyglet gèrent l’affichage, les entrées, le rythme et l’audio ; les données des cartes et leurs effets sont séparés dans des fichiers CSV. Des modules distincts gèrent cartes, menus, statistiques et événements.</p>
+              </section>
+              <section class="detail-section" aria-label="Résultats et limites">
+                <h4>3. Résultats et limites</h4>
+                <p>Le dépôt contient un prototype jouable avec cartes illustrées, indicateurs, menus, audio et sauvegarde locale limitée. La séparation des cartes et de l’interface facilite l’ajout de contenu. En revanche, le déroulement actif pioche dans un ensemble aléatoire : les parcours narratifs à embranchements ne sont pas reliés à la boucle du jeu. La sauvegarde ne conserve pas l’historique complet des choix, et l’état global partagé couple certains modules.</p>
+              </section>
+              <section class="detail-section" aria-label="Galerie et ressources">
+                <h4>4. Galerie et ressources</h4>
+                <div class="project-gallery">
+                  <figure>
+                    <img src="assets/projects/reignib.jpg" alt="Illustration de paysage urbain de l’univers de Reignib" loading="lazy">
+                    <figcaption>Univers visuel du jeu.</figcaption>
+                  </figure>
+                  <figure>
+                    <img src="assets/projects/reignib-character-detail.png" alt="Portrait illustré d’un personnage de Reignib" loading="lazy">
+                    <figcaption>Personnage du jeu.</figcaption>
+                  </figure>
+                </div>
+                <a class="project-link" href="https://github.com/mlmdc/S6_CPO_Game/blob/main/UML/REIGNIB_presentation.pdf" target="_blank" rel="noopener noreferrer">Dossier de conception UML <span aria-hidden="true">↗</span></a>
+                <a class="project-link" href="https://github.com/mlmdc/S6_CPO_Game" target="_blank" rel="noopener noreferrer">Code source et ressources <span aria-hidden="true">↗</span></a>
+              </section>
+            </div>
+          </details>
+
+          <details class="project-card reveal">
+            <summary>
+              <div class="project-visual"><img src="assets/projects/pso-classification.png" alt="Résultat de classification par PSO comparé aux étiquettes de référence"></div>
+              <div class="project-summary">
+                <span class="project-type">Optimisation · apprentissage</span>
+                <h3>Classification par PSO et réseau de neurones</h3>
+                <p>Comparer PSO et réseau de neurones pour classer des masses mammaires à partir de 30 mesures cellulaires.</p>
+                <span class="expand-hint">Plus de détails</span>
+                <span class="see-more">Voir plus</span>
+              </div>
+            </summary>
+            <div class="project-details">
+              <section class="detail-section" aria-label="Problématique et objectifs">
+                <h4>1. Problématique et objectifs</h4>
+                <p>Le jeu WDBC décrit chaque échantillon par 30 mesures et un diagnostic parmi deux classes. Le projet compare plusieurs méthodes d’apprentissage pour explorer comment elles transforment ces mesures en classe prédite. Il s’agit d’une étude pédagogique, et non d’un outil de diagnostic clinique.</p>
+              </section>
+              <section class="detail-section" aria-label="Approches et choix techniques">
+                <h4>2. Approches et choix techniques</h4>
+                <p>Les expériences décrites dans le rapport comparent un réseau feedforward MATLAB, une somme linéaire dont les poids sont optimisés par essaim particulaire (PSO) et une variante du réseau à activations linéaires. Les sorties sont converties en codes de classe 2 ou 4 avec un seuil fixé à 3 ; l’évaluation rapportée utilise une validation croisée pour la sélection, puis l’ensemble des 569 observations.</p>
+              </section>
+              <section class="detail-section" aria-label="Résultats et limites">
+                <h4>3. Résultats et limites</h4>
+                <p>Les graphiques et matrices de confusion permettent d’inspecter les prédictions et les erreurs. Les résultats du rapport doivent être distingués de ceux reproductibles à partir du script versionné : l’évaluation sur les 569 échantillons réutilise des observations ayant servi à l’apprentissage ou à la sélection et ne fournit donc pas une mesure indépendante de généralisation. Ces résultats ne permettent pas de tirer de conclusion clinique.</p>
+              </section>
+              <section class="detail-section" aria-label="Galerie et ressources">
+                <h4>4. Galerie et ressources</h4>
+                <div class="project-gallery">
+                  <figure>
+                    <img src="assets/projects/pso-classification.png" alt="Sortie de classification PSO comparée aux classes de référence" loading="lazy">
+                    <figcaption>Prédictions de l’approche PSO.</figcaption>
+                  </figure>
+                  <figure>
+                    <img src="assets/projects/pso-confusion-detail.png" alt="Matrice de confusion du réseau de neurones" loading="lazy">
+                    <figcaption>Matrice de confusion du réseau.</figcaption>
+                  </figure>
+                </div>
+                <a class="project-link" href="https://github.com/mlmdc/PSO_NN_bc/blob/main/VAJA4.pdf" target="_blank" rel="noopener noreferrer">Rapport du projet (PDF) <span aria-hidden="true">↗</span></a>
+                <a class="project-link" href="https://github.com/mlmdc/PSO_NN_bc" target="_blank" rel="noopener noreferrer">Code source et résultats <span aria-hidden="true">↗</span></a>
+              </section>
+            </div>
+          </details>
+
+          <details class="project-card reveal reveal-delay-1">
+            <summary>
+              <div class="project-visual"><img src="assets/projects/pca-regression.png" alt="Comparaison des prédictions par moindres carrés et par ACP"></div>
+              <div class="project-summary">
+                <span class="project-type">Identification de systèmes · données</span>
+                <h3>Régression, ACP et PCR</h3>
+                <p>Étudier comment l’échelle et la corrélation des variables influencent l’identification d’un procédé.</p>
+                <span class="expand-hint">Plus de détails</span>
+                <span class="see-more">Voir plus</span>
+              </div>
+            </summary>
+            <div class="project-details">
+              <section class="detail-section" aria-label="Problématique et objectifs">
+                <h4>1. Problématique et objectifs</h4>
+                <p>Avec seulement 21 observations, l’identification d’un modèle de procédé est sensible à l’échelle des entrées et à leur corrélation. Le projet estime la sortie <code>I_EFF</code> à partir de trois variables et compare l’effet de ces facteurs sur les prédictions et les paramètres du modèle.</p>
+              </section>
+              <section class="detail-section" aria-label="Approches et choix techniques">
+                <h4>2. Approches et choix techniques</h4>
+                <p>Le script MATLAB compare les moindres carrés (LSE), l’ACP et la régression sur composantes principales (PCR) sur les données brutes, normalisées entre 0 et 1 et standardisées par score-z. Le nombre de composantes ACP est déterminé avec un seuil de 95 % de variance cumulée expliquée. Une perturbation synthétique d’une entrée permet d’étudier la colinéarité ; le script inclut aussi une validation croisée en sept plis.</p>
+              </section>
+              <section class="detail-section" aria-label="Résultats et limites">
+                <h4>3. Résultats et limites</h4>
+                <p>Les figures rendent visibles les écarts d’ajustement, les erreurs et l’évolution des coefficients selon l’échelle et la corrélation. Le dépôt ne présente pas de benchmark agrégé montrant qu’une méthode est systématiquement meilleure. La taille de l’échantillon est réduite à 21 observations et l’expérience de colinéarité, sans graine aléatoire fixée, peut varier d’une exécution à l’autre.</p>
+              </section>
+              <section class="detail-section" aria-label="Galerie et ressources">
+                <h4>4. Galerie et ressources</h4>
+                <div class="project-gallery">
+                  <figure>
+                    <img src="assets/projects/pca-regression.png" alt="Prédictions par moindres carrés et ACP sur les données standardisées" loading="lazy">
+                    <figcaption>Ajustements sur données standardisées.</figcaption>
+                  </figure>
+                  <figure>
+                    <img src="assets/projects/pca-error-detail.png" alt="Comparaison des erreurs entre les modèles LSE et ACP" loading="lazy">
+                    <figcaption>Erreurs des modèles comparés.</figcaption>
+                  </figure>
+                </div>
+                <a class="project-link" href="https://github.com/mlmdc/PCA_PCR_model_identification" target="_blank" rel="noopener noreferrer">Scripts, données et autres figures <span aria-hidden="true">↗</span></a>
+              </section>
+            </div>
+          </details>
+
+          <details class="project-card reveal reveal-delay-2">
+            <summary>
+              <div class="project-visual"><img src="assets/projects/triangulation.png" alt="Visualisation des cercles de mesure et d’une trajectoire d’estimation de position"></div>
+              <div class="project-summary">
+                <span class="project-type">Géolocalisation · optimisation</span>
+                <h3>Triangulation par distances</h3>
+                <p>Estimer la position d’un téléphone à partir des distances à trois stations de base.</p>
+                <span class="expand-hint">Plus de détails</span>
+                <span class="see-more">Voir plus</span>
+              </div>
+            </summary>
+            <div class="project-details">
+              <section class="detail-section" aria-label="Problématique et objectifs">
+                <h4>1. Problématique et objectifs</h4>
+                <p>Les coordonnées de trois stations sont connues, mais la position du téléphone doit être déduite des distances mesurées. Le bruit empêche généralement les trois cercles de distance de se croiser en un point exact. Le projet cherche à estimer la position qui minimise l’écart entre les mesures et les distances calculées.</p>
+              </section>
+              <section class="detail-section" aria-label="Approches et choix techniques">
+                <h4>2. Approches et choix techniques</h4>
+                <p>Le script MATLAB calcule les distances prédites, les résidus et leur jacobienne, puis compare les mises à jour de Gauss–Newton, Levenberg–Marquardt (LM) et Levenberg–Marquardt pondérée (WLM). L’amortissement de LM stabilise les pas ; WLM pondère les mesures selon la variance estimée pour chaque station. Les mesures sont fournies par trois fonctions MATLAB compilées.</p>
+              </section>
+              <section class="detail-section" aria-label="Résultats et limites">
+                <h4>3. Résultats et limites</h4>
+                <p>Le dépôt contient des graphiques des cercles de mesure, de trajectoires estimées et d’indicateurs d’optimisation. Ils documentent les essais, mais ne constituent pas une validation quantitative reproductible. Le script actuel sélectionne les mesures avec <code>radii(iter)</code> plutôt que les trois distances de l’itération <code>radii(:, iter)</code> ; les résidus et positions calculés ne sont donc pas fiables. Les résultats devront être recalculés après correction.</p>
+              </section>
+              <section class="detail-section" aria-label="Galerie et ressources">
+                <h4>4. Galerie et ressources</h4>
+                <div class="project-gallery">
+                  <figure>
+                    <img src="assets/projects/triangulation.png" alt="Cercles de mesure et trajectoire estimée par WLM" loading="lazy">
+                    <figcaption>Visualisation associée à WLM.</figcaption>
+                  </figure>
+                  <figure>
+                    <img src="assets/projects/triangulation-lm-detail.png" alt="Cercles de mesure et trajectoire estimée par LM" loading="lazy">
+                    <figcaption>Visualisation associée à LM.</figcaption>
+                  </figure>
+                </div>
+                <a class="project-link" href="https://github.com/mlmdc/LM_triangulation/blob/main/Report.pdf" target="_blank" rel="noopener noreferrer">Rapport du projet (PDF) <span aria-hidden="true">↗</span></a>
+                <a class="project-link" href="https://github.com/mlmdc/LM_triangulation" target="_blank" rel="noopener noreferrer">Code source et figures <span aria-hidden="true">↗</span></a>
+              </section>
+            </div>
+          </details>
+        </div>
+      </section>
+
+      <section class="contact reveal" id="contact" aria-labelledby="contact-title">
+        <div>
+          <p class="eyebrow">Contact</p>
+          <h2 id="contact-title">Parlons de vos projets.</h2>
+          <p>Pour échanger autour d’un projet ou d’une collaboration, retrouvez-moi sur GitHub ou LinkedIn.</p>
+        </div>
+        <div class="contact-links">
+          <a class="hero-button contact-link" href="https://github.com/mlmdc" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a>
+          <a class="hero-button hero-button--secondary contact-link" href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn (lien temporaire)">LinkedIn <span aria-hidden="true">↗</span></a>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>© <span id="year">2026</span> Maël</p>
+      <p>Conçu avec soin · 2026</p>
+    </footer>
+  </div>
+  <script>
+    (() => {
+      document.documentElement.classList.add("js");
+      const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const topbar = document.querySelector(".topbar");
+      const navLinks = document.querySelectorAll(".nav-link");
+      const sections = document.querySelectorAll("main section[id]");
+      const revealItems = document.querySelectorAll(".reveal");
+      const interest = document.querySelector("#dynamic-interest");
+
+      if (topbar) {
+        const updateTopbar = () => topbar.classList.toggle("is-scrolled", window.scrollY > 12);
+        updateTopbar();
+        window.addEventListener("scroll", updateTopbar, { passive: true });
+      }
+
+      if ("IntersectionObserver" in window) {
+        const revealObserver = new IntersectionObserver((entries, observer) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("is-visible");
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.12, rootMargin: "0px 0px -32px 0px" });
+
+        revealItems.forEach(item => revealObserver.observe(item));
+      } else {
+        revealItems.forEach(item => item.classList.add("is-visible"));
+      }
+
+      const updateActiveLink = () => {
+        let currentSection = sections[0];
+        sections.forEach(section => {
+          if (section.getBoundingClientRect().top <= window.innerHeight * 0.8) {
+            currentSection = section;
+          }
+        });
+        navLinks.forEach(link => {
+          if (link.getAttribute("href") === `#${currentSection.id}`) {
+            link.setAttribute("aria-current", "location");
+          } else {
+            link.removeAttribute("aria-current");
+          }
+        });
+      };
+
+      updateActiveLink();
+      window.addEventListener("scroll", updateActiveLink, { passive: true });
+
+      if (interest && !reducedMotion) {
+        const interests = [
+          "à la robotique et à la commande",
+          "aux systèmes embarqués",
+          "à la modélisation des systèmes",
+          "à l’analyse de données"
+        ];
+        let index = 0;
+        window.setInterval(() => {
+          index = (index + 1) % interests.length;
+          interest.textContent = interests[index];
+          interest.style.animation = "none";
+          void interest.offsetWidth;
+          interest.style.animation = "";
+        }, 2800);
+      }
+
+      document.querySelectorAll(".project-card").forEach(card => {
+        const updateSeeMoreLabel = () => {
+          const label = card.querySelector(".see-more");
+          if (label) label.textContent = card.open ? "Voir moins" : "Voir plus";
+        };
+
+        card.addEventListener("toggle", updateSeeMoreLabel);
+        card.querySelector("summary").addEventListener("click", () => {
+          if (!card.open) {
+            document.querySelectorAll(".project-card[open]").forEach(otherCard => {
+              if (otherCard !== card) otherCard.open = false;
+            });
+          }
+          window.setTimeout(updateSeeMoreLabel, 0);
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
