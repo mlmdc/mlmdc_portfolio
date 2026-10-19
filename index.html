@@ -149,46 +149,124 @@
       font-size: 0.95rem;
     }
 
-    .project-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 16px;
+    .project-list {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
     }
 
     .project-card {
-      display: flex;
-      min-height: 225px;
-      flex-direction: column;
-      align-items: flex-start;
-      padding: 26px;
+      overflow: hidden;
       border: 1px solid var(--line);
       border-radius: 14px;
       background: var(--card);
     }
 
+    .project-card summary {
+      display: grid;
+      min-height: 260px;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      cursor: pointer;
+      list-style: none;
+    }
+
+    .project-card summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .project-card summary:focus-visible {
+      outline: 3px solid #c27230;
+      outline-offset: -4px;
+    }
+
+    .project-visual {
+      display: flex;
+      min-height: 260px;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      background: #dfe3e1;
+    }
+
+    .project-visual img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      min-height: 260px;
+      object-fit: contain;
+    }
+
+    .project-visual--placeholder {
+      color: #606a66;
+      font-size: 0.9rem;
+      text-align: center;
+    }
+
+    .project-summary {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 30px;
+    }
+
     .project-card h3 {
       margin: 10px 0 9px;
-      font-size: 1.28rem;
+      font-size: clamp(1.2rem, 2.4vw, 1.55rem);
       line-height: 1.25;
       letter-spacing: -0.035em;
     }
 
-    .project-card p {
-      margin-bottom: 22px;
+    .project-summary p,
+    .project-details p {
+      margin-bottom: 0;
       color: var(--muted);
       font-size: 0.96rem;
+    }
+
+    .expand-hint {
+      display: inline-flex;
+      gap: 8px;
+      align-items: center;
+      margin-top: 20px;
+      color: var(--accent);
+      font-size: 0.9rem;
+      font-weight: 700;
+    }
+
+    .expand-hint::after {
+      content: "+";
+      font-size: 1.2rem;
+      line-height: 1;
+    }
+
+    .project-card[open] .expand-hint::after {
+      content: "−";
+    }
+
+    .project-details {
+      padding: 24px 30px 28px;
+      border-top: 1px solid var(--line);
+    }
+
+    .project-details p {
+      max-width: 760px;
     }
 
     .project-link {
       display: inline-flex;
       gap: 8px;
       align-items: center;
-      margin-top: auto;
+      margin-top: 16px;
       color: var(--accent);
       font-size: 0.92rem;
       font-weight: 700;
       text-decoration-thickness: 1px;
       text-underline-offset: 4px;
+    }
+
+    .project-link:hover {
+      color: var(--accent-dark);
     }
 
     .project-link span {
@@ -265,12 +343,21 @@
         margin-top: 10px;
       }
 
-      .project-grid {
-        grid-template-columns: 1fr;
+      .project-card summary {
+        min-height: 220px;
       }
 
-      .project-card {
-        min-height: 0;
+      .project-visual,
+      .project-visual img {
+        min-height: 220px;
+      }
+
+      .project-summary {
+        padding: 22px;
+      }
+
+      .project-details {
+        padding: 20px 22px 24px;
       }
 
       .about {
@@ -307,11 +394,11 @@
     <main>
       <section class="hero" id="accueil" aria-labelledby="intro-title">
         <div>
-          <p class="eyebrow">Automatisme · systèmes · logiciel</p>
-          <h1 id="intro-title">Concevoir, modéliser, expérimenter.</h1>
-          <p class="hero-copy">Une sélection de projets qui explorent la commande de systèmes, les systèmes embarqués, l’identification de modèles et le développement d’applications.</p>
+          <p class="eyebrow">Présentation · automatisme · systèmes · logiciel</p>
+          <h1 id="intro-title">Bonjour, moi c’est Maël.</h1>
+          <p class="hero-copy">Je m’intéresse à la conception et à l’étude de systèmes, de leur modélisation et leur commande jusqu’à leur mise en œuvre. Ce portfolio rassemble quelques projets réalisés autour de la robotique, des systèmes embarqués, de l’analyse de données et du développement logiciel.</p>
         </div>
-        <p class="hero-aside"><strong>Portfolio en cours</strong>Projets académiques et expérimentations techniques, avec le code source accessible sur GitHub.</p>
+        <p class="hero-aside"><strong>Ma démarche</strong>Comprendre un problème, explorer une approche, puis partager les résultats et le code.</p>
       </section>
 
       <section class="projects" id="projets" aria-labelledby="projects-title">
@@ -320,55 +407,118 @@
           <p>De la simulation à l’intégration matérielle, en passant par l’analyse de données et le jeu.</p>
         </div>
 
-        <div class="project-grid">
-          <article class="project-card">
-            <span class="project-type">Robotique · commande</span>
-            <h3>Tangram robotisé avec UR5e</h3>
-            <p>Une interface permet de composer un tangram, puis transmet au robot UR5e les poses nécessaires pour saisir et placer ses sept pièces.</p>
-            <a class="project-link" href="https://github.com/mlmdc/UR_tangram_control" target="_blank" rel="noopener noreferrer">Voir le projet <span aria-hidden="true">↗</span></a>
-          </article>
+        <div class="project-list">
+          <details class="project-card">
+            <summary>
+              <div class="project-visual"><img src="assets/projects/tangram-ur5e.svg" alt="Schéma de l’interface Tangram reliée à un robot UR5e"></div>
+              <div class="project-summary">
+                <span class="project-type">Robotique · commande</span>
+                <h3>Tangram robotisé avec UR5e</h3>
+                <p>Une interface permet de composer un tangram, puis transmet au robot UR5e les poses nécessaires pour saisir et placer ses sept pièces.</p>
+                <span class="expand-hint">Plus de détails</span>
+              </div>
+            </summary>
+            <div class="project-details">
+              <p>L’application de bureau en Python relie la composition en 2D au mouvement physique du robot via TCP/IP. Le projet met en pratique la transformation d’une disposition définie par l’utilisateur en séquence de prise et de dépôt.</p>
+              <a class="project-link" href="https://github.com/mlmdc/UR_tangram_control" target="_blank" rel="noopener noreferrer">Voir le code sur GitHub <span aria-hidden="true">↗</span></a>
+            </div>
+          </details>
 
-          <article class="project-card">
-            <span class="project-type">Systèmes embarqués</span>
-            <h3>Asservissement d’un moteur CC</h3>
-            <p>Firmware STM32F411 pour mesurer et réguler la vitesse d’un moteur à courant continu, avec encodeur, commande PWM et télémétrie série.</p>
-            <a class="project-link" href="https://github.com/mlmdc/S7-stm32-ips" target="_blank" rel="noopener noreferrer">Voir le projet <span aria-hidden="true">↗</span></a>
-          </article>
+          <details class="project-card">
+            <summary>
+              <div class="project-visual project-visual--placeholder" role="img" aria-label="Illustration indisponible pour ce projet">Illustration indisponible</div>
+              <div class="project-summary">
+                <span class="project-type">Systèmes embarqués</span>
+                <h3>Asservissement d’un moteur CC</h3>
+                <p>Firmware STM32F411 pour mesurer et réguler la vitesse d’un moteur à courant continu, avec encodeur, commande PWM et télémétrie série.</p>
+                <span class="expand-hint">Plus de détails</span>
+              </div>
+            </summary>
+            <div class="project-details">
+              <p>Le firmware échantillonne l’encodeur et une entrée analogique reliée à la mesure de courant, met à jour un régulateur PID discret, pilote le moteur en PWM et échange consignes et mesures via USART2. Le dépôt contient aussi des notebooks pour la simulation et l’analyse de données série.</p>
+              <a class="project-link" href="https://github.com/mlmdc/S7-stm32-ips" target="_blank" rel="noopener noreferrer">Voir le code sur GitHub <span aria-hidden="true">↗</span></a>
+            </div>
+          </details>
 
-          <article class="project-card">
-            <span class="project-type">Modélisation · commande</span>
-            <h3>Modélisation floue d’un hélicrane</h3>
-            <p>Étude de modèles flous locaux pour identifier la dynamique d’un procédé de type hélicrane et expérimenter une commande basée sur le modèle.</p>
-            <a class="project-link" href="https://github.com/mlmdc/NL_fuzzy_modeling_controling" target="_blank" rel="noopener noreferrer">Voir le projet <span aria-hidden="true">↗</span></a>
-          </article>
+          <details class="project-card">
+            <summary>
+              <div class="project-visual"><img src="assets/projects/helicrane-response.png" alt="Courbes de réponse du contrôleur lors d’essais en échelon"></div>
+              <div class="project-summary">
+                <span class="project-type">Modélisation · commande</span>
+                <h3>Modélisation floue d’un hélicrane</h3>
+                <p>Étude de modèles flous locaux pour identifier la dynamique d’un procédé de type hélicrane et expérimenter une commande basée sur le modèle.</p>
+                <span class="expand-hint">Plus de détails</span>
+              </div>
+            </summary>
+            <div class="project-details">
+              <p>Cette étude MATLAB explore l’approximation de la dynamique non linéaire d’un hélicrane à l’aide de modèles flous locaux, puis teste un contrôleur fondé sur le modèle. Les résultats incluent des simulations de réponse à des consignes en échelon.</p>
+              <a class="project-link" href="https://github.com/mlmdc/NL_fuzzy_modeling_controling" target="_blank" rel="noopener noreferrer">Voir le code sur GitHub <span aria-hidden="true">↗</span></a>
+            </div>
+          </details>
 
-          <article class="project-card">
-            <span class="project-type">Développement logiciel · jeu</span>
-            <h3>Reignib — gouverner un pays fictif</h3>
-            <p>Un jeu à choix où chaque décision fait évoluer quatre équilibres — industrie, population, climat et finances — et rend visibles leurs compromis.</p>
-            <a class="project-link" href="https://github.com/mlmdc/S6_CPO_Game" target="_blank" rel="noopener noreferrer">Voir le projet <span aria-hidden="true">↗</span></a>
-          </article>
+          <details class="project-card">
+            <summary>
+              <div class="project-visual"><img src="assets/projects/reignib.jpg" alt="Illustration du jeu Reignib"></div>
+              <div class="project-summary">
+                <span class="project-type">Développement logiciel · jeu</span>
+                <h3>Reignib — gouverner un pays fictif</h3>
+                <p>Un jeu à choix où chaque décision fait évoluer quatre équilibres — industrie, population, climat et finances — et rend visibles leurs compromis.</p>
+                <span class="expand-hint">Plus de détails</span>
+              </div>
+            </summary>
+            <div class="project-details">
+              <p>Ce jeu de bureau développé en Python s’inspire des jeux à décisions binaires : chaque événement propose deux choix et modifie les indicateurs du pays. La boucle de jeu illustre les effets de décisions durables ou de court terme.</p>
+              <a class="project-link" href="https://github.com/mlmdc/S6_CPO_Game" target="_blank" rel="noopener noreferrer">Voir le code sur GitHub <span aria-hidden="true">↗</span></a>
+            </div>
+          </details>
 
-          <article class="project-card">
-            <span class="project-type">Optimisation · apprentissage</span>
-            <h3>Classification par PSO et réseau de neurones</h3>
-            <p>Comparaison de l’optimisation par essaim particulaire et d’un réseau de neurones pour classifier des tumeurs à partir du jeu de données Wisconsin.</p>
-            <a class="project-link" href="https://github.com/mlmdc/PSO_NN_bc" target="_blank" rel="noopener noreferrer">Voir le projet <span aria-hidden="true">↗</span></a>
-          </article>
+          <details class="project-card">
+            <summary>
+              <div class="project-visual"><img src="assets/projects/pso-classification.png" alt="Résultat de classification par PSO comparé aux étiquettes de référence"></div>
+              <div class="project-summary">
+                <span class="project-type">Optimisation · apprentissage</span>
+                <h3>Classification par PSO et réseau de neurones</h3>
+                <p>Comparaison de l’optimisation par essaim particulaire et d’un réseau de neurones pour classifier des tumeurs à partir du jeu de données Wisconsin.</p>
+                <span class="expand-hint">Plus de détails</span>
+              </div>
+            </summary>
+            <div class="project-details">
+              <p>Le projet étudie la classification binaire sur le jeu Wisconsin Diagnostic Breast Cancer et compare une somme linéaire seuillée, dont les poids sont optimisés par PSO, à un réseau feedforward MATLAB.</p>
+              <a class="project-link" href="https://github.com/mlmdc/PSO_NN_bc" target="_blank" rel="noopener noreferrer">Voir le code sur GitHub <span aria-hidden="true">↗</span></a>
+            </div>
+          </details>
 
-          <article class="project-card">
-            <span class="project-type">Identification de systèmes · données</span>
-            <h3>Régression, ACP et PCR</h3>
-            <p>Comparaison de modèles par moindres carrés et régression sur composantes principales, en étudiant l’influence de l’échelle et des variables corrélées.</p>
-            <a class="project-link" href="https://github.com/mlmdc/PCA_PCR_model_identification" target="_blank" rel="noopener noreferrer">Voir le projet <span aria-hidden="true">↗</span></a>
-          </article>
+          <details class="project-card">
+            <summary>
+              <div class="project-visual"><img src="assets/projects/pca-regression.png" alt="Comparaison des prédictions par moindres carrés et par ACP"></div>
+              <div class="project-summary">
+                <span class="project-type">Identification de systèmes · données</span>
+                <h3>Régression, ACP et PCR</h3>
+                <p>Comparaison de modèles par moindres carrés et régression sur composantes principales, en étudiant l’influence de l’échelle et des variables corrélées.</p>
+                <span class="expand-hint">Plus de détails</span>
+              </div>
+            </summary>
+            <div class="project-details">
+              <p>Le projet MATLAB estime une sortie de procédé à partir de trois variables d’entrée. Il compare les ajustements et erreurs de prédiction selon différentes mises à l’échelle, et observe le comportement des coefficients quand les variables explicatives sont corrélées.</p>
+              <a class="project-link" href="https://github.com/mlmdc/PCA_PCR_model_identification" target="_blank" rel="noopener noreferrer">Voir le code sur GitHub <span aria-hidden="true">↗</span></a>
+            </div>
+          </details>
 
-          <article class="project-card">
-            <span class="project-type">Géolocalisation · optimisation</span>
-            <h3>Triangulation par distances</h3>
-            <p>Estimation de la position d’un téléphone en 2D à partir des distances mesurées par trois stations de base, par optimisation non linéaire.</p>
-            <a class="project-link" href="https://github.com/mlmdc/LM_triangulation" target="_blank" rel="noopener noreferrer">Voir le projet <span aria-hidden="true">↗</span></a>
-          </article>
+          <details class="project-card">
+            <summary>
+              <div class="project-visual"><img src="assets/projects/triangulation.png" alt="Visualisation des cercles de mesure et d’une trajectoire d’estimation de position"></div>
+              <div class="project-summary">
+                <span class="project-type">Géolocalisation · optimisation</span>
+                <h3>Triangulation par distances</h3>
+                <p>Estimation de la position d’un téléphone en 2D à partir des distances mesurées par trois stations de base, par optimisation non linéaire.</p>
+                <span class="expand-hint">Plus de détails</span>
+              </div>
+            </summary>
+            <div class="project-details">
+              <p>Les coordonnées des stations de base sont connues et les mesures de distance servent à estimer la position du téléphone. Le dépôt présente les cercles associés aux mesures ainsi que le chemin suivi par l’estimation.</p>
+              <a class="project-link" href="https://github.com/mlmdc/LM_triangulation" target="_blank" rel="noopener noreferrer">Voir le code sur GitHub <span aria-hidden="true">↗</span></a>
+            </div>
+          </details>
         </div>
       </section>
 
