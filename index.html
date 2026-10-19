@@ -354,8 +354,11 @@
       border-top: 1px solid var(--line);
     }
 
-    .project-pitch {
+    .project-details p {
       max-width: 760px;
+    }
+
+    .project-pitch {
       margin-bottom: 0;
       padding-left: 18px;
       border-left: 3px solid var(--accent);
@@ -420,7 +423,7 @@
 
     .gallery-placeholder {
       display: grid;
-      height: 190px;
+      min-height: 190px;
       place-items: center;
       padding: 20px;
       color: #606a66;
@@ -624,7 +627,7 @@
         <div class="hero-content reveal">
           <p class="eyebrow">Présentation · automatisme · systèmes · logiciel</p>
           <h1 id="intro-title">Bonjour,<br>moi c’est <span>Maël.</span></h1>
-          <p class="hero-subtitle">Je m’intéresse à <span id="dynamic-interest" aria-live="polite">la robotique et la commande</span></p>
+          <p class="hero-subtitle">Je m’intéresse <span id="dynamic-interest" aria-live="polite">à la robotique et à la commande</span></p>
           <p class="hero-copy">Je conçois et j’étudie des systèmes, de leur modélisation et leur commande jusqu’à leur mise en œuvre. Ce portfolio réunit des projets en robotique, systèmes embarqués, analyse de données et développement logiciel.</p>
           <div class="hero-actions">
             <a class="hero-button" href="#projets">Découvrir mes projets <span aria-hidden="true">↓</span></a>
@@ -646,41 +649,41 @@
               <div class="project-summary">
                 <span class="project-type">Robotique · commande</span>
                 <h3>Tangram robotisé avec UR5e</h3>
-                <p>Une interface permet de composer un tangram, puis transmet au robot UR5e les poses nécessaires pour saisir et placer ses sept pièces.</p>
+                <p>Composer un tangram sur écran, puis faire assembler ses sept pièces par un robot UR5e.</p>
                 <span class="expand-hint">Plus de détails</span>
               </div>
             </summary>
             <div class="project-details">
-              <section class="detail-section" aria-label="Pitch">
-                <h4>Pitch</h4>
-                <p class="project-pitch">Composer un tangram sur écran et faire assembler ses pièces par un robot UR5e.</p>
+              <section class="detail-section" aria-label="Problématique et objectifs">
+                <h4>1. Problématique et objectifs</h4>
+                <p>Une disposition préparée à l’écran doit être convertie en positions et orientations dans le repère du robot. Réaliser cette conversion manuellement pièce par pièce complique les ajustements et leur répétition. L’objectif est de passer d’une composition graphique des sept pièces à une séquence de prises et de dépôts par le robot UR5e.</p>
               </section>
-              <section class="detail-section" aria-label="Contexte et objectifs">
-                <h4>Contexte et objectifs</h4>
-                <p>Développé dans le cadre d’un cours de commande robotique, le projet fait le lien entre une disposition 2D définie par l’utilisateur et une manipulation réelle. L’objectif est de convertir le tangram en poses cibles, puis d’ordonner les opérations de prise et de dépôt des sept pièces.</p>
+              <section class="detail-section" aria-label="Approches et choix techniques">
+                <h4>2. Approches et choix techniques</h4>
+                <p>L’application Python et Pygame fournit un plateau 2D avec déplacement, alignement magnétique, rotations par pas de 15 degrés et commandes d’annulation. À l’export, les coordonnées de l’écran sont converties en poses à six valeurs dans la zone de travail configurée, puis envoyées par TCP au programme PolyScope qui exécute la séquence avec le préhenseur. L’interface et l’édition restent côté PC, l’exécution des mouvements côté contrôleur UR.</p>
               </section>
-              <section class="detail-section" aria-label="Quelques images">
-                <h4>Quelques images</h4>
+              <section class="detail-section" aria-label="Résultats et limites">
+                <h4>3. Résultats et limites</h4>
+                <p>Le projet relie l’édition visuelle à un programme de prise et de dépôt sur UR5e. La précision physique, la calibration du montage et les performances de bout en bout ne sont pas quantifiées dans le dépôt. La conversion des coordonnées et la zone de travail doivent être adaptées et calibrées ; l’outil ne vérifie ni les collisions ni les contraintes de sécurité du robot.</p>
+              </section>
+              <section class="detail-section" aria-label="Galerie et ressources">
+                <h4>4. Galerie et ressources</h4>
                 <div class="project-gallery">
                   <figure>
                     <img src="assets/projects/tangram-ur5e.svg" alt="Architecture de l’interface, de la communication TCP/IP et du robot UR5e" loading="lazy">
-                    <figcaption>Architecture générale du système robotisé.</figcaption>
+                    <figcaption>Architecture du système.</figcaption>
                   </figure>
                   <figure>
-                    <img src="assets/projects/tangram-editor.png" alt="Interface de composition Tangram avec les sept pièces manipulables" loading="lazy">
-                    <figcaption>Éditeur et pièces du tangram.</figcaption>
+                    <img src="assets/projects/tangram-editor-detail.png" alt="Éditeur Tangram et ses sept pièces manipulables" loading="lazy">
+                    <figcaption>Éditeur de composition.</figcaption>
+                  </figure>
+                  <figure>
+                    <img src="assets/projects/tangram-layout-detail.png" alt="Exemple de disposition composée avec l’éditeur Tangram" loading="lazy">
+                    <figcaption>Exemple de disposition.</figcaption>
                   </figure>
                 </div>
+                <a class="project-link" href="https://github.com/mlmdc/UR_tangram_control" target="_blank" rel="noopener noreferrer">Code source et ressources <span aria-hidden="true">↗</span></a>
               </section>
-              <section class="detail-section" aria-label="Décisions techniques et résultats">
-                <h4>Décisions techniques et résultats</h4>
-                <ul>
-                  <li>Une interface de bureau en Python permet de construire et vérifier la disposition avant son exécution.</li>
-                  <li>Une liaison TCP/IP transmet au robot les poses cibles et la séquence de prise et de dépôt.</li>
-                  <li>Le projet relie la commande logicielle à une démonstration de manipulation physique par un UR5e.</li>
-                </ul>
-              </section>
-              <a class="project-link" href="https://github.com/mlmdc/UR_tangram_control" target="_blank" rel="noopener noreferrer">Voir le code sur GitHub <span aria-hidden="true">↗</span></a>
             </div>
           </details>
 
@@ -690,37 +693,34 @@
               <div class="project-summary">
                 <span class="project-type">Systèmes embarqués</span>
                 <h3>Asservissement d’un moteur CC</h3>
-                <p>Firmware STM32F411 pour mesurer et réguler la vitesse d’un moteur à courant continu, avec encodeur, commande PWM et télémétrie série.</p>
+                <p>Mesurer et réguler la vitesse d’un moteur à courant continu avec une carte STM32F411.</p>
                 <span class="expand-hint">Plus de détails</span>
               </div>
             </summary>
             <div class="project-details">
-              <section class="detail-section" aria-label="Pitch">
-                <h4>Pitch</h4>
-                <p class="project-pitch">Mesurer et réguler la vitesse d’un moteur à courant continu avec une carte STM32F411.</p>
+              <section class="detail-section" aria-label="Problématique et objectifs">
+                <h4>1. Problématique et objectifs</h4>
+                <p>Asservir un moteur nécessite de commander son actionneur tout en acquérant un retour de vitesse et une mesure liée au courant. Le défi est d’assurer des acquisitions et une boucle de commande périodiques sur un microcontrôleur à ressources limitées. Le projet vise à réunir ces fonctions embarquées et à rendre les mesures disponibles par liaison série.</p>
               </section>
-              <section class="detail-section" aria-label="Contexte et objectifs">
-                <h4>Contexte et objectifs</h4>
-                <p>Le projet porte sur la réalisation embarquée d’un système d’asservissement en vitesse, en interaction avec un moteur, son encodeur et un étage de puissance. Il vise à acquérir les mesures du moteur, appliquer une commande et rendre les données disponibles pour l’analyse.</p>
+              <section class="detail-section" aria-label="Approches et choix techniques">
+                <h4>2. Approches et choix techniques</h4>
+                <p>Le projet STM32F411RE utilise STM32Cube HAL. TIM1 lit l’encodeur, TIM2 cadence la boucle de commande à 10 ms, TIM3 génère le PWM et USART2 transporte commandes et télémétrie à 115200 bauds. ADC1 échantillonne la tension du shunt par DMA ; huit mesures sont lissées par moyenne exponentielle. Un PID discret calcule la commande, limitée à 0–24 V avant conversion en rapport cyclique.</p>
               </section>
-              <section class="detail-section" aria-label="Quelques images">
-                <h4>Quelques images</h4>
+              <section class="detail-section" aria-label="Résultats et limites">
+                <h4>3. Résultats et limites</h4>
+                <p>Le firmware rassemble la mesure de vitesse, l’acquisition ADC, le PID, la commande PWM et la télémétrie. Les notebooks fournissent des bases pour la simulation du moteur et l’analyse série, mais le dépôt ne présente pas de validation expérimentale quantitative ni de performances d’asservissement mesurées. La tension ADC n’est pas étalonnée en ampères ; la commande bidirectionnelle et l’anti-windup ne sont pas implémentés.</p>
+              </section>
+              <section class="detail-section" aria-label="Galerie et ressources">
+                <h4>4. Galerie et ressources</h4>
                 <div class="project-gallery">
                   <figure>
-                    <div class="gallery-placeholder" role="img" aria-label="Aucune image fournie dans le dépôt du projet">Aucune image fournie dans le dépôt du projet.</div>
-                    <figcaption>Illustrations matérielles non disponibles.</figcaption>
+                    <div class="gallery-placeholder" role="img" aria-label="Aucune image ou démonstration disponible dans le dépôt">Aucune image ou démonstration disponible dans le dépôt.</div>
+                    <figcaption>Le dépôt ne fournit pas de visuel ni de démonstration.</figcaption>
                   </figure>
                 </div>
+                <p>Le dépôt contient le firmware STM32Cube et des notebooks de simulation et d’analyse série.</p>
+                <a class="project-link" href="https://github.com/mlmdc/S7-stm32-ips" target="_blank" rel="noopener noreferrer">Code source et notebooks <span aria-hidden="true">↗</span></a>
               </section>
-              <section class="detail-section" aria-label="Décisions techniques et résultats">
-                <h4>Décisions techniques et résultats</h4>
-                <ul>
-                  <li>Un encodeur fournit le retour de vitesse, tandis qu’une entrée ADC mesure la tension liée au courant moteur.</li>
-                  <li>Un PID discret calcule la commande et le PWM pilote le moteur ; USART2 transporte les consignes et la télémétrie.</li>
-                  <li>Des notebooks complètent le firmware pour simuler le moteur et analyser les données série.</li>
-                </ul>
-              </section>
-              <a class="project-link" href="https://github.com/mlmdc/S7-stm32-ips" target="_blank" rel="noopener noreferrer">Voir le code sur GitHub <span aria-hidden="true">↗</span></a>
             </div>
           </details>
 
@@ -730,41 +730,41 @@
               <div class="project-summary">
                 <span class="project-type">Modélisation · commande</span>
                 <h3>Modélisation floue d’un hélicrane</h3>
-                <p>Étude de modèles flous locaux pour identifier la dynamique d’un procédé de type hélicrane et expérimenter une commande basée sur le modèle.</p>
+                <p>Identifier par modèles flous locaux la dynamique d’un hélicrane et explorer la commande fondée sur ce modèle.</p>
                 <span class="expand-hint">Plus de détails</span>
               </div>
             </summary>
             <div class="project-details">
-              <section class="detail-section" aria-label="Pitch">
-                <h4>Pitch</h4>
-                <p class="project-pitch">Construire un modèle flou local de l’hélicrane, puis évaluer une commande fondée sur ce modèle.</p>
+              <section class="detail-section" aria-label="Problématique et objectifs">
+                <h4>1. Problématique et objectifs</h4>
+                <p>Un modèle linéaire unique ne représente pas nécessairement de façon satisfaisante un procédé non linéaire sur toute sa plage de fonctionnement. L’objectif est d’identifier des dynamiques locales d’un hélicrane, de les combiner par logique floue, puis d’étudier en simulation leur utilisation pour la commande.</p>
               </section>
-              <section class="detail-section" aria-label="Contexte et objectifs">
-                <h4>Contexte et objectifs</h4>
-                <p>Cette étude MATLAB explore l’identification d’un procédé non linéaire de type hélicrane. L’objectif est d’approcher ses relations entrée-sortie par plusieurs modèles locaux et d’étudier leur utilisation dans un contrôleur au moyen de simulations.</p>
+              <section class="detail-section" aria-label="Approches et choix techniques">
+                <h4>2. Approches et choix techniques</h4>
+                <p>Des signaux d’excitation, dont des PRBS, alimentent les essais sur le modèle de procédé. Le clustering de Gustafson–Kessel définit les zones locales ; les moindres carrés pondérés estiment un modèle ARX par zone et un réseau NARX sert de comparaison. Les modèles locaux Takagi–Sugeno sont ensuite utilisés dans une représentation en espace d’état pour simuler un contrôleur fondé sur le modèle, avec saturation de l’entrée.</p>
               </section>
-              <section class="detail-section" aria-label="Quelques images">
-                <h4>Quelques images</h4>
+              <section class="detail-section" aria-label="Résultats et limites">
+                <h4>3. Résultats et limites</h4>
+                <p>Les résultats enregistrés montrent un suivi qualitatif de consignes en échelons ; avec une consigne de type chirp, l’écart augmente aux fréquences les plus élevées. Le dépôt ne fournit pas de métrique d’erreur agrégée ni les paramètres exacts des exécutions représentées. Les scripts MATLAB, le modèle de procédé compilé et l’absence de graine aléatoire documentée limitent la reproductibilité. Il s’agit d’une étude en simulation, pas d’une validation de vol réel.</p>
+              </section>
+              <section class="detail-section" aria-label="Galerie et ressources">
+                <h4>4. Galerie et ressources</h4>
                 <div class="project-gallery">
                   <figure>
-                    <img src="assets/projects/helicrane-response.png" alt="Réponse du contrôleur et consigne pour plusieurs essais en échelon" loading="lazy">
-                    <figcaption>Réponses du contrôleur aux consignes en échelon.</figcaption>
+                    <img src="assets/projects/helicrane-response.png" alt="Réponse du contrôleur à une consigne en échelons" loading="lazy">
+                    <figcaption>Suivi qualitatif en échelons.</figcaption>
                   </figure>
                   <figure>
-                    <img src="assets/projects/helicrane-chirp.png" alt="Réponse du contrôleur à une consigne de type chirp" loading="lazy">
-                    <figcaption>Simulation avec une consigne de type chirp.</figcaption>
+                    <img src="assets/projects/helicrane-chirp-detail.png" alt="Réponse du contrôleur à une consigne chirp" loading="lazy">
+                    <figcaption>Réponse à une consigne chirp.</figcaption>
+                  </figure>
+                  <figure>
+                    <img src="assets/projects/helicrane-clustering-detail.png" alt="Zones de fonctionnement identifiées par clustering de Gustafson-Kessel" loading="lazy">
+                    <figcaption>Clustering des zones de fonctionnement.</figcaption>
                   </figure>
                 </div>
+                <a class="project-link" href="https://github.com/mlmdc/NL_fuzzy_modeling_controling" target="_blank" rel="noopener noreferrer">Code source, figures et ressources <span aria-hidden="true">↗</span></a>
               </section>
-              <section class="detail-section" aria-label="Décisions techniques et résultats">
-                <h4>Décisions techniques et résultats</h4>
-                <ul>
-                  <li>Le procédé non linéaire est identifié à partir de données d’excitation et représenté par des modèles flous locaux.</li>
-                  <li>La commande est évaluée en simulation sur différentes consignes, dont des échelons et un signal chirp.</li>
-                  <li>Les courbes permettent de comparer la réponse simulée du contrôleur à la référence, sans présenter le travail comme un système de vol déployable.</li>
-                </ul>
-              </section>
-              <a class="project-link" href="https://github.com/mlmdc/NL_fuzzy_modeling_controling" target="_blank" rel="noopener noreferrer">Voir le code sur GitHub <span aria-hidden="true">↗</span></a>
             </div>
           </details>
 
@@ -774,41 +774,38 @@
               <div class="project-summary">
                 <span class="project-type">Développement logiciel · jeu</span>
                 <h3>Reignib — gouverner un pays fictif</h3>
-                <p>Un jeu à choix où chaque décision fait évoluer quatre équilibres — industrie, population, climat et finances — et rend visibles leurs compromis.</p>
+                <p>Gouverner un pays fictif en arbitrant les conséquences de chaque décision.</p>
                 <span class="expand-hint">Plus de détails</span>
               </div>
             </summary>
             <div class="project-details">
-              <section class="detail-section" aria-label="Pitch">
-                <h4>Pitch</h4>
-                <p class="project-pitch">Gouverner un pays fictif en arbitrant les conséquences de chaque décision.</p>
+              <section class="detail-section" aria-label="Problématique et objectifs">
+                <h4>1. Problématique et objectifs</h4>
+                <p>Le projet cherche à intégrer les enjeux du développement durable dans le déroulement d’un jeu plutôt que de les présenter comme une leçon séparée. L’objectif est de rendre visibles les conséquences et les arbitrages d’une succession de décisions politiques au moyen d’un prototype jouable et de contenus originaux.</p>
               </section>
-              <section class="detail-section" aria-label="Contexte et objectifs">
-                <h4>Contexte et objectifs</h4>
-                <p>Reignib est un jeu de bureau développé en Python autour d’une boucle de décisions : le joueur répond à des événements en choisissant entre deux options. Le projet rend visibles les compromis entre des décisions de court terme et leurs effets sur les équilibres du pays.</p>
+              <section class="detail-section" aria-label="Approches et choix techniques">
+                <h4>2. Approches et choix techniques</h4>
+                <p>Dans cette boucle de jeu de bureau, le joueur répond à des événements par un choix à gauche ou à droite. Les effets modifient quatre indicateurs : industrie, population, climat et finances ; atteindre une limite met fin à la partie. Python et Pyglet gèrent l’affichage, les entrées, le rythme et l’audio ; les données des cartes et leurs effets sont séparés dans des fichiers CSV. Des modules distincts gèrent cartes, menus, statistiques et événements.</p>
               </section>
-              <section class="detail-section" aria-label="Quelques images">
-                <h4>Quelques images</h4>
+              <section class="detail-section" aria-label="Résultats et limites">
+                <h4>3. Résultats et limites</h4>
+                <p>Le dépôt contient un prototype jouable avec cartes illustrées, indicateurs, menus, audio et sauvegarde locale limitée. La séparation des cartes et de l’interface facilite l’ajout de contenu. En revanche, le déroulement actif pioche dans un ensemble aléatoire : les parcours narratifs à embranchements ne sont pas reliés à la boucle du jeu. La sauvegarde ne conserve pas l’historique complet des choix, et l’état global partagé couple certains modules.</p>
+              </section>
+              <section class="detail-section" aria-label="Galerie et ressources">
+                <h4>4. Galerie et ressources</h4>
                 <div class="project-gallery">
                   <figure>
-                    <img src="assets/projects/reignib.jpg" alt="Illustration de paysage urbain du jeu Reignib" loading="lazy">
-                    <figcaption>Illustration de l’univers du jeu.</figcaption>
+                    <img src="assets/projects/reignib.jpg" alt="Illustration de paysage urbain de l’univers de Reignib" loading="lazy">
+                    <figcaption>Univers visuel du jeu.</figcaption>
                   </figure>
                   <figure>
-                    <img src="assets/projects/reignib-character.png" alt="Portrait de personnage utilisé dans Reignib" loading="lazy">
-                    <figcaption>Un personnage du jeu.</figcaption>
+                    <img src="assets/projects/reignib-character-detail.png" alt="Portrait illustré d’un personnage de Reignib" loading="lazy">
+                    <figcaption>Personnage du jeu.</figcaption>
                   </figure>
                 </div>
+                <a class="project-link" href="https://github.com/mlmdc/S6_CPO_Game/blob/main/UML/REIGNIB_presentation.pdf" target="_blank" rel="noopener noreferrer">Dossier de conception UML <span aria-hidden="true">↗</span></a>
+                <a class="project-link" href="https://github.com/mlmdc/S6_CPO_Game" target="_blank" rel="noopener noreferrer">Code source et ressources <span aria-hidden="true">↗</span></a>
               </section>
-              <section class="detail-section" aria-label="Décisions techniques et résultats">
-                <h4>Décisions techniques et résultats</h4>
-                <ul>
-                  <li>Chaque événement propose deux choix qui influencent quatre indicateurs : industrie, population, climat et finances.</li>
-                  <li>La boucle de jeu met en scène les effets croisés des décisions et permet de parcourir plusieurs événements.</li>
-                  <li>Le résultat est un jeu jouable, accompagné de ses ressources visuelles et de son code Python.</li>
-                </ul>
-              </section>
-              <a class="project-link" href="https://github.com/mlmdc/S6_CPO_Game" target="_blank" rel="noopener noreferrer">Voir le code sur GitHub <span aria-hidden="true">↗</span></a>
             </div>
           </details>
 
@@ -818,41 +815,38 @@
               <div class="project-summary">
                 <span class="project-type">Optimisation · apprentissage</span>
                 <h3>Classification par PSO et réseau de neurones</h3>
-                <p>Comparaison de l’optimisation par essaim particulaire et d’un réseau de neurones pour classifier des tumeurs à partir du jeu de données Wisconsin.</p>
+                <p>Comparer PSO et réseau de neurones pour classer des masses mammaires à partir de 30 mesures cellulaires.</p>
                 <span class="expand-hint">Plus de détails</span>
               </div>
             </summary>
             <div class="project-details">
-              <section class="detail-section" aria-label="Pitch">
-                <h4>Pitch</h4>
-                <p class="project-pitch">Comparer une classification optimisée par essaim particulaire à un réseau de neurones.</p>
+              <section class="detail-section" aria-label="Problématique et objectifs">
+                <h4>1. Problématique et objectifs</h4>
+                <p>Le jeu WDBC décrit chaque échantillon par 30 mesures et un diagnostic parmi deux classes. Le projet compare plusieurs méthodes d’apprentissage pour explorer comment elles transforment ces mesures en classe prédite. Il s’agit d’une étude pédagogique, et non d’un outil de diagnostic clinique.</p>
               </section>
-              <section class="detail-section" aria-label="Contexte et objectifs">
-                <h4>Contexte et objectifs</h4>
-                <p>Le projet étudie la classification binaire d’échantillons du jeu Wisconsin Diagnostic Breast Cancer. L’objectif est de confronter une approche d’optimisation par essaim particulaire à un réseau de neurones, et d’observer leurs prédictions et erreurs de classification.</p>
+              <section class="detail-section" aria-label="Approches et choix techniques">
+                <h4>2. Approches et choix techniques</h4>
+                <p>Les expériences décrites dans le rapport comparent un réseau feedforward MATLAB, une somme linéaire dont les poids sont optimisés par essaim particulaire (PSO) et une variante du réseau à activations linéaires. Les sorties sont converties en codes de classe 2 ou 4 avec un seuil fixé à 3 ; l’évaluation rapportée utilise une validation croisée pour la sélection, puis l’ensemble des 569 observations.</p>
               </section>
-              <section class="detail-section" aria-label="Quelques images">
-                <h4>Quelques images</h4>
+              <section class="detail-section" aria-label="Résultats et limites">
+                <h4>3. Résultats et limites</h4>
+                <p>Les graphiques et matrices de confusion permettent d’inspecter les prédictions et les erreurs. Les résultats du rapport doivent être distingués de ceux reproductibles à partir du script versionné : l’évaluation sur les 569 échantillons réutilise des observations ayant servi à l’apprentissage ou à la sélection et ne fournit donc pas une mesure indépendante de généralisation. Ces résultats ne permettent pas de tirer de conclusion clinique.</p>
+              </section>
+              <section class="detail-section" aria-label="Galerie et ressources">
+                <h4>4. Galerie et ressources</h4>
                 <div class="project-gallery">
                   <figure>
                     <img src="assets/projects/pso-classification.png" alt="Sortie de classification PSO comparée aux classes de référence" loading="lazy">
-                    <figcaption>Prédictions de l’approche PSO et classes de référence.</figcaption>
+                    <figcaption>Prédictions de l’approche PSO.</figcaption>
                   </figure>
                   <figure>
-                    <img src="assets/projects/neural-network-confusion.png" alt="Matrice de confusion du réseau de neurones" loading="lazy">
-                    <figcaption>Matrice de confusion du réseau de neurones.</figcaption>
+                    <img src="assets/projects/pso-confusion-detail.png" alt="Matrice de confusion du réseau de neurones" loading="lazy">
+                    <figcaption>Matrice de confusion du réseau.</figcaption>
                   </figure>
                 </div>
+                <a class="project-link" href="https://github.com/mlmdc/PSO_NN_bc/blob/main/VAJA4.pdf" target="_blank" rel="noopener noreferrer">Rapport du projet (PDF) <span aria-hidden="true">↗</span></a>
+                <a class="project-link" href="https://github.com/mlmdc/PSO_NN_bc" target="_blank" rel="noopener noreferrer">Code source et résultats <span aria-hidden="true">↗</span></a>
               </section>
-              <section class="detail-section" aria-label="Décisions techniques et résultats">
-                <h4>Décisions techniques et résultats</h4>
-                <ul>
-                  <li>Le PSO optimise les poids d’une somme linéaire seuillée pour produire une classe prédite.</li>
-                  <li>Un réseau feedforward sous MATLAB sert de méthode de comparaison sur le même jeu de données.</li>
-                  <li>Les sorties et matrices de confusion rendent les erreurs visibles ; le dépôt distingue les résultats présentés dans le rapport de ceux exécutés par le script fourni.</li>
-                </ul>
-              </section>
-              <a class="project-link" href="https://github.com/mlmdc/PSO_NN_bc" target="_blank" rel="noopener noreferrer">Voir le code sur GitHub <span aria-hidden="true">↗</span></a>
             </div>
           </details>
 
@@ -862,41 +856,37 @@
               <div class="project-summary">
                 <span class="project-type">Identification de systèmes · données</span>
                 <h3>Régression, ACP et PCR</h3>
-                <p>Comparaison de modèles par moindres carrés et régression sur composantes principales, en étudiant l’influence de l’échelle et des variables corrélées.</p>
+                <p>Étudier comment l’échelle et la corrélation des variables influencent l’identification d’un procédé.</p>
                 <span class="expand-hint">Plus de détails</span>
               </div>
             </summary>
             <div class="project-details">
-              <section class="detail-section" aria-label="Pitch">
-                <h4>Pitch</h4>
-                <p class="project-pitch">Étudier l’effet de la réduction de dimension et de la mise à l’échelle sur l’identification d’un procédé.</p>
+              <section class="detail-section" aria-label="Problématique et objectifs">
+                <h4>1. Problématique et objectifs</h4>
+                <p>Avec seulement 21 observations, l’identification d’un modèle de procédé est sensible à l’échelle des entrées et à leur corrélation. Le projet estime la sortie <code>I_EFF</code> à partir de trois variables et compare l’effet de ces facteurs sur les prédictions et les paramètres du modèle.</p>
               </section>
-              <section class="detail-section" aria-label="Contexte et objectifs">
-                <h4>Contexte et objectifs</h4>
-                <p>Ce projet MATLAB estime la sortie de procédé <code>I_EFF</code> à partir de trois variables d’entrée. Il compare les approches de régression sur un jeu de données de procédé pour comprendre l’influence de la normalisation et de la corrélation entre prédicteurs sur l’ajustement.</p>
+              <section class="detail-section" aria-label="Approches et choix techniques">
+                <h4>2. Approches et choix techniques</h4>
+                <p>Le script MATLAB compare les moindres carrés (LSE), l’ACP et la régression sur composantes principales (PCR) sur les données brutes, normalisées entre 0 et 1 et standardisées par score-z. Le nombre de composantes ACP est déterminé avec un seuil de 95 % de variance cumulée expliquée. Une perturbation synthétique d’une entrée permet d’étudier la colinéarité ; le script inclut aussi une validation croisée en sept plis.</p>
               </section>
-              <section class="detail-section" aria-label="Quelques images">
-                <h4>Quelques images</h4>
+              <section class="detail-section" aria-label="Résultats et limites">
+                <h4>3. Résultats et limites</h4>
+                <p>Les figures rendent visibles les écarts d’ajustement, les erreurs et l’évolution des coefficients selon l’échelle et la corrélation. Le dépôt ne présente pas de benchmark agrégé montrant qu’une méthode est systématiquement meilleure. La taille de l’échantillon est réduite à 21 observations et l’expérience de colinéarité, sans graine aléatoire fixée, peut varier d’une exécution à l’autre.</p>
+              </section>
+              <section class="detail-section" aria-label="Galerie et ressources">
+                <h4>4. Galerie et ressources</h4>
                 <div class="project-gallery">
                   <figure>
-                    <img src="assets/projects/pca-regression.png" alt="Prédictions moindres carrés et ACP sur les données standardisées" loading="lazy">
-                    <figcaption>Comparaison des sorties prédites après standardisation.</figcaption>
+                    <img src="assets/projects/pca-regression.png" alt="Prédictions par moindres carrés et ACP sur les données standardisées" loading="lazy">
+                    <figcaption>Ajustements sur données standardisées.</figcaption>
                   </figure>
                   <figure>
-                    <img src="assets/projects/pca-prediction.png" alt="Erreur de prédiction ACP selon différentes méthodes de standardisation" loading="lazy">
-                    <figcaption>Erreur ACP selon la méthode de mise à l’échelle.</figcaption>
+                    <img src="assets/projects/pca-error-detail.png" alt="Comparaison des erreurs entre les modèles LSE et ACP" loading="lazy">
+                    <figcaption>Erreurs des modèles comparés.</figcaption>
                   </figure>
                 </div>
+                <a class="project-link" href="https://github.com/mlmdc/PCA_PCR_model_identification" target="_blank" rel="noopener noreferrer">Scripts, données et autres figures <span aria-hidden="true">↗</span></a>
               </section>
-              <section class="detail-section" aria-label="Décisions techniques et résultats">
-                <h4>Décisions techniques et résultats</h4>
-                <ul>
-                  <li>Les moindres carrés, l’ACP et la régression sur composantes principales (PCR) sont comparés sur les données du procédé.</li>
-                  <li>Plusieurs mises à l’échelle sont étudiées pour comparer les erreurs de prédiction.</li>
-                  <li>Les graphiques montrent l’impact marqué de la standardisation et permettent d’examiner l’évolution des paramètres lorsque les entrées sont corrélées.</li>
-                </ul>
-              </section>
-              <a class="project-link" href="https://github.com/mlmdc/PCA_PCR_model_identification" target="_blank" rel="noopener noreferrer">Voir le code sur GitHub <span aria-hidden="true">↗</span></a>
             </div>
           </details>
 
@@ -906,41 +896,38 @@
               <div class="project-summary">
                 <span class="project-type">Géolocalisation · optimisation</span>
                 <h3>Triangulation par distances</h3>
-                <p>Estimation de la position d’un téléphone en 2D à partir des distances mesurées par trois stations de base, par optimisation non linéaire.</p>
+                <p>Estimer la position d’un téléphone à partir des distances à trois stations de base.</p>
                 <span class="expand-hint">Plus de détails</span>
               </div>
             </summary>
             <div class="project-details">
-              <section class="detail-section" aria-label="Pitch">
-                <h4>Pitch</h4>
-                <p class="project-pitch">Estimer la position d’un téléphone à partir des distances à trois stations de base.</p>
+              <section class="detail-section" aria-label="Problématique et objectifs">
+                <h4>1. Problématique et objectifs</h4>
+                <p>Les coordonnées de trois stations sont connues, mais la position du téléphone doit être déduite des distances mesurées. Le bruit empêche généralement les trois cercles de distance de se croiser en un point exact. Le projet cherche à estimer la position qui minimise l’écart entre les mesures et les distances calculées.</p>
               </section>
-              <section class="detail-section" aria-label="Contexte et objectifs">
-                <h4>Contexte et objectifs</h4>
-                <p>Les positions des stations sont connues, mais la position du téléphone doit être retrouvée à partir de mesures de distance. Le projet étudie la triangulation en 2D et compare des méthodes d’optimisation non linéaire pour minimiser l’écart aux distances observées.</p>
+              <section class="detail-section" aria-label="Approches et choix techniques">
+                <h4>2. Approches et choix techniques</h4>
+                <p>Le script MATLAB calcule les distances prédites, les résidus et leur jacobienne, puis compare les mises à jour de Gauss–Newton, Levenberg–Marquardt (LM) et Levenberg–Marquardt pondérée (WLM). L’amortissement de LM stabilise les pas ; WLM pondère les mesures selon la variance estimée pour chaque station. Les mesures sont fournies par trois fonctions MATLAB compilées.</p>
               </section>
-              <section class="detail-section" aria-label="Quelques images">
-                <h4>Quelques images</h4>
+              <section class="detail-section" aria-label="Résultats et limites">
+                <h4>3. Résultats et limites</h4>
+                <p>Le dépôt contient des graphiques des cercles de mesure, de trajectoires estimées et d’indicateurs d’optimisation. Ils documentent les essais, mais ne constituent pas une validation quantitative reproductible. Le script actuel sélectionne les mesures avec <code>radii(iter)</code> plutôt que les trois distances de l’itération <code>radii(:, iter)</code> ; les résidus et positions calculés ne sont donc pas fiables. Les résultats devront être recalculés après correction.</p>
+              </section>
+              <section class="detail-section" aria-label="Galerie et ressources">
+                <h4>4. Galerie et ressources</h4>
                 <div class="project-gallery">
                   <figure>
-                    <img src="assets/projects/triangulation.png" alt="Cercles des stations et trajectoire estimée par la méthode WLM" loading="lazy">
-                    <figcaption>Estimation de position par WLM.</figcaption>
+                    <img src="assets/projects/triangulation.png" alt="Cercles de mesure et trajectoire estimée par WLM" loading="lazy">
+                    <figcaption>Visualisation associée à WLM.</figcaption>
                   </figure>
                   <figure>
-                    <img src="assets/projects/triangulation-lm.png" alt="Cercles de mesure et trajectoire estimée par la méthode LM" loading="lazy">
-                    <figcaption>Estimation de position par LM.</figcaption>
+                    <img src="assets/projects/triangulation-lm-detail.png" alt="Cercles de mesure et trajectoire estimée par LM" loading="lazy">
+                    <figcaption>Visualisation associée à LM.</figcaption>
                   </figure>
                 </div>
+                <a class="project-link" href="https://github.com/mlmdc/LM_triangulation/blob/main/Report.pdf" target="_blank" rel="noopener noreferrer">Rapport du projet (PDF) <span aria-hidden="true">↗</span></a>
+                <a class="project-link" href="https://github.com/mlmdc/LM_triangulation" target="_blank" rel="noopener noreferrer">Code source et figures <span aria-hidden="true">↗</span></a>
               </section>
-              <section class="detail-section" aria-label="Décisions techniques et résultats">
-                <h4>Décisions techniques et résultats</h4>
-                <ul>
-                  <li>Les mesures sont représentées par des cercles centrés sur les stations ; la position recherchée doit concilier les trois distances.</li>
-                  <li>Les méthodes de Levenberg–Marquardt (LM) et WLM sont comparées à partir des trajectoires d’itération et de leurs erreurs.</li>
-                  <li>Les visualisations permettent d’observer la convergence des estimations et les écarts entre méthodes.</li>
-                </ul>
-              </section>
-              <a class="project-link" href="https://github.com/mlmdc/LM_triangulation" target="_blank" rel="noopener noreferrer">Voir le code sur GitHub <span aria-hidden="true">↗</span></a>
             </div>
           </details>
         </div>
@@ -1013,10 +1000,10 @@
 
       if (interest && !reducedMotion) {
         const interests = [
-          "la robotique et la commande",
-          "les systèmes embarqués",
-          "la modélisation des systèmes",
-          "l’analyse de données"
+          "à la robotique et à la commande",
+          "aux systèmes embarqués",
+          "à la modélisation des systèmes",
+          "à l’analyse de données"
         ];
         let index = 0;
         window.setInterval(() => {
