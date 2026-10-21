@@ -126,19 +126,24 @@
     }
 
     .cv-link {
-      padding: 8px 14px;
-      border: 1px solid var(--line);
-      border-radius: 7px;
+      display: inline-flex;
+      gap: 8px;
+      align-items: center;
       color: var(--accent-dark);
       font-size: 0.9rem;
       font-weight: 700;
       text-decoration: none;
-      transition: border-color 180ms ease, background-color 180ms ease;
+      transition: color 180ms ease;
     }
 
     .cv-link:hover {
-      border-color: #b8c9c0;
-      background: var(--highlight);
+      color: var(--accent);
+    }
+
+    .cv-link svg {
+      width: 18px;
+      height: 18px;
+      flex: 0 0 auto;
     }
 
     .project-link:hover {
@@ -306,21 +311,10 @@
       transform: translateY(-3px);
     }
 
-    .project-card summary {
+    .project-card-header {
       display: grid;
       min-height: 260px;
       grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-      cursor: pointer;
-      list-style: none;
-    }
-
-    .project-card summary::-webkit-details-marker {
-      display: none;
-    }
-
-    .project-card summary:focus-visible {
-      outline: 3px solid #c27230;
-      outline-offset: -4px;
     }
 
     .project-visual {
@@ -339,6 +333,18 @@
       min-height: 260px;
       object-fit: contain;
       transition: transform 350ms ease;
+    }
+
+    .project-visual-trigger {
+      display: flex;
+      width: 100%;
+      min-height: inherit;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      cursor: pointer;
     }
 
     .project-card:hover .project-visual img {
@@ -373,58 +379,54 @@
       font-size: 0.96rem;
     }
 
-    .expand-hint {
+    .project-actions {
       display: inline-flex;
-      gap: 8px;
+      flex-wrap: wrap;
+      gap: 18px;
       align-items: center;
-      margin-top: 20px;
-      color: var(--accent);
-      font-size: 0.9rem;
-      font-weight: 700;
+      margin-top: 18px;
     }
 
-    .expand-hint::after {
-      content: "+";
-      font-size: 1.2rem;
+    .see-more,
+    .project-link--summary {
+      display: inline-flex;
+      gap: 7px;
+      align-items: center;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      color: var(--accent-dark);
+      font: inherit;
+      font-size: 0.9rem;
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+      transition: color 180ms ease;
+    }
+
+    .see-more:hover,
+    .project-link--summary:hover {
+      color: var(--accent);
+    }
+
+    .see-more span,
+    .project-link--summary span {
+      font-size: 1.05rem;
       line-height: 1;
     }
 
-    .project-card[open] .expand-hint::after {
-      content: "−";
-    }
-
-    .see-more {
-      display: inline-flex;
-      min-height: 38px;
-      align-items: center;
-      justify-content: center;
-      margin-top: 18px;
-      padding: 7px 13px;
-      border: 1px solid var(--accent);
-      border-radius: 7px;
-      color: var(--accent-dark);
-      font-size: 0.87rem;
-      font-weight: 700;
-      transition: color 180ms ease, background-color 180ms ease;
-    }
-
-    .project-card summary:hover .see-more {
-      background: var(--accent);
-      color: white;
-    }
-
-    .see-more::after {
-      margin-left: 8px;
-      content: "↓";
-    }
-
-    .project-card[open] .see-more::after {
-      content: "↑";
+    .see-more:focus-visible {
+      outline: 3px solid #c27230;
+      outline-offset: 4px;
     }
 
     .project-details {
       padding: 24px 30px 28px;
       border-top: 1px solid var(--line);
+    }
+
+    .project-details[hidden] {
+      display: none;
     }
 
     .project-details p {
@@ -445,10 +447,10 @@
     }
 
     .detail-section h4 {
-      margin: 0 0 11px;
-      font-size: 0.8rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
+      margin: 0 0 12px;
+      font-size: 1.15rem;
+      line-height: 1.3;
+      letter-spacing: -0.02em;
     }
 
     .detail-section > p,
@@ -466,18 +468,32 @@
     }
 
     .project-gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr));
+      position: relative;
+      padding: 18px 54px;
+      border-top: 1px solid var(--line);
+      background: #f1f2ef;
+    }
+
+    .project-gallery-track {
+      display: flex;
       gap: 14px;
+      overflow-x: auto;
+      overscroll-behavior-x: contain;
+      scroll-behavior: smooth;
+      scroll-snap-type: x mandatory;
+      scrollbar-color: #aab8b0 transparent;
+      scrollbar-width: thin;
     }
 
     .project-gallery figure {
+      flex: 0 0 min(270px, 76vw);
       min-width: 0;
       margin: 0;
       overflow: hidden;
       border: 1px solid var(--line);
       border-radius: 9px;
       background: #dfe3e1;
+      scroll-snap-align: start;
     }
 
     .project-gallery img {
@@ -485,6 +501,58 @@
       width: 100%;
       height: 190px;
       object-fit: contain;
+      cursor: zoom-in;
+    }
+
+    .image-lightbox-trigger {
+      display: block;
+      width: 100%;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      cursor: zoom-in;
+    }
+
+    .image-lightbox-trigger:focus-visible {
+      outline: 3px solid #c27230;
+      outline-offset: -4px;
+    }
+
+    .gallery-control {
+      position: absolute;
+      z-index: 1;
+      top: 50%;
+      display: grid;
+      width: 38px;
+      height: 52px;
+      place-items: center;
+      border: 1px solid #c6ceca;
+      border-radius: 20px;
+      background: #fffefaed;
+      color: var(--ink);
+      font-size: 1.5rem;
+      line-height: 1;
+      cursor: pointer;
+      transform: translateY(-50%);
+      transition: background-color 180ms ease, border-color 180ms ease;
+    }
+
+    .gallery-control:hover {
+      border-color: var(--accent);
+      background: white;
+    }
+
+    .gallery-control:disabled {
+      opacity: 0.4;
+      cursor: default;
+    }
+
+    .gallery-control--previous {
+      left: 10px;
+    }
+
+    .gallery-control--next {
+      right: 10px;
     }
 
     .project-gallery figcaption {
@@ -525,6 +593,56 @@
       line-height: 1;
     }
 
+    .project-link--summary {
+      margin: 0;
+      color: var(--accent-dark);
+      font-size: 0.9rem;
+      text-decoration: none;
+    }
+
+    .image-lightbox {
+      position: fixed;
+      inset: 0;
+      margin: auto;
+      max-width: min(92vw, 1100px);
+      max-height: 92vh;
+      padding: 48px 22px 20px;
+      border: 1px solid #c8cccf;
+      border-radius: 12px;
+      background: #f7f7f7;
+      color: var(--ink);
+    }
+
+    .image-lightbox::backdrop {
+      background: rgb(67 72 78 / 78%);
+    }
+
+    .image-lightbox img {
+      display: block;
+      max-width: 100%;
+      max-height: calc(92vh - 100px);
+      object-fit: contain;
+    }
+
+    .image-lightbox figcaption {
+      padding-top: 10px;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .image-lightbox-close {
+      position: absolute;
+      top: 10px;
+      right: 12px;
+      padding: 6px 10px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: white;
+      color: var(--ink);
+      font: inherit;
+      cursor: pointer;
+    }
+
     .experience {
       padding: 0 0 88px;
     }
@@ -535,19 +653,72 @@
     }
 
     .experience-card {
-      display: grid;
-      grid-template-columns: minmax(150px, 0.28fr) minmax(0, 1fr);
-      gap: 24px;
       padding: clamp(22px, 4vw, 32px);
       border: 1px solid var(--line);
       border-radius: 14px;
       background: var(--card);
     }
 
+    .experience-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 24px;
+      align-items: flex-start;
+    }
+
+    .experience-heading {
+      min-width: 0;
+      text-align: left;
+    }
+
+    .experience-brands {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+      justify-content: flex-end;
+      flex: 0 0 min(34%, 260px);
+      min-height: 90px;
+    }
+
+    .experience-brands img {
+      display: block;
+      width: 100%;
+      max-width: 220px;
+      height: 90px;
+      padding: 5px;
+      border-radius: 8px;
+      background: var(--card);
+      object-fit: contain;
+    }
+
+    .experience-brands--paired img {
+      width: min(46%, 118px);
+      max-width: 118px;
+    }
+
+    .experience-brands--compact img {
+      max-width: 190px;
+    }
+
+    .experience-highlights {
+      display: grid;
+      gap: 8px;
+      margin: 16px 0 0;
+      padding-left: 20px;
+      color: var(--muted);
+      font-size: 0.94rem;
+      text-align: left;
+    }
+
     .experience-date {
-      margin: 2px 0 0;
-      color: var(--accent);
-      font-size: 0.88rem;
+      display: inline-block;
+      margin: 0 0 10px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: var(--highlight);
+      color: var(--accent-dark);
+      font-size: 0.8rem;
       font-weight: 700;
     }
 
@@ -559,52 +730,130 @@
     }
 
     .experience-organization {
-      margin-bottom: 16px;
+      margin-bottom: 0;
       color: var(--muted);
       font-size: 0.94rem;
     }
 
-    .experience-card ul {
-      display: grid;
-      gap: 8px;
-      margin: 0;
-      padding-left: 20px;
-      color: var(--muted);
-      font-size: 0.94rem;
+    .experience-actions {
+      margin-top: 16px;
+    }
+
+    .experience-details {
+      margin-top: 18px;
+      padding: 18px 0 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .experience-details .project-gallery {
+      border: 0;
+      border-radius: 10px;
+    }
+
+    .experience-details .project-gallery-track {
+      max-width: 520px;
     }
 
     .contact {
-      display: flex;
-      justify-content: space-between;
-      gap: 36px;
+      width: auto;
+      margin: 0 -20px 42px;
+      padding: clamp(28px, 5vw, 52px) 40px;
+      background: var(--paper);
+      color: var(--ink);
+    }
+
+    .contact-inner {
+      display: grid;
+      max-width: 1080px;
+      grid-template-columns: minmax(0, 0.78fr) minmax(0, 1.22fr);
+      gap: clamp(30px, 5vw, 72px);
       align-items: center;
-      margin-bottom: 42px;
-      padding: clamp(26px, 5vw, 48px);
-      border: 1px solid #c5d8cc;
-      border-radius: 14px;
-      background: var(--highlight);
+      margin: 0 auto;
+    }
+
+    .contact-intro {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .contact .eyebrow {
+      margin-bottom: 8px;
+      color: var(--accent);
     }
 
     .contact h2 {
-      margin-bottom: 8px;
+      margin-bottom: 14px;
       font-size: clamp(1.6rem, 4vw, 2.3rem);
       letter-spacing: -0.05em;
     }
 
+    .contact h2::after {
+      display: block;
+      width: 52px;
+      height: 2px;
+      margin-top: 8px;
+      background: var(--accent);
+      content: "";
+    }
+
     .contact p {
-      max-width: 580px;
+      max-width: 480px;
       margin-bottom: 0;
       color: var(--muted);
     }
 
     .contact-link {
-      flex: 0 0 auto;
-      white-space: nowrap;
+      display: grid;
+      min-height: 80px;
+      grid-template-columns: 28px minmax(0, 1fr) 18px;
+      gap: 16px;
+      align-items: center;
+      padding: 16px 20px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: var(--card);
+      color: var(--ink);
+      text-decoration: none;
+      transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+    }
+
+    .contact-link:hover {
+      border-color: #b8c9c0;
+      box-shadow: 0 12px 28px #2026240e;
+      transform: translateY(-2px);
+    }
+
+    .contact-link svg {
+      width: 20px;
+      height: 20px;
+      color: var(--accent);
+    }
+
+    .contact-link-copy {
+      display: grid;
+      gap: 3px;
+    }
+
+    .contact-link-label {
+      color: var(--muted);
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .contact-link-value {
+      display: none;
+    }
+
+    .contact-link-arrow {
+      color: var(--muted);
+      font-size: 1rem;
     }
 
     .contact-links {
-      display: flex;
-      flex-wrap: wrap;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 12px;
     }
 
@@ -646,6 +895,12 @@
       margin: 0;
     }
 
+    @media (max-width: 900px) {
+      .contact-links {
+        grid-template-columns: 1fr;
+      }
+    }
+
     @media (max-width: 700px) {
       .hero {
         min-height: min(720px, calc(100svh - var(--header-height)));
@@ -666,7 +921,7 @@
         margin-top: 10px;
       }
 
-      .project-card summary {
+      .project-card-header {
         min-height: 220px;
       }
 
@@ -683,21 +938,46 @@
         padding: 20px 22px 24px;
       }
 
-      .contact {
-        align-items: flex-start;
-        flex-direction: column;
-        gap: 20px;
+      .project-gallery {
+        padding: 14px 46px;
       }
 
-      .experience-card {
+      .gallery-control {
+        width: 34px;
+        height: 46px;
+      }
+
+      .contact {
+        margin-right: -20px;
+        margin-left: -20px;
+        padding-right: 20px;
+        padding-left: 20px;
+      }
+
+      .contact-inner {
         grid-template-columns: 1fr;
-        gap: 8px;
+        gap: 24px;
+      }
+
+      .contact-links {
+        grid-template-columns: 1fr;
+      }
+
+      .experience-brands {
+        min-height: 0;
       }
     }
 
     @media (max-width: 420px) {
       .page {
         width: min(100% - 28px, 1080px);
+      }
+
+      .contact {
+        margin-right: -14px;
+        margin-left: -14px;
+        padding-right: 14px;
+        padding-left: 14px;
       }
 
       .topbar {
@@ -734,12 +1014,37 @@
         padding-left: 7px;
       }
 
-      .cv-link {
-        padding: 7px 10px;
+      .project-card-header {
+        grid-template-columns: 1fr;
       }
 
-      .project-card summary {
-        grid-template-columns: 1fr;
+      .experience-card {
+        padding: 20px;
+      }
+
+      .experience-header {
+        gap: 12px;
+      }
+
+      .experience-brands {
+        flex-basis: 34%;
+        min-height: 64px;
+      }
+
+      .experience-brands img {
+        height: 64px;
+      }
+
+      .experience-brands--paired {
+        gap: 4px;
+      }
+
+      .experience-brands--paired img {
+        width: 48%;
+      }
+
+      .project-actions {
+        gap: 14px;
       }
 
       .project-visual {
@@ -783,7 +1088,14 @@
           <a class="nav-link" href="#experience">Expérience</a>
           <a class="nav-link" href="#contact">Contact</a>
         </nav>
-        <a class="cv-link" href="#contact">CV</a>
+        <a class="cv-link" href="assets/cv.pdf" target="_blank" rel="noopener noreferrer" aria-label="Afficher le CV au format PDF dans un nouvel onglet">
+          <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+            <path d="M5 1.75h6l4 4v12.5H5z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+            <path d="M11 1.75v4h4M7.2 10.4h5.6M7.2 13.2h5.6" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+            <path d="M7.2 16.1h3.8" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+          </svg>
+          CV
+        </a>
       </div>
     </header>
 
@@ -791,11 +1103,11 @@
       <section class="hero" id="accueil" aria-labelledby="intro-title">
         <div class="hero-content reveal">
           <p class="eyebrow">Présentation · automatisme · systèmes · logiciel</p>
-          <h1 id="intro-title">Bonjour,<br>moi c’est <span>Maël.</span></h1>
-          <p class="hero-subtitle">Je m’intéresse <span id="dynamic-interest" aria-live="polite">à la robotique et à la commande</span></p>
-          <p class="hero-copy">Je conçois et j’étudie des systèmes, de leur modélisation et leur commande jusqu’à leur mise en œuvre. Ce portfolio réunit des projets en robotique, systèmes embarqués, analyse de données et développement logiciel.</p>
+          <h1 id="intro-title">Maël<br><span>Madec.</span></h1>
+          <p class="hero-subtitle"><span id="dynamic-interest" aria-live="polite">Robotique et commande</span></p>
+          <p class="hero-copy">Ingénierie des systèmes, de la modélisation et de la commande à la mise en œuvre. Ce portfolio présente des projets en robotique, systèmes embarqués, analyse de données et développement logiciel.</p>
           <div class="hero-actions">
-            <a class="hero-button" href="#projets">Découvrir mes projets <span aria-hidden="true">↓</span></a>
+            <a class="hero-button" href="#projets">Consulter les projets <span aria-hidden="true">↓</span></a>
             <a class="hero-button hero-button--secondary" href="#contact">Me contacter <span aria-hidden="true">↗</span></a>
           </div>
         </div>
@@ -804,36 +1116,37 @@
       <section class="projects" id="projets" aria-labelledby="projects-title">
         <div class="section-heading">
           <h2 id="projects-title">Projets</h2>
-          <p>De la simulation à l’intégration matérielle, en passant par l’analyse de données et le jeu.</p>
         </div>
 
         <div class="project-list">
-          <details class="project-card reveal">
-            <summary>
+          <article class="project-card reveal">
+            <div class="project-card-header">
               <div class="project-visual"><img src="assets/projects/tangram-ur5e.svg" alt="Schéma de l’interface Tangram reliée à un robot UR5e"></div>
               <div class="project-summary">
                 <span class="project-type">Robotique · commande</span>
                 <h3>Tangram robotisé avec UR5e</h3>
                 <p>Composer un tangram sur écran, puis faire assembler ses sept pièces par un robot UR5e.</p>
-                <span class="expand-hint">Plus de détails</span>
-                <span class="see-more">Voir plus</span>
+                <div class="project-actions">
+                  <button class="see-more" type="button" aria-expanded="false">Plus de détails <span aria-hidden="true">↓</span></button>
+                  <a class="project-link project-link--summary" href="https://github.com/mlmdc/UR_tangram_control" target="_blank" rel="noopener noreferrer">Voir le projet <span aria-hidden="true">↗</span></a>
+                </div>
               </div>
-            </summary>
+            </div>
             <div class="project-details">
               <section class="detail-section" aria-label="Problématique et objectifs">
-                <h4>1. Problématique et objectifs</h4>
+                <h4>Problématique et objectifs</h4>
                 <p>Une disposition préparée à l’écran doit être convertie en positions et orientations dans le repère du robot. Réaliser cette conversion manuellement pièce par pièce complique les ajustements et leur répétition. L’objectif est de passer d’une composition graphique des sept pièces à une séquence de prises et de dépôts par le robot UR5e.</p>
               </section>
               <section class="detail-section" aria-label="Approches et choix techniques">
-                <h4>2. Approches et choix techniques</h4>
+                <h4>Approches et choix techniques</h4>
                 <p>L’application Python et Pygame fournit un plateau 2D avec déplacement, alignement magnétique, rotations par pas de 15 degrés et commandes d’annulation. À l’export, les coordonnées de l’écran sont converties en poses à six valeurs dans la zone de travail configurée, puis envoyées par TCP au programme PolyScope qui exécute la séquence avec le préhenseur. L’interface et l’édition restent côté PC, l’exécution des mouvements côté contrôleur UR.</p>
               </section>
               <section class="detail-section" aria-label="Résultats et limites">
-                <h4>3. Résultats et limites</h4>
+                <h4>Résultats et limites</h4>
                 <p>Le projet relie l’édition visuelle à un programme de prise et de dépôt sur UR5e. La précision physique, la calibration du montage et les performances de bout en bout ne sont pas quantifiées dans le dépôt. La conversion des coordonnées et la zone de travail doivent être adaptées et calibrées ; l’outil ne vérifie ni les collisions ni les contraintes de sécurité du robot.</p>
               </section>
-              <section class="detail-section" aria-label="Galerie et ressources">
-                <h4>4. Galerie et ressources</h4>
+              <section class="detail-section" aria-label="Ressources">
+                <h4>Ressources</h4>
                 <div class="project-gallery">
                   <figure>
                     <img src="assets/projects/tangram-ur5e.svg" alt="Architecture de l’interface, de la communication TCP/IP et du robot UR5e" loading="lazy">
@@ -851,34 +1164,36 @@
                 <a class="project-link" href="https://github.com/mlmdc/UR_tangram_control" target="_blank" rel="noopener noreferrer">Code source et ressources <span aria-hidden="true">↗</span></a>
               </section>
             </div>
-          </details>
+          </article>
 
-          <details class="project-card reveal reveal-delay-1">
-            <summary>
+          <article class="project-card reveal reveal-delay-1">
+            <div class="project-card-header">
               <div class="project-visual project-visual--placeholder" role="img" aria-label="Illustration indisponible pour ce projet">Illustration indisponible</div>
               <div class="project-summary">
                 <span class="project-type">Systèmes embarqués</span>
                 <h3>Asservissement d’un moteur CC</h3>
                 <p>Mesurer et réguler la vitesse d’un moteur à courant continu avec une carte STM32F411.</p>
-                <span class="expand-hint">Plus de détails</span>
-                <span class="see-more">Voir plus</span>
+                <div class="project-actions">
+                  <button class="see-more" type="button" aria-expanded="false">Plus de détails <span aria-hidden="true">↓</span></button>
+                  <a class="project-link project-link--summary" href="https://github.com/mlmdc/S7-stm32-ips" target="_blank" rel="noopener noreferrer">Voir le projet <span aria-hidden="true">↗</span></a>
+                </div>
               </div>
-            </summary>
+            </div>
             <div class="project-details">
               <section class="detail-section" aria-label="Problématique et objectifs">
-                <h4>1. Problématique et objectifs</h4>
+                <h4>Problématique et objectifs</h4>
                 <p>Asservir un moteur nécessite de commander son actionneur tout en acquérant un retour de vitesse et une mesure liée au courant. Le défi est d’assurer des acquisitions et une boucle de commande périodiques sur un microcontrôleur à ressources limitées. Le projet vise à réunir ces fonctions embarquées et à rendre les mesures disponibles par liaison série.</p>
               </section>
               <section class="detail-section" aria-label="Approches et choix techniques">
-                <h4>2. Approches et choix techniques</h4>
+                <h4>Approches et choix techniques</h4>
                 <p>Le projet STM32F411RE utilise STM32Cube HAL. TIM1 lit l’encodeur, TIM2 cadence la boucle de commande à 10 ms, TIM3 génère le PWM et USART2 transporte commandes et télémétrie à 115200 bauds. ADC1 échantillonne la tension du shunt par DMA ; huit mesures sont lissées par moyenne exponentielle. Un PID discret calcule la commande, limitée à 0–24 V avant conversion en rapport cyclique.</p>
               </section>
               <section class="detail-section" aria-label="Résultats et limites">
-                <h4>3. Résultats et limites</h4>
+                <h4>Résultats et limites</h4>
                 <p>Le firmware rassemble la mesure de vitesse, l’acquisition ADC, le PID, la commande PWM et la télémétrie. Les notebooks fournissent des bases pour la simulation du moteur et l’analyse série, mais le dépôt ne présente pas de validation expérimentale quantitative ni de performances d’asservissement mesurées. La tension ADC n’est pas étalonnée en ampères ; la commande bidirectionnelle et l’anti-windup ne sont pas implémentés.</p>
               </section>
-              <section class="detail-section" aria-label="Galerie et ressources">
-                <h4>4. Galerie et ressources</h4>
+              <section class="detail-section" aria-label="Ressources">
+                <h4>Ressources</h4>
                 <div class="project-gallery">
                   <figure>
                     <div class="gallery-placeholder" role="img" aria-label="Aucune image ou démonstration disponible dans le dépôt">Aucune image ou démonstration disponible dans le dépôt.</div>
@@ -889,34 +1204,36 @@
                 <a class="project-link" href="https://github.com/mlmdc/S7-stm32-ips" target="_blank" rel="noopener noreferrer">Code source et notebooks <span aria-hidden="true">↗</span></a>
               </section>
             </div>
-          </details>
+          </article>
 
-          <details class="project-card reveal reveal-delay-2">
-            <summary>
+          <article class="project-card reveal reveal-delay-2">
+            <div class="project-card-header">
               <div class="project-visual"><img src="assets/projects/helicrane-response.png" alt="Courbes de réponse du contrôleur lors d’essais en échelon"></div>
               <div class="project-summary">
                 <span class="project-type">Modélisation · commande</span>
                 <h3>Modélisation floue d’un hélicrane</h3>
                 <p>Identifier par modèles flous locaux la dynamique d’un hélicrane et explorer la commande fondée sur ce modèle.</p>
-                <span class="expand-hint">Plus de détails</span>
-                <span class="see-more">Voir plus</span>
+                <div class="project-actions">
+                  <button class="see-more" type="button" aria-expanded="false">Plus de détails <span aria-hidden="true">↓</span></button>
+                  <a class="project-link project-link--summary" href="https://github.com/mlmdc/NL_fuzzy_modeling_controling" target="_blank" rel="noopener noreferrer">Voir le projet <span aria-hidden="true">↗</span></a>
+                </div>
               </div>
-            </summary>
+            </div>
             <div class="project-details">
               <section class="detail-section" aria-label="Problématique et objectifs">
-                <h4>1. Problématique et objectifs</h4>
+                <h4>Problématique et objectifs</h4>
                 <p>Un modèle linéaire unique ne représente pas nécessairement de façon satisfaisante un procédé non linéaire sur toute sa plage de fonctionnement. L’objectif est d’identifier des dynamiques locales d’un hélicrane, de les combiner par logique floue, puis d’étudier en simulation leur utilisation pour la commande.</p>
               </section>
               <section class="detail-section" aria-label="Approches et choix techniques">
-                <h4>2. Approches et choix techniques</h4>
+                <h4>Approches et choix techniques</h4>
                 <p>Des signaux d’excitation, dont des PRBS, alimentent les essais sur le modèle de procédé. Le clustering de Gustafson–Kessel définit les zones locales ; les moindres carrés pondérés estiment un modèle ARX par zone et un réseau NARX sert de comparaison. Les modèles locaux Takagi–Sugeno sont ensuite utilisés dans une représentation en espace d’état pour simuler un contrôleur fondé sur le modèle, avec saturation de l’entrée.</p>
               </section>
               <section class="detail-section" aria-label="Résultats et limites">
-                <h4>3. Résultats et limites</h4>
+                <h4>Résultats et limites</h4>
                 <p>Les résultats enregistrés montrent un suivi qualitatif de consignes en échelons ; avec une consigne de type chirp, l’écart augmente aux fréquences les plus élevées. Le dépôt ne fournit pas de métrique d’erreur agrégée ni les paramètres exacts des exécutions représentées. Les scripts MATLAB, le modèle de procédé compilé et l’absence de graine aléatoire documentée limitent la reproductibilité. Il s’agit d’une étude en simulation, pas d’une validation de vol réel.</p>
               </section>
-              <section class="detail-section" aria-label="Galerie et ressources">
-                <h4>4. Galerie et ressources</h4>
+              <section class="detail-section" aria-label="Ressources">
+                <h4>Ressources</h4>
                 <div class="project-gallery">
                   <figure>
                     <img src="assets/projects/helicrane-response.png" alt="Réponse du contrôleur à une consigne en échelons" loading="lazy">
@@ -934,34 +1251,36 @@
                 <a class="project-link" href="https://github.com/mlmdc/NL_fuzzy_modeling_controling" target="_blank" rel="noopener noreferrer">Code source, figures et ressources <span aria-hidden="true">↗</span></a>
               </section>
             </div>
-          </details>
+          </article>
 
-          <details class="project-card reveal reveal-delay-3">
-            <summary>
+          <article class="project-card reveal reveal-delay-3">
+            <div class="project-card-header">
               <div class="project-visual"><img src="assets/projects/reignib.jpg" alt="Illustration du jeu Reignib"></div>
               <div class="project-summary">
                 <span class="project-type">Développement logiciel · jeu</span>
                 <h3>Reignib — gouverner un pays fictif</h3>
                 <p>Gouverner un pays fictif en arbitrant les conséquences de chaque décision.</p>
-                <span class="expand-hint">Plus de détails</span>
-                <span class="see-more">Voir plus</span>
+                <div class="project-actions">
+                  <button class="see-more" type="button" aria-expanded="false">Plus de détails <span aria-hidden="true">↓</span></button>
+                  <a class="project-link project-link--summary" href="https://github.com/mlmdc/S6_CPO_Game" target="_blank" rel="noopener noreferrer">Voir le projet <span aria-hidden="true">↗</span></a>
+                </div>
               </div>
-            </summary>
+            </div>
             <div class="project-details">
               <section class="detail-section" aria-label="Problématique et objectifs">
-                <h4>1. Problématique et objectifs</h4>
+                <h4>Problématique et objectifs</h4>
                 <p>Le projet cherche à intégrer les enjeux du développement durable dans le déroulement d’un jeu plutôt que de les présenter comme une leçon séparée. L’objectif est de rendre visibles les conséquences et les arbitrages d’une succession de décisions politiques au moyen d’un prototype jouable et de contenus originaux.</p>
               </section>
               <section class="detail-section" aria-label="Approches et choix techniques">
-                <h4>2. Approches et choix techniques</h4>
+                <h4>Approches et choix techniques</h4>
                 <p>Dans cette boucle de jeu de bureau, le joueur répond à des événements par un choix à gauche ou à droite. Les effets modifient quatre indicateurs : industrie, population, climat et finances ; atteindre une limite met fin à la partie. Python et Pyglet gèrent l’affichage, les entrées, le rythme et l’audio ; les données des cartes et leurs effets sont séparés dans des fichiers CSV. Des modules distincts gèrent cartes, menus, statistiques et événements.</p>
               </section>
               <section class="detail-section" aria-label="Résultats et limites">
-                <h4>3. Résultats et limites</h4>
+                <h4>Résultats et limites</h4>
                 <p>Le dépôt contient un prototype jouable avec cartes illustrées, indicateurs, menus, audio et sauvegarde locale limitée. La séparation des cartes et de l’interface facilite l’ajout de contenu. En revanche, le déroulement actif pioche dans un ensemble aléatoire : les parcours narratifs à embranchements ne sont pas reliés à la boucle du jeu. La sauvegarde ne conserve pas l’historique complet des choix, et l’état global partagé couple certains modules.</p>
               </section>
-              <section class="detail-section" aria-label="Galerie et ressources">
-                <h4>4. Galerie et ressources</h4>
+              <section class="detail-section" aria-label="Ressources">
+                <h4>Ressources</h4>
                 <div class="project-gallery">
                   <figure>
                     <img src="assets/projects/reignib.jpg" alt="Illustration de paysage urbain de l’univers de Reignib" loading="lazy">
@@ -976,34 +1295,36 @@
                 <a class="project-link" href="https://github.com/mlmdc/S6_CPO_Game" target="_blank" rel="noopener noreferrer">Code source et ressources <span aria-hidden="true">↗</span></a>
               </section>
             </div>
-          </details>
+          </article>
 
-          <details class="project-card reveal">
-            <summary>
+          <article class="project-card reveal">
+            <div class="project-card-header">
               <div class="project-visual"><img src="assets/projects/pso-classification.png" alt="Résultat de classification par PSO comparé aux étiquettes de référence"></div>
               <div class="project-summary">
                 <span class="project-type">Optimisation · apprentissage</span>
                 <h3>Classification par PSO et réseau de neurones</h3>
                 <p>Comparer PSO et réseau de neurones pour classer des masses mammaires à partir de 30 mesures cellulaires.</p>
-                <span class="expand-hint">Plus de détails</span>
-                <span class="see-more">Voir plus</span>
+                <div class="project-actions">
+                  <button class="see-more" type="button" aria-expanded="false">Plus de détails <span aria-hidden="true">↓</span></button>
+                  <a class="project-link project-link--summary" href="https://github.com/mlmdc/PSO_NN_bc" target="_blank" rel="noopener noreferrer">Voir le projet <span aria-hidden="true">↗</span></a>
+                </div>
               </div>
-            </summary>
+            </div>
             <div class="project-details">
               <section class="detail-section" aria-label="Problématique et objectifs">
-                <h4>1. Problématique et objectifs</h4>
+                <h4>Problématique et objectifs</h4>
                 <p>Le jeu WDBC décrit chaque échantillon par 30 mesures et un diagnostic parmi deux classes. Le projet compare plusieurs méthodes d’apprentissage pour explorer comment elles transforment ces mesures en classe prédite. Il s’agit d’une étude pédagogique, et non d’un outil de diagnostic clinique.</p>
               </section>
               <section class="detail-section" aria-label="Approches et choix techniques">
-                <h4>2. Approches et choix techniques</h4>
+                <h4>Approches et choix techniques</h4>
                 <p>Les expériences décrites dans le rapport comparent un réseau feedforward MATLAB, une somme linéaire dont les poids sont optimisés par essaim particulaire (PSO) et une variante du réseau à activations linéaires. Les sorties sont converties en codes de classe 2 ou 4 avec un seuil fixé à 3 ; l’évaluation rapportée utilise une validation croisée pour la sélection, puis l’ensemble des 569 observations.</p>
               </section>
               <section class="detail-section" aria-label="Résultats et limites">
-                <h4>3. Résultats et limites</h4>
+                <h4>Résultats et limites</h4>
                 <p>Les graphiques et matrices de confusion permettent d’inspecter les prédictions et les erreurs. Les résultats du rapport doivent être distingués de ceux reproductibles à partir du script versionné : l’évaluation sur les 569 échantillons réutilise des observations ayant servi à l’apprentissage ou à la sélection et ne fournit donc pas une mesure indépendante de généralisation. Ces résultats ne permettent pas de tirer de conclusion clinique.</p>
               </section>
-              <section class="detail-section" aria-label="Galerie et ressources">
-                <h4>4. Galerie et ressources</h4>
+              <section class="detail-section" aria-label="Ressources">
+                <h4>Ressources</h4>
                 <div class="project-gallery">
                   <figure>
                     <img src="assets/projects/pso-classification.png" alt="Sortie de classification PSO comparée aux classes de référence" loading="lazy">
@@ -1018,34 +1339,36 @@
                 <a class="project-link" href="https://github.com/mlmdc/PSO_NN_bc" target="_blank" rel="noopener noreferrer">Code source et résultats <span aria-hidden="true">↗</span></a>
               </section>
             </div>
-          </details>
+          </article>
 
-          <details class="project-card reveal reveal-delay-1">
-            <summary>
+          <article class="project-card reveal reveal-delay-1">
+            <div class="project-card-header">
               <div class="project-visual"><img src="assets/projects/pca-regression.png" alt="Comparaison des prédictions par moindres carrés et par ACP"></div>
               <div class="project-summary">
                 <span class="project-type">Identification de systèmes · données</span>
                 <h3>Régression, ACP et PCR</h3>
                 <p>Étudier comment l’échelle et la corrélation des variables influencent l’identification d’un procédé.</p>
-                <span class="expand-hint">Plus de détails</span>
-                <span class="see-more">Voir plus</span>
+                <div class="project-actions">
+                  <button class="see-more" type="button" aria-expanded="false">Plus de détails <span aria-hidden="true">↓</span></button>
+                  <a class="project-link project-link--summary" href="https://github.com/mlmdc/PCA_PCR_model_identification" target="_blank" rel="noopener noreferrer">Voir le projet <span aria-hidden="true">↗</span></a>
+                </div>
               </div>
-            </summary>
+            </div>
             <div class="project-details">
               <section class="detail-section" aria-label="Problématique et objectifs">
-                <h4>1. Problématique et objectifs</h4>
+                <h4>Problématique et objectifs</h4>
                 <p>Avec seulement 21 observations, l’identification d’un modèle de procédé est sensible à l’échelle des entrées et à leur corrélation. Le projet estime la sortie <code>I_EFF</code> à partir de trois variables et compare l’effet de ces facteurs sur les prédictions et les paramètres du modèle.</p>
               </section>
               <section class="detail-section" aria-label="Approches et choix techniques">
-                <h4>2. Approches et choix techniques</h4>
+                <h4>Approches et choix techniques</h4>
                 <p>Le script MATLAB compare les moindres carrés (LSE), l’ACP et la régression sur composantes principales (PCR) sur les données brutes, normalisées entre 0 et 1 et standardisées par score-z. Le nombre de composantes ACP est déterminé avec un seuil de 95 % de variance cumulée expliquée. Une perturbation synthétique d’une entrée permet d’étudier la colinéarité ; le script inclut aussi une validation croisée en sept plis.</p>
               </section>
               <section class="detail-section" aria-label="Résultats et limites">
-                <h4>3. Résultats et limites</h4>
+                <h4>Résultats et limites</h4>
                 <p>Les figures rendent visibles les écarts d’ajustement, les erreurs et l’évolution des coefficients selon l’échelle et la corrélation. Le dépôt ne présente pas de benchmark agrégé montrant qu’une méthode est systématiquement meilleure. La taille de l’échantillon est réduite à 21 observations et l’expérience de colinéarité, sans graine aléatoire fixée, peut varier d’une exécution à l’autre.</p>
               </section>
-              <section class="detail-section" aria-label="Galerie et ressources">
-                <h4>4. Galerie et ressources</h4>
+              <section class="detail-section" aria-label="Ressources">
+                <h4>Ressources</h4>
                 <div class="project-gallery">
                   <figure>
                     <img src="assets/projects/pca-regression.png" alt="Prédictions par moindres carrés et ACP sur les données standardisées" loading="lazy">
@@ -1059,34 +1382,36 @@
                 <a class="project-link" href="https://github.com/mlmdc/PCA_PCR_model_identification" target="_blank" rel="noopener noreferrer">Scripts, données et autres figures <span aria-hidden="true">↗</span></a>
               </section>
             </div>
-          </details>
+          </article>
 
-          <details class="project-card reveal reveal-delay-2">
-            <summary>
+          <article class="project-card reveal reveal-delay-2">
+            <div class="project-card-header">
               <div class="project-visual"><img src="assets/projects/triangulation.png" alt="Visualisation des cercles de mesure et d’une trajectoire d’estimation de position"></div>
               <div class="project-summary">
                 <span class="project-type">Géolocalisation · optimisation</span>
                 <h3>Triangulation par distances</h3>
                 <p>Estimer la position d’un téléphone à partir des distances à trois stations de base.</p>
-                <span class="expand-hint">Plus de détails</span>
-                <span class="see-more">Voir plus</span>
+                <div class="project-actions">
+                  <button class="see-more" type="button" aria-expanded="false">Plus de détails <span aria-hidden="true">↓</span></button>
+                  <a class="project-link project-link--summary" href="https://github.com/mlmdc/LM_triangulation" target="_blank" rel="noopener noreferrer">Voir le projet <span aria-hidden="true">↗</span></a>
+                </div>
               </div>
-            </summary>
+            </div>
             <div class="project-details">
               <section class="detail-section" aria-label="Problématique et objectifs">
-                <h4>1. Problématique et objectifs</h4>
+                <h4>Problématique et objectifs</h4>
                 <p>Les coordonnées de trois stations sont connues, mais la position du téléphone doit être déduite des distances mesurées. Le bruit empêche généralement les trois cercles de distance de se croiser en un point exact. Le projet cherche à estimer la position qui minimise l’écart entre les mesures et les distances calculées.</p>
               </section>
               <section class="detail-section" aria-label="Approches et choix techniques">
-                <h4>2. Approches et choix techniques</h4>
+                <h4>Approches et choix techniques</h4>
                 <p>Le script MATLAB calcule les distances prédites, les résidus et leur jacobienne, puis compare les mises à jour de Gauss–Newton, Levenberg–Marquardt (LM) et Levenberg–Marquardt pondérée (WLM). L’amortissement de LM stabilise les pas ; WLM pondère les mesures selon la variance estimée pour chaque station. Les mesures sont fournies par trois fonctions MATLAB compilées.</p>
               </section>
               <section class="detail-section" aria-label="Résultats et limites">
-                <h4>3. Résultats et limites</h4>
+                <h4>Résultats et limites</h4>
                 <p>Le dépôt contient des graphiques des cercles de mesure, de trajectoires estimées et d’indicateurs d’optimisation. Ils documentent les essais, mais ne constituent pas une validation quantitative reproductible. Le script actuel sélectionne les mesures avec <code>radii(iter)</code> plutôt que les trois distances de l’itération <code>radii(:, iter)</code> ; les résidus et positions calculés ne sont donc pas fiables. Les résultats devront être recalculés après correction.</p>
               </section>
-              <section class="detail-section" aria-label="Galerie et ressources">
-                <h4>4. Galerie et ressources</h4>
+              <section class="detail-section" aria-label="Ressources">
+                <h4>Ressources</h4>
                 <div class="project-gallery">
                   <figure>
                     <img src="assets/projects/triangulation.png" alt="Cercles de mesure et trajectoire estimée par WLM" loading="lazy">
@@ -1101,74 +1426,160 @@
                 <a class="project-link" href="https://github.com/mlmdc/LM_triangulation" target="_blank" rel="noopener noreferrer">Code source et figures <span aria-hidden="true">↗</span></a>
               </section>
             </div>
-          </details>
+          </article>
         </div>
       </section>
 
       <section class="experience" id="experience" aria-labelledby="experience-title">
         <div class="section-heading">
           <h2 id="experience-title">Expériences professionnelles</h2>
-          <p>Robotique sous-marine, monitoring multi-capteurs et expérience en brasserie artisanale.</p>
         </div>
 
         <div class="experience-list">
           <article class="experience-card reveal">
-            <p class="experience-date">Sep. 2025 – Mars 2026</p>
-            <div>
-              <h3>Stage de fin d’études</h3>
-              <p class="experience-organization">Ifremer · Unité Sous-marins</p>
-              <ul>
-                <li>Contribution à l’innovation des bras manipulateurs du Nautile.</li>
-                <li>Rédaction d’un état de l’art sur la robotique sous-marine et le Nautile.</li>
-                <li>Développement d’outils de simulation, de modélisation et d’algorithmes (Python, C++, ROS2) pour caractériser les performances de bras manipulateurs multi-axes.</li>
-                <li>Conception d’algorithmes de fusion de données pour l’estimation de pose des bras en environnement sous-marin complexe.</li>
-              </ul>
+            <div class="experience-header">
+              <div class="experience-heading">
+                <p class="experience-date">Septembre 2025 – mars 2026</p>
+                <h3>Stage de fin d’études</h3>
+                <p class="experience-organization">Ifremer · Unité Sous-marins</p>
+              </div>
+              <div class="experience-brands">
+                <img src="assets/companies/ifremer.jpg" alt="Logo Ifremer" loading="lazy">
+              </div>
+            </div>
+            <ul class="experience-highlights">
+              <li>Contribution à l’innovation des bras manipulateurs du Nautile.</li>
+              <li>Rédaction d’un état de l’art sur la robotique sous-marine et le Nautile.</li>
+              <li>Développement d’outils de simulation, de modélisation et d’algorithmes (Python, C++, ROS2) pour caractériser les performances de bras manipulateurs multi-axes.</li>
+              <li>Conception d’algorithmes de fusion de données pour l’estimation de pose des bras en environnement sous-marin complexe.</li>
+            </ul>
+            <div class="experience-actions">
+              <button class="see-more experience-toggle" type="button" aria-expanded="false">
+                Plus de détails <span aria-hidden="true">↓</span>
+              </button>
+            </div>
+            <div class="experience-details" hidden>
+              <div class="project-gallery">
+                <figure>
+                  <img src="assets/companies/ifremer.jpg" alt="Logo Ifremer" loading="lazy">
+                  <figcaption>Ifremer · Unité Sous-marins</figcaption>
+                </figure>
+              </div>
             </div>
           </article>
 
           <article class="experience-card reveal reveal-delay-1">
-            <p class="experience-date">Sep. 2024 – Fév. 2025</p>
-            <div>
-              <h3>Stage assistant ingénieur</h3>
-              <p class="experience-organization">École Centrale de Nantes · Laboratoire GeM</p>
-              <ul>
-                <li>Conception d’un monitoring temps réel pour la fabrication additive métallique : acquisition, traitement et fusion de données multi-capteurs en Python/C++.</li>
-                <li>Modélisation et simulation des capteurs en Python/MATLAB pour leur caractérisation, correction et calibration.</li>
-              </ul>
+            <div class="experience-header">
+              <div class="experience-heading">
+                <p class="experience-date">Septembre 2024 – février 2025</p>
+                <h3>Stage assistant ingénieur</h3>
+                <p class="experience-organization">École Centrale de Nantes · Laboratoire GeM</p>
+              </div>
+              <div class="experience-brands experience-brands--paired">
+                <img src="assets/companies/centrale-nantes.jpg" alt="Logo de Centrale Nantes" loading="lazy">
+                <img src="assets/companies/gem.jpg" alt="Logo du laboratoire GeM" loading="lazy">
+              </div>
+            </div>
+            <ul class="experience-highlights">
+              <li>Conception d’un monitoring temps réel pour la fabrication additive métallique : acquisition, traitement et fusion de données multi-capteurs en Python/C++.</li>
+              <li>Modélisation et simulation des capteurs en Python/MATLAB pour leur caractérisation, correction et calibration.</li>
+            </ul>
+            <div class="experience-actions">
+              <button class="see-more experience-toggle" type="button" aria-expanded="false">
+                Plus de détails <span aria-hidden="true">↓</span>
+              </button>
+            </div>
+            <div class="experience-details" hidden>
+              <div class="project-gallery">
+                <figure>
+                  <img src="assets/companies/centrale-nantes.jpg" alt="Logo de Centrale Nantes" loading="lazy">
+                  <figcaption>École Centrale de Nantes</figcaption>
+                </figure>
+                <figure>
+                  <img src="assets/companies/gem.jpg" alt="Logo du laboratoire GeM" loading="lazy">
+                  <figcaption>Laboratoire GeM</figcaption>
+                </figure>
+              </div>
             </div>
           </article>
 
           <article class="experience-card reveal reveal-delay-2">
-            <p class="experience-date">Juillet – Août 2022 et 2024</p>
-            <div>
-              <h3>Opérateur en brasserie</h3>
-              <p class="experience-organization">Brasserie de Bretagne &amp; Brasserie Poem</p>
-              <ul>
-                <li>Production, contrôle qualité et vente en brasserie artisanale.</li>
-              </ul>
+            <div class="experience-header">
+              <div class="experience-heading">
+                <p class="experience-date">Juillet–août 2022 et 2024</p>
+                <h3>Opérateur en brasserie</h3>
+                <p class="experience-organization">Brasserie de Bretagne &amp; Brasserie Poem</p>
+              </div>
+              <div class="experience-brands experience-brands--compact">
+                <img src="assets/companies/brasserie-de-bretagne.png" alt="Logo de la Brasserie de Bretagne" loading="lazy">
+              </div>
+            </div>
+            <ul class="experience-highlights">
+              <li>Production, contrôle qualité et vente en brasserie artisanale.</li>
+            </ul>
+            <div class="experience-actions">
+              <button class="see-more experience-toggle" type="button" aria-expanded="false">
+                Plus de détails <span aria-hidden="true">↓</span>
+              </button>
+            </div>
+            <div class="experience-details" hidden>
+              <div class="project-gallery">
+                <figure>
+                  <img src="assets/companies/brasserie-de-bretagne.png" alt="Logo de la Brasserie de Bretagne" loading="lazy">
+                  <figcaption>Brasserie de Bretagne</figcaption>
+                </figure>
+              </div>
             </div>
           </article>
         </div>
       </section>
 
       <section class="contact reveal" id="contact" aria-labelledby="contact-title">
-        <div>
-          <p class="eyebrow">Contact</p>
-          <h2 id="contact-title">Parlons de vos projets.</h2>
-          <p>Pour échanger autour d’un projet ou d’une collaboration, retrouvez-moi sur GitHub ou LinkedIn.</p>
-        </div>
-        <div class="contact-links">
-          <a class="hero-button contact-link" href="https://github.com/mlmdc" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a>
-          <a class="hero-button hero-button--secondary contact-link" href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn (lien temporaire)">LinkedIn <span aria-hidden="true">↗</span></a>
+        <div class="contact-inner">
+          <div class="contact-intro">
+            <h2 id="contact-title">Me contacter</h2>
+            <p>Pour toute opportunité en robotique, systèmes ou ingénierie, vous pouvez me retrouver sur LinkedIn et GitHub.</p>
+          </div>
+          <div class="contact-links">
+            <a class="contact-link" href="https://www.linkedin.com/in/mael-madec-01b496436" target="_blank" rel="noopener noreferrer">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M5 9v10M5 5.5v.1M10 19v-6c0-2.2 4.5-2.7 4.5.4V19M10 9v10M19 19v-6.2c0-5.2-5.7-5-7.5-2.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                <circle cx="5" cy="5.5" r="1.1" fill="currentColor"/>
+              </svg>
+              <span class="contact-link-copy">
+                <span class="contact-link-label">LinkedIn</span>
+                <span class="contact-link-value">linkedin.com/in/mael-madec-01b496436</span>
+              </span>
+              <span class="contact-link-arrow" aria-hidden="true">↗</span>
+            </a>
+            <a class="contact-link" href="https://github.com/mlmdc" target="_blank" rel="noopener noreferrer">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M9 19c-4.2 1.2-4.2-2.1-5.9-2.5M15 21v-3.2a2.8 2.8 0 0 0-.8-2.2c2.7-.3 5.5-1.3 5.5-6A4.7 4.7 0 0 0 18.4 6a4.3 4.3 0 0 0-.1-3.2S17.3 2.5 15 4a12 12 0 0 0-6 0C6.7 2.5 5.7 2.8 5.7 2.8A4.3 4.3 0 0 0 5.6 6a4.7 4.7 0 0 0-1.3 3.6c0 4.7 2.8 5.7 5.5 6A2.8 2.8 0 0 0 9 17.8V21" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <span class="contact-link-copy">
+                <span class="contact-link-label">GitHub</span>
+                <span class="contact-link-value">github.com/mlmdc</span>
+              </span>
+              <span class="contact-link-arrow" aria-hidden="true">↗</span>
+            </a>
+          </div>
         </div>
       </section>
     </main>
 
     <footer>
       <p>© <span id="year">2026</span> Maël</p>
-      <p>Conçu avec soin · 2026</p>
     </footer>
   </div>
+  <dialog class="image-lightbox" aria-label="Aperçu de l’image">
+    <form method="dialog">
+      <button class="image-lightbox-close" aria-label="Fermer l’aperçu">Fermer</button>
+    </form>
+    <figure>
+      <img alt="">
+      <figcaption></figcaption>
+    </figure>
+  </dialog>
   <script>
     (() => {
       document.documentElement.classList.add("js");
@@ -1221,10 +1632,10 @@
 
       if (interest && !reducedMotion) {
         const interests = [
-          "à la robotique et à la commande",
-          "aux systèmes embarqués",
-          "à la modélisation des systèmes",
-          "à l’analyse de données"
+          "Robotique et commande",
+          "Systèmes embarqués",
+          "Modélisation des systèmes",
+          "Analyse de données"
         ];
         let index = 0;
         window.setInterval(() => {
@@ -1236,21 +1647,162 @@
         }, 2800);
       }
 
-      document.querySelectorAll(".project-card").forEach(card => {
-        const updateSeeMoreLabel = () => {
-          const label = card.querySelector(".see-more");
-          if (label) label.textContent = card.open ? "Voir moins" : "Voir plus";
+      const lightbox = document.querySelector(".image-lightbox");
+      const lightboxImage = lightbox.querySelector("img");
+      const lightboxCaption = lightbox.querySelector("figcaption");
+      let lightboxScrollPosition = 0;
+
+      const setCardExpanded = (card, expanded) => {
+        document.querySelectorAll(".project-card").forEach(otherCard => {
+          const otherPanel = otherCard.querySelector(".project-details");
+          const otherToggle = otherCard.querySelector(".see-more");
+          otherPanel.hidden = true;
+          otherToggle.setAttribute("aria-expanded", "false");
+          otherToggle.firstChild.textContent = "Plus de détails ";
+          otherToggle.querySelector("span").textContent = "↓";
+        });
+
+        if (expanded) {
+          const panel = card.querySelector(".project-details");
+          const toggle = card.querySelector(".see-more");
+          panel.hidden = false;
+          toggle.setAttribute("aria-expanded", "true");
+          toggle.firstChild.textContent = "Moins de détails ";
+          toggle.querySelector("span").textContent = "↑";
+        }
+      };
+
+      const initializeGallery = (gallery, label) => {
+        const track = document.createElement("div");
+        track.className = "project-gallery-track";
+        track.tabIndex = 0;
+        track.setAttribute("role", "group");
+        track.setAttribute("aria-label", `Images de ${label}`);
+
+        const figures = Array.from(gallery.querySelectorAll("figure"));
+        figures.forEach(figure => track.append(figure));
+        gallery.setAttribute("role", "region");
+        gallery.setAttribute("aria-label", `Galerie de ${label}`);
+
+        const previous = document.createElement("button");
+        previous.className = "gallery-control gallery-control--previous";
+        previous.type = "button";
+        previous.setAttribute("aria-label", "Faire défiler les images vers la gauche");
+        previous.textContent = "‹";
+
+        const next = document.createElement("button");
+        next.className = "gallery-control gallery-control--next";
+        next.type = "button";
+        next.setAttribute("aria-label", "Faire défiler les images vers la droite");
+        next.textContent = "›";
+
+        const updateGalleryControls = () => {
+          previous.disabled = track.scrollLeft <= 1;
+          next.disabled = track.scrollLeft + track.clientWidth >= track.scrollWidth - 1;
         };
 
-        card.addEventListener("toggle", updateSeeMoreLabel);
-        card.querySelector("summary").addEventListener("click", () => {
-          if (!card.open) {
-            document.querySelectorAll(".project-card[open]").forEach(otherCard => {
-              if (otherCard !== card) otherCard.open = false;
-            });
-          }
-          window.setTimeout(updateSeeMoreLabel, 0);
+        const scrollGallery = direction => {
+          const figureWidth = track.querySelector("figure").getBoundingClientRect().width;
+          const gap = parseFloat(getComputedStyle(track).columnGap) || 0;
+          track.scrollBy({
+            left: direction * (figureWidth + gap),
+            behavior: reducedMotion ? "auto" : "smooth"
+          });
+        };
+
+        previous.addEventListener("click", () => scrollGallery(-1));
+        next.addEventListener("click", () => scrollGallery(1));
+        track.addEventListener("scroll", updateGalleryControls, { passive: true });
+        window.addEventListener("resize", updateGalleryControls);
+        if ("ResizeObserver" in window) {
+          new ResizeObserver(updateGalleryControls).observe(track);
+        }
+        gallery.append(previous, track, next);
+        updateGalleryControls();
+
+        figures.forEach(figure => {
+          const image = figure.querySelector("img");
+          if (!image) return;
+
+          const trigger = document.createElement("button");
+          trigger.className = "image-lightbox-trigger";
+          trigger.type = "button";
+          trigger.setAttribute("aria-label", `Agrandir l’image : ${image.alt}`);
+          figure.insertBefore(trigger, image);
+          trigger.append(image);
+          trigger.addEventListener("click", () => {
+            lightboxScrollPosition = window.scrollY;
+            lightboxImage.src = image.currentSrc || image.src;
+            lightboxImage.alt = image.alt;
+            lightboxCaption.textContent = figure.querySelector("figcaption")?.textContent || image.alt;
+            lightbox.showModal();
+            window.scrollTo({ top: lightboxScrollPosition, left: 0, behavior: "instant" });
+          });
         });
+      };
+
+      document.querySelectorAll(".project-card").forEach((card, index) => {
+        const panel = card.querySelector(".project-details");
+        const toggle = card.querySelector(".see-more");
+        const detailsId = `project-details-${index + 1}`;
+
+        panel.id = detailsId;
+        panel.hidden = true;
+        toggle.setAttribute("aria-controls", detailsId);
+        toggle.addEventListener("click", () => {
+          setCardExpanded(card, panel.hidden);
+        });
+
+        const mainImage = card.querySelector(".project-visual img");
+        if (mainImage) {
+          const mainImageTrigger = document.createElement("button");
+          mainImageTrigger.className = "project-visual-trigger";
+          mainImageTrigger.type = "button";
+          mainImageTrigger.setAttribute("aria-label", `Afficher les détails : ${mainImage.alt}`);
+          mainImage.before(mainImageTrigger);
+          mainImageTrigger.append(mainImage);
+          mainImageTrigger.addEventListener("click", () => setCardExpanded(card, panel.hidden));
+        }
+      });
+
+      document.querySelectorAll(".experience-card").forEach((card, index) => {
+        const panel = card.querySelector(".experience-details");
+        const toggle = card.querySelector(".experience-toggle");
+        const detailsId = `experience-details-${index + 1}`;
+
+        panel.id = detailsId;
+        toggle.setAttribute("aria-controls", detailsId);
+        toggle.addEventListener("click", () => {
+          const shouldExpand = panel.hidden;
+          document.querySelectorAll(".experience-card").forEach(otherCard => {
+            const otherPanel = otherCard.querySelector(".experience-details");
+            const otherToggle = otherCard.querySelector(".experience-toggle");
+            otherPanel.hidden = true;
+            otherToggle.setAttribute("aria-expanded", "false");
+            otherToggle.firstChild.textContent = "Plus de détails ";
+            otherToggle.querySelector("span").textContent = "↓";
+          });
+
+          if (shouldExpand) {
+            panel.hidden = false;
+            toggle.setAttribute("aria-expanded", "true");
+            toggle.firstChild.textContent = "Moins de détails ";
+            toggle.querySelector("span").textContent = "↑";
+          }
+        });
+      });
+
+      document.querySelectorAll(".project-gallery").forEach(gallery => {
+        const card = gallery.closest(".project-card, .experience-card");
+        initializeGallery(gallery, card.querySelector("h3").textContent);
+      });
+
+      lightbox.addEventListener("close", () => {
+        window.scrollTo({ top: lightboxScrollPosition, left: 0, behavior: "instant" });
+      });
+
+      lightbox.addEventListener("click", event => {
+        if (event.target === lightbox) lightbox.close();
       });
     })();
   </script>
