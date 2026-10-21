@@ -525,6 +525,54 @@
       line-height: 1;
     }
 
+    .experience {
+      padding: 0 0 88px;
+    }
+
+    .experience-list {
+      display: grid;
+      gap: 14px;
+    }
+
+    .experience-card {
+      display: grid;
+      grid-template-columns: minmax(150px, 0.28fr) minmax(0, 1fr);
+      gap: 24px;
+      padding: clamp(22px, 4vw, 32px);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: var(--card);
+    }
+
+    .experience-date {
+      margin: 2px 0 0;
+      color: var(--accent);
+      font-size: 0.88rem;
+      font-weight: 700;
+    }
+
+    .experience-card h3 {
+      margin: 0 0 4px;
+      font-size: clamp(1.15rem, 2.4vw, 1.4rem);
+      line-height: 1.3;
+      letter-spacing: -0.035em;
+    }
+
+    .experience-organization {
+      margin-bottom: 16px;
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    .experience-card ul {
+      display: grid;
+      gap: 8px;
+      margin: 0;
+      padding-left: 20px;
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
     .contact {
       display: flex;
       justify-content: space-between;
@@ -640,6 +688,11 @@
         flex-direction: column;
         gap: 20px;
       }
+
+      .experience-card {
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
     }
 
     @media (max-width: 420px) {
@@ -673,12 +726,12 @@
       }
 
       .topbar nav a {
-        font-size: 0.86rem;
+        font-size: 0.8rem;
       }
 
       .topbar nav a + a {
-        margin-left: 12px;
-        padding-left: 12px;
+        margin-left: 7px;
+        padding-left: 7px;
       }
 
       .cv-link {
@@ -727,6 +780,7 @@
         <nav aria-label="Navigation principale">
           <a class="nav-link" href="#accueil" aria-current="location">Accueil</a>
           <a class="nav-link" href="#projets">Projets</a>
+          <a class="nav-link" href="#experience">Expérience</a>
           <a class="nav-link" href="#contact">Contact</a>
         </nav>
         <a class="cv-link" href="#contact">CV</a>
@@ -1048,6 +1102,52 @@
               </section>
             </div>
           </details>
+        </div>
+      </section>
+
+      <section class="experience" id="experience" aria-labelledby="experience-title">
+        <div class="section-heading">
+          <h2 id="experience-title">Expériences professionnelles</h2>
+          <p>Robotique sous-marine, monitoring multi-capteurs et expérience en brasserie artisanale.</p>
+        </div>
+
+        <div class="experience-list">
+          <article class="experience-card reveal">
+            <p class="experience-date">Sep. 2025 – Mars 2026</p>
+            <div>
+              <h3>Stage de fin d’études</h3>
+              <p class="experience-organization">Ifremer · Unité Sous-marins</p>
+              <ul>
+                <li>Contribution à l’innovation des bras manipulateurs du Nautile.</li>
+                <li>Rédaction d’un état de l’art sur la robotique sous-marine et le Nautile.</li>
+                <li>Développement d’outils de simulation, de modélisation et d’algorithmes (Python, C++, ROS2) pour caractériser les performances de bras manipulateurs multi-axes.</li>
+                <li>Conception d’algorithmes de fusion de données pour l’estimation de pose des bras en environnement sous-marin complexe.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="experience-card reveal reveal-delay-1">
+            <p class="experience-date">Sep. 2024 – Fév. 2025</p>
+            <div>
+              <h3>Stage assistant ingénieur</h3>
+              <p class="experience-organization">École Centrale de Nantes · Laboratoire GeM</p>
+              <ul>
+                <li>Conception d’un monitoring temps réel pour la fabrication additive métallique : acquisition, traitement et fusion de données multi-capteurs en Python/C++.</li>
+                <li>Modélisation et simulation des capteurs en Python/MATLAB pour leur caractérisation, correction et calibration.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="experience-card reveal reveal-delay-2">
+            <p class="experience-date">Juillet – Août 2022 et 2024</p>
+            <div>
+              <h3>Opérateur en brasserie</h3>
+              <p class="experience-organization">Brasserie de Bretagne &amp; Brasserie Poem</p>
+              <ul>
+                <li>Production, contrôle qualité et vente en brasserie artisanale.</li>
+              </ul>
+            </div>
+          </article>
         </div>
       </section>
 
