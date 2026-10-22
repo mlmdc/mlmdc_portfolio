@@ -1246,7 +1246,6 @@
       <a class="wordmark" href="#accueil">Mael Madec</a>
       <div class="header-actions">
         <nav aria-label="Navigation principale">
-          <a class="nav-link" href="#accueil" aria-current="location">Accueil</a>
           <a class="nav-link" href="#projets">Projets</a>
           <a class="nav-link" href="#experience">Expérience</a>
           <a class="nav-link" href="#contact">Contact</a>
@@ -1345,7 +1344,7 @@
 
           <article class="project-card reveal reveal-delay-1">
             <div class="project-card-header">
-              <div class="project-visual project-visual--placeholder" role="img" aria-label="Illustration indisponible pour ce projet">Illustration indisponible</div>
+              <div class="project-visual"><img src="assets/projects/s7-motor.png" alt="Moteur à courant continu étudié pour le projet d’asservissement"></div>
               <div class="project-summary">
                 <span class="project-type">Systèmes embarqués</span>
                 <h3>Asservissement d’un moteur CC</h3>
@@ -1373,12 +1372,75 @@
                 <h4>Ressources</h4>
                 <div class="project-gallery">
                   <figure>
-                    <div class="gallery-placeholder" role="img" aria-label="Aucune image ou démonstration disponible dans le dépôt">Aucune image ou démonstration disponible dans le dépôt.</div>
-                    <figcaption>Le dépôt ne fournit pas de visuel ni de démonstration.</figcaption>
+                    <img src="assets/projects/s7-motor.png" alt="Moteur à courant continu utilisé comme référence pour l’étude" loading="lazy">
+                    <figcaption>Moteur étudié.</figcaption>
+                  </figure>
+                  <figure>
+                    <img src="assets/projects/s7-control-interface.png" alt="Interface de commande du moteur et de visualisation des mesures" loading="lazy">
+                    <figcaption>Interface de commande et de mesure.</figcaption>
+                  </figure>
+                  <figure>
+                    <img src="assets/projects/s7-motor-model-comparison.png" alt="Comparaison de réponses simulées du moteur à vide et en charge" loading="lazy">
+                    <figcaption>Comparaison de réponses simulées à vide et en charge.</figcaption>
+                  </figure>
+                  <figure>
+                    <img src="assets/projects/s7-serial-measurements.png" alt="Exemple de mesures série de vitesse du moteur" loading="lazy">
+                    <figcaption>Exemple de mesures série, à titre illustratif.</figcaption>
                   </figure>
                 </div>
-                <p>Le dépôt contient le firmware STM32Cube et des notebooks de simulation et d’analyse série.</p>
+                <p>Les graphiques de simulation et l’exemple série illustrent les outils du dépôt ; ils ne constituent pas une validation quantitative des performances du moteur réel.</p>
                 <a class="project-link" href="https://github.com/mlmdc/S7-stm32-ips" target="_blank" rel="noopener noreferrer">Code source et notebooks <span aria-hidden="true">↗</span></a>
+              </section>
+            </div>
+          </article>
+
+          <article class="project-card reveal reveal-delay-2">
+            <div class="project-card-header">
+              <div class="project-visual"><img src="assets/projects/flexion-xs-rig.jpg" alt="Montage expérimental Flexion XS avec réglette, moteur et électronique de mesure"></div>
+              <div class="project-summary">
+                <span class="project-type">Systèmes embarqués · vibrations</span>
+                <h3>Flexion XS — analyse vibratoire</h3>
+                <p>Mesurer les vibrations d’une réglette instrumentée et comparer ses fréquences et formes modales à un modèle de poutre.</p>
+                <div class="project-actions">
+                  <button class="see-more" type="button" aria-expanded="false">Plus de détails <span aria-hidden="true">↓</span></button>
+                  <a class="project-link project-link--summary" href="https://github.com/mlmdc/Flexion-XS" target="_blank" rel="noopener noreferrer">Voir le projet <span aria-hidden="true">↗</span></a>
+                </div>
+              </div>
+            </div>
+            <div class="project-details">
+              <section class="detail-section" aria-label="Problématique et objectifs">
+                <h4>Problématique et objectifs</h4>
+                <p>Flexion XS est une plateforme expérimentale pédagogique consacrée aux vibrations d’une réglette assimilée à une poutre. L’objectif est de caractériser sa réponse vibratoire, puis de confronter les fréquences propres et formes modales observées à un modèle mécanique.</p>
+              </section>
+              <section class="detail-section" aria-label="Approches et choix techniques">
+                <h4>Approches et choix techniques</h4>
+                <p>Une STM32F411 acquiert l’accélération d’un accéléromètre analogique et la vitesse du moteur. Un outil Python commande la maquette et reçoit les mesures par liaison série. Les notebooks étudient les réponses fréquentielles, les fréquences et amortissements modaux, puis comparent les formes mesurées à un modèle éléments finis de poutre d’Euler–Bernoulli, notamment avec le critère MAC.</p>
+              </section>
+              <section class="detail-section" aria-label="Résultats et limites">
+                <h4>Résultats et limites</h4>
+                <p>Le dépôt rassemble le firmware, l’outil de mesure, trois séries de mesures et des analyses en régime libre et harmonique. L’identification du troisième mode, la répétabilité des traitements et la fiabilité du câblage et de la communication restent à améliorer ; les résultats disponibles ne suffisent pas à établir une validation quantitative du modèle.</p>
+              </section>
+              <section class="detail-section" aria-label="Ressources">
+                <h4>Ressources</h4>
+                <div class="project-gallery">
+                  <figure>
+                    <img src="assets/projects/flexion-xs-rig.jpg" alt="Montage expérimental avec réglette vibrante et moteur" loading="lazy">
+                    <figcaption>Montage expérimental Flexion XS.</figcaption>
+                  </figure>
+                  <figure>
+                    <img src="assets/projects/flexion-xs-system-diagram.png" alt="Schéma d’ensemble de la maquette expérimentale" loading="lazy">
+                    <figcaption>Schéma d’ensemble de la maquette.</figcaption>
+                  </figure>
+                  <figure>
+                    <img src="assets/projects/flexion-xs-measurement.png" alt="Exemple de mesure temporelle de la réponse vibratoire" loading="lazy">
+                    <figcaption>Exemple de mesure vibratoire.</figcaption>
+                  </figure>
+                  <figure>
+                    <img src="assets/projects/flexion-xs-mode-shape.png" alt="Comparaison de la déformée modale mesurée avec le modèle" loading="lazy">
+                    <figcaption>Comparaison des déformées modales.</figcaption>
+                  </figure>
+                </div>
+                <a class="project-link" href="https://github.com/mlmdc/Flexion-XS" target="_blank" rel="noopener noreferrer">Firmware, mesures et analyses <span aria-hidden="true">↗</span></a>
               </section>
             </div>
           </article>
