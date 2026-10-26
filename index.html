@@ -841,6 +841,7 @@
       max-width: 220px;
       height: 90px;
       padding: 5px;
+      border: 1px solid var(--line);
       border-radius: 8px;
       background: var(--card);
       object-fit: contain;
@@ -1311,19 +1312,26 @@
             <div class="project-details">
               <section class="detail-section" aria-label="Problématique et objectifs">
                 <h4>Problématique et objectifs</h4>
-                <p>Le projet relie la disposition dessinée des sept pièces à leur manipulation par l’UR5e. La reconnaissance par caméra et la calibration du repère sont fournies dans le projet ; elles permettent de situer les pièces par rapport au référentiel global du robot.</p>
+                <p>Le projet vise à relier une disposition dessinée des sept pièces de Tangram à une réalisation de cette disposition par un bras robot UR5e. Seuls le programme de reconnaissance par caméra et la calibration du repère ont été initialement fournis. <br>
+
+                A partir de pièces placées aléatoirement sur un repère, le robot doit identifier leurs positions, les saisir et les placer selon la disposition. Le programme Python doit quand à lui permettre de dessiner les pièces, vérifier les collisions possibles et transformer les positions en poses de robot</p>
               </section>
               <section class="detail-section" aria-label="Approches et choix techniques">
                 <h4>Approches et choix techniques</h4>
-                <p>Python et Pygame fournissent un éditeur 2D avec déplacement, alignement magnétique, rotations par pas de 15 degrés et annulation. La caméra capture le plateau et associe les repères locaux détectés aux coordonnées du référentiel global du robot. L’export convertit la disposition en poses à six valeurs, transmises par TCP à un programme PolyScope qui pilote le préhenseur. L’édition s’effectue sur PC ; le contrôleur UR exécute les mouvements.</p>
+                <p>Python et Pygame fournissent un éditeur 2D avec déplacement, alignement magnétique, rotations par pas de 15 degrés et annulation d'actions. La caméra capture le plateau et associe les repères locaux détectés aux coordonnées du référentiel global du robot. L’export convertit la disposition 2D en poses en 6D, transmises par TCP à un programme PolyScope qui pilote l'effecteur final. L’édition s’effectue sur PC ; le contrôleur UR exécute les mouvements.</p>
               </section>
               <section class="detail-section" aria-label="Résultats et limites">
                 <h4>Résultats et limites</h4>
-                <p>L’éditeur, la localisation des pièces et la transmission de poses composent une chaîne de commande jusqu’au programme robot. La calibration est fournie dans le projet ; le dépôt ne quantifie pas la précision physique ni les performances de bout en bout. La détection de collisions et les vérifications de sécurité restent à la charge de l’utilisateur.</p>
+                <p>L’éditeur, la localisation des pièces et la transmission de poses composent une chaîne de commande jusqu’au programme robot. Un exemple de calibration est fourni dans le projet ; <strong>les deux programmes sont directement fonctionnels sur UR5e</strong>. La détection de collisions et les vérifications de sécurité restent à la charge de l’utilisateur.</p>
               </section>
               <section class="detail-section" aria-label="Compétences et technologies">
                 <h4>Compétences et technologies</h4>
-                <p>Python et Pygame pour l’interface 2D ; conversion de coordonnées en poses robot ; communication TCP ; intégration avec PolyScope et un préhenseur UR.</p>
+                <ul>
+                  <li>Python et Pygame pour l’éditeur graphique 2D.</li>
+                  <li>Conversion de coordonnées d’image et de disposition en poses robot.</li>
+                  <li>Communication TCP entre le PC et le contrôleur UR.</li>
+                  <li>Intégration du programme PolyScope avec le préhenseur.</li>
+                </ul>
               </section>
               <section class="detail-section" aria-label="Ressources">
                 <h4>Ressources</h4>
@@ -1351,8 +1359,8 @@
               <div class="project-visual"><img src="assets/projects/s7-motor.png" alt="Moteur à courant continu étudié pour le projet d’asservissement"></div>
               <div class="project-summary">
                 <span class="project-type">Systèmes embarqués</span>
-                <h3>Asservissement de vitesse sur STM32F411</h3>
-                <p>Un firmware STM32F411 acquiert la vitesse d’un moteur réel et applique une commande PID par PWM. Les mesures expérimentales sont distinguées des résultats issus des simulations du moteur.</p>
+                <h3>Contrôle-commande d'un moteur à courant continu</h3>
+                <p>Projet associant un moteur à courant continu, une carte STM32F411 et un développement logiciel pour contrôler le moteur en vitesse et en couple. </p>
                 <div class="project-actions">
                   <button class="see-more" type="button" aria-expanded="false">Plus de détails <span aria-hidden="true">↓</span></button>
                   <a class="project-link project-link--summary" href="https://github.com/mlmdc/S7-stm32-ips" target="_blank" rel="noopener noreferrer">Voir le projet <span aria-hidden="true">↗</span></a>
@@ -1362,19 +1370,28 @@
             <div class="project-details">
               <section class="detail-section" aria-label="Problématique et objectifs">
                 <h4>Problématique et objectifs</h4>
-                <p>Le firmware regroupe la mesure de vitesse, l’acquisition de la tension du shunt et la commande du moteur dans une boucle périodique. Les commandes et mesures sont également accessibles depuis un outil connecté en série.</p>
+                <p>À partir d’un moteur à courant continu et d’une carte STM32 vierge, la problématique consiste à concevoir une commande embarquée pour piloter le moteur en vitesse, en couple et en position. Il faut développer l’acquisition des mesures et le pilotage de l’actionneur, puis structurer les boucles de commande adaptées à ces trois grandeurs. Dans le périmètre réalisé ici, la commande PID porte sur la vitesse ; le couple et la position restent des objectifs du projet, et non des fonctions présentées comme achevées.</p>
               </section>
               <section class="detail-section" aria-label="Approches et choix techniques">
                 <h4>Approches et choix techniques</h4>
-                <p>Sur STM32F411RE, STM32Cube HAL configure les périphériques : TIM1 lit l’encodeur, TIM2 déclenche la boucle toutes les 10 ms et TIM3 génère le PWM. ADC1 échantillonne par DMA la tension du shunt ; huit mesures sont lissées par moyenne exponentielle. Un PID discret calcule une commande limitée à 0–24 V, convertie en rapport cyclique. USART2 transporte commandes et télémétrie à 115200 bauds.</p>
+                <p>La carte STM32 et son firmware ferment la boucle de vitesse entre le moteur et la carte : l’encodeur fournit le retour de vitesse, le PID calcule la commande et la carte envoie un signal PWM à l’étage de puissance relié au moteur. Une mesure de tension, de courants, de la vitesse et des échanges série complètent cette chaîne. <br><br>
+
+                En parallèle, le modèle mathématique du moteur, à vide comme en charge, est construit à partir de mesures et de simulations. Le correcteur PID discret est lui même conçu sur ces bases pour être ensuite intégré sur la carte STM32.</p>
               </section>
               <section class="detail-section" aria-label="Résultats et limites">
                 <h4>Résultats et limites</h4>
-                <p>Le firmware rassemble l’acquisition par encodeur et ADC, le filtrage, le calcul PID, la génération PWM et la télémétrie. Les mesures affichées proviennent du moteur réel ; les résultats issus des notebooks de modélisation sont identifiés comme des simulations. L’ADC relève la tension du shunt, sans conversion logicielle en courant. La commande bidirectionnelle et l’anti-windup ne sont pas implémentés.</p>
+                <p>Le firmware rassemble l’acquisition par encodeur et ADC, le filtrage, le calcul PID, la génération PWM, la télémétrie et la communication série. En plus du correcteur PID, la commande bidirectionnelle, l'anti-windup et le changement de paramètres PID automatique sont implémentés. Un exemple de résultat fonctionnel est fourni.</p>
               </section>
               <section class="detail-section" aria-label="Compétences et technologies">
                 <h4>Compétences et technologies</h4>
-                <p>Firmware STM32 avec STM32Cube HAL ; configuration de timers, encodeur, ADC avec DMA et UART ; boucle PID discrète ; PWM ; filtrage de mesures et télémétrie série.</p>
+                <ul>
+                  <li>Développement de firmware STM32 avec STM32Cube HAL.</li>
+                  <li>Mesure de vitesse par encodeur et acquisition de tension par ADC avec DMA.</li>
+                  <li>Commande de l’étage de puissance par PWM et régulation de vitesse par PID discret.</li>
+                  <li>Paramétrage et mise à jour des coefficients PID.</li>
+                  <li>Communication UART pour l’envoi de commandes et la télémétrie.</li>
+                  <li>Modélisation du moteur à vide et en charge, puis étude des réglages PID dans un notebook Python.</li>
+                </ul>
               </section>
               <section class="detail-section" aria-label="Ressources">
                 <h4>Ressources</h4>
@@ -1407,8 +1424,8 @@
               <div class="project-visual"><img src="assets/projects/flexion-xs-rig.jpg" alt="Montage expérimental Flexion XS avec réglette, moteur et électronique de mesure"></div>
               <div class="project-summary">
                 <span class="project-type">Systèmes embarqués · vibrations</span>
-                <h3>Flexion XS : mesure et analyse vibratoire</h3>
-                <p>Une plateforme STM32F411 acquiert expérimentalement les vibrations d’une réglette instrumentée. Les mesures et notebooks associés servent de support pédagogique pour analyser la réponse et la comparer à un modèle de poutre.</p>
+                <h3>Flexion XS : mesure, contrôle et analyse vibratoire</h3>
+                <p>Plateforme STM32F411 d'expérimentation sur les vibrations d'une réglette instrumentée. Les mesures et notebooks associés servent de support pédagogique pour analyser la réponse vibratoire.</p>
                 <div class="project-actions">
                   <button class="see-more" type="button" aria-expanded="false">Plus de détails <span aria-hidden="true">↓</span></button>
                   <a class="project-link project-link--summary" href="https://github.com/mlmdc/Flexion-XS" target="_blank" rel="noopener noreferrer">Voir le projet <span aria-hidden="true">↗</span></a>
@@ -1418,11 +1435,13 @@
             <div class="project-details">
               <section class="detail-section" aria-label="Problématique et objectifs">
                 <h4>Problématique et objectifs</h4>
-                <p>Cette plateforme pédagogique sert à caractériser les vibrations d’une réglette assimilée à une poutre, puis à confronter les mesures à un modèle mécanique. L’étude porte sur les fréquences propres, l’amortissement et les formes modales.</p>
+                <p>Cette plateforme pédagogique, basée sur une carte STM32F411RE, sert à caractériser les vibrations d’une réglette assimilée, puis à confronter les mesures afin de déterminer un modèle mécanique. L’étude porte autant sur les fréquences propres, l’amortissement et les formes modales que les différents modèles d'inférence des paramètres.</p>
               </section>
               <section class="detail-section" aria-label="Approches et choix techniques">
                 <h4>Approches et choix techniques</h4>
-                <p>Une STM32F411 acquiert le signal d’un accéléromètre analogique et la vitesse du moteur d’excitation. Un outil Python commande la maquette et reçoit les données par liaison série. Des notebooks analysent les réponses fréquentielles et les paramètres modaux, puis comparent les formes mesurées à un modèle éléments finis de poutre d’Euler–Bernoulli avec le critère MAC.</p>
+                <p>La STM32F411 pilote le moteur d’excitation et acquiert le signal analogique de l’accéléromètre ainsi que la vitesse du moteur. Un outil Python envoie les commandes à la maquette et reçoit les mesures par liaison série. Les acquisitions sont enregistrées pour être analysées hors ligne, notamment en régime libre et en régime harmonique.</p>
+                <br>
+                <p>Les notebooks traitent les mesures pour étudier la réponse fréquentielle, estimer les fréquences propres et l’amortissement, puis reconstruire les formes modales. Ces formes sont comparées à celles d’un modèle éléments finis de poutre d’Euler–Bernoulli à l’aide du critère MAC. Les résultats expérimentaux et les étapes de traitement sont consultables dans les notebooks et les fichiers de mesure du projet.</p>
               </section>
               <section class="detail-section" aria-label="Résultats et limites">
                 <h4>Résultats et limites</h4>
@@ -1430,7 +1449,13 @@
               </section>
               <section class="detail-section" aria-label="Compétences et technologies">
                 <h4>Compétences et technologies</h4>
-                <p>STM32F411 et acquisition analogique ; communication série ; outil de mesure en Python ; analyse fréquentielle et modale ; modèle éléments finis de poutre Euler–Bernoulli et comparaison par MAC.</p>
+                <ul>
+                  <li>STM32F411 pour l’acquisition analogique et le pilotage de la maquette.</li>
+                  <li>Communication série et outil Python pour commander la plateforme et récupérer les mesures.</li>
+                  <li>Analyse fréquentielle et estimation des paramètres modaux.</li>
+                  <li>Modèle éléments finis de poutre d’Euler–Bernoulli.</li>
+                  <li>Comparaison des formes modales par le critère MAC.</li>
+                </ul>
               </section>
               <section class="detail-section" aria-label="Ressources">
                 <h4>Ressources</h4>
@@ -1462,8 +1487,8 @@
               <div class="project-visual"><img src="assets/projects/helicrane-response.png" alt="Courbes de réponse du contrôleur lors d’essais en échelon"></div>
               <div class="project-summary">
                 <span class="project-type">Modélisation · commande</span>
-                <h3>Modélisation floue et commande d’un hélicrane</h3>
-                <p>Ce travail théorique et pédagogique étudie la modélisation floue de données associées à un hélicrane simulé, puis la commande du modèle en simulation. Il ne met pas en œuvre une commande sur un système réel.</p>
+                <h3>Modélisation et commande floues d’une grue volante</h3>
+                <p>Travail théorique et pédagogique sur la modélisation floue de données associées à une grue volante, puis la commande du modèle en simulation.</p>
                 <div class="project-actions">
                   <button class="see-more" type="button" aria-expanded="false">Plus de détails <span aria-hidden="true">↓</span></button>
                   <a class="project-link project-link--summary" href="https://github.com/mlmdc/NL_fuzzy_modeling_controling" target="_blank" rel="noopener noreferrer">Voir le projet <span aria-hidden="true">↗</span></a>
@@ -1473,11 +1498,15 @@
             <div class="project-details">
               <section class="detail-section" aria-label="Problématique et objectifs">
                 <h4>Problématique et objectifs</h4>
-                <p>Le projet explore, à partir de données statiques fournies, la représentation d’un hélicrane simulé par plusieurs modèles locaux et leur combinaison en un modèle flou de Takagi–Sugeno. Il s’agit d’une étude théorique de simulation, sans application directe à un hélicrane réel.</p>
+                <p>Le projet explore, à partir d'un set de données statiques fournies, la représentation d’une grue volante (hélicoptère de manutention).L'étude porte sur plusieurs modèles allant du modèles paramétrique à des modèles flous et neuro-flous de Takagi-Sugeno, dans l'optique première de les comparer.</p>
+                <br>
+                <p>Une seconde partie porte sur la contrôle prédictif du modèle flou de la grue volante. Il s’agit cependant d’une étude théorique de simulation, sans application directe à une grue volante réel.</p>
               </section>
               <section class="detail-section" aria-label="Approches et choix techniques">
                 <h4>Approches et choix techniques</h4>
-                <p>Le clustering de Gustafson–Kessel définit des zones locales dans les données ; des moindres carrés pondérés estiment un modèle ARX par zone, comparé à un réseau NARX. Les modèles locaux sont combinés selon Takagi–Sugeno et formulés en espace d’état pour simuler une commande avec saturation de l’entrée. Les scripts MATLAB travaillent sur des données et un procédé simulés.</p>
+                <p>Les données statiques fournies sont exploitées sous MATLAB pour étudier la dynamique du procédé hélicrane. Les scripts utilisent aussi son simulateur pour générer des réponses à des signaux d’excitation, notamment des séquences pseudo-aléatoires PRBS et des échelons, dans différentes zones de fonctionnement. Les expériences utilisent un pas d’échantillonnage de 0,01 s ; le simulateur est fourni sous forme de fichier MATLAB compilé, pas comme code source.</p><br>
+                <p>Pour construire le modèle flou, le clustering de Gustafson–Kessel répartit les observations en cinq zones de fonctionnement. Des fonctions d’appartenance gaussiennes pondèrent ensuite l’estimation d’un modèle ARX local d’ordre 2 et de retard 2 dans chaque zone, par moindres carrés pondérés régularisés. Les réponses locales sont comparées à celles d’un réseau NARX à retards d’entrée et de sortie et à une couche cachée de dix neurones.</p><br>
+                <p>Enfin, les modèles locaux sont convertis en représentations d’état puis combinés dans une commande prédictive fonctionnelle. La simulation suit une référence de premier ordre sur des consignes en paliers ; l’horizon de prédiction est fixé à 80 échantillons et l’entrée de commande est limitée entre 0 et 1,3. Cette étape évalue le comportement du modèle et du contrôleur dans le simulateur, sans commande d’un hélicrane réel.</p>
               </section>
               <section class="detail-section" aria-label="Résultats et limites">
                 <h4>Résultats et limites</h4>
@@ -1485,7 +1514,13 @@
               </section>
               <section class="detail-section" aria-label="Compétences et technologies">
                 <h4>Compétences et technologies</h4>
-                <p>Identification de systèmes ; signaux PRBS ; clustering de Gustafson–Kessel ; modèles ARX, NARX et Takagi–Sugeno ; représentation en espace d’état ; simulation de commande sous MATLAB.</p>
+                <ul>
+                  <li>Identification de systèmes à partir de signaux PRBS et d’échelons.</li>
+                  <li>Clustering flou de Gustafson–Kessel pour séparer les zones de fonctionnement.</li>
+                  <li>Estimation de modèles ARX locaux par moindres carrés pondérés.</li>
+                  <li>Comparaison avec un réseau NARX et assemblage de modèles de Takagi–Sugeno.</li>
+                  <li>Représentation en espace d’état et simulation d’une commande prédictive sous MATLAB.</li>
+                </ul>
               </section>
               <section class="detail-section" aria-label="Ressources">
                 <h4>Ressources</h4>
@@ -1512,9 +1547,9 @@
             <div class="project-card-header">
               <div class="project-visual"><img src="assets/projects/reignib.jpg" alt="Illustration du jeu Reignib"></div>
               <div class="project-summary">
-                <span class="project-type">Développement logiciel · jeu</span>
-                <h3>Reignib : jeu de simulation de gestion</h3>
-                <p>Ce prototype Python/Pyglet transforme les décisions prises face à des événements en variations de quatre indicateurs : industrie, population, climat et trésorerie. Il associe une boucle de jeu à des cartes et contenus séparés dans des fichiers CSV.</p>
+                <span class="project-type">Développement logiciel fullstack</span>
+                <h3>Reignib</h3>
+                <p>Projet étudiant de développement d’un jeu de cartes narratif, permettant d’explorer la programmation orientée objet en Python et les méthodes de gestion de projet informatique.</p>
                 <div class="project-actions">
                   <button class="see-more" type="button" aria-expanded="false">Plus de détails <span aria-hidden="true">↓</span></button>
                   <a class="project-link project-link--summary" href="https://github.com/mlmdc/S6_CPO_Game" target="_blank" rel="noopener noreferrer">Voir le projet <span aria-hidden="true">↗</span></a>
@@ -1524,19 +1559,27 @@
             <div class="project-details">
               <section class="detail-section" aria-label="Problématique et objectifs">
                 <h4>Problématique et objectifs</h4>
-                <p>Le jeu met en scène les arbitrages entre plusieurs indicateurs associés à la gestion d’un pays fictif. Le prototype vise à intégrer les enjeux du développement durable à la boucle de décision, plutôt qu’à les présenter séparément du jeu.</p>
+                <p>Reignib est un projet étudiant inspiré du jeu <a href="https://store.steampowered.com/app/474750/Reigns/" target="_blank" rel="noopener noreferrer">Reigns</a> de Nerial, pour mettre en pratique la programmation orienté objet en Python sur un sujet technique complet. La conception d'un jeu de cartes fournit un cadre concret pour organiser le développement, collaborer sur le code et appliquer des outils de gestion de versions et d’intégration continue.</p>
               </section>
               <section class="detail-section" aria-label="Approches et choix techniques">
                 <h4>Approches et choix techniques</h4>
-                <p>Le joueur répond aux événements par un choix à gauche ou à droite ; chaque choix modifie les indicateurs d’industrie, de population, de climat et de trésorerie. Atteindre une limite met fin à la partie. Python et Pyglet gèrent l’affichage, les entrées, le rythme et l’audio ; les cartes et leurs effets sont stockés en CSV. NumPy est utilisé pour la sélection pondérée des fils narratifs.</p>
+                <p>Le jeu est développé en totalité sur Python, avec Pyglet comme bibliothèque graphique , qui gère l’affichage et les entrées. 
+                Sa structure orientée objet répartit les rôles entre les cartes, les menus, les statistiques et la gestion des événements ; les données des cartes et leurs effets sont stockés en CSV. Git et GitLab CI/CD accompagnent le suivi des versions et l’intégration du code au cours du projet.</p>
               </section>
               <section class="detail-section" aria-label="Résultats et limites">
                 <h4>Résultats et limites</h4>
-                <p>Le prototype comprend une boucle jouable, des cartes illustrées, quatre indicateurs, des menus, de l’audio et une sauvegarde locale. NumPy prend en charge la sélection pondérée des fils narratifs, mais le déroulement actif n’enregistre qu’un seul fil aléatoire ; les parcours à embranchements ne sont pas reliés à la boucle du jeu. La sauvegarde conserve la carte courante, le compteur de mois et les indicateurs, mais pas l’historique des choix ni la progression narrative.</p>
+                <p>Le projet aboutit à un prototype jouable de jeu de cartes, avec choix du joueur, indicateurs, menus, audio et sauvegarde locale. Ce résultat illustre la mise en œuvre des apprentissages de programmation et de gestion de projet ; la finalité était la pratique de ces méthodes, et non la livraison d’un jeu commercial. </p>
               </section>
               <section class="detail-section" aria-label="Compétences et technologies">
                 <h4>Compétences et technologies</h4>
-                <p>Python et Pyglet pour l’application de bureau ; structuration modulaire ; gestion d’événements et d’interfaces ; données de jeu en CSV ; conception de boucle et d’indicateurs.</p>
+                <ul>
+                  <li>Programmation en Python;</li>
+                  <li>Conception et développement d’un programme orienté objet;</li>
+                  <li>Gestion de projet informatique et coordination du développement;</li>
+                  <li>Git pour le suivi des versions;</li>
+                  <li>GitLab CI/CD pour l’intégration et le cycle de livraison;</li>
+                  <li>Gestion et développement de bases de données.</li>
+                </ul>
               </section>
               <section class="detail-section" aria-label="Ressources">
                 <h4>Ressources</h4>
@@ -1560,9 +1603,9 @@
             <div class="project-card-header">
               <div class="project-visual"><img src="assets/projects/pso-classification.png" alt="Résultat de classification par PSO comparé aux étiquettes de référence"></div>
               <div class="project-summary">
-                <span class="project-type">Optimisation · apprentissage</span>
+                <span class="project-type">Optimisation · Machine learning</span>
                 <h3>Classification par PSO et réseau de neurones</h3>
-                <p>Cette étude utilise les 30 mesures du jeu de données WDBC pour comparer un réseau de neurones à une classification linéaire optimisée par essaim particulaire (PSO). Elle mobilise l’apprentissage supervisé et l’analyse des erreurs de classification.</p>
+                <p>Étude comparative de méthodes de classification par essaim particulaire et machine learning. </p>
                 <div class="project-actions">
                   <button class="see-more" type="button" aria-expanded="false">Plus de détails <span aria-hidden="true">↓</span></button>
                   <a class="project-link project-link--summary" href="https://github.com/mlmdc/PSO_NN_bc" target="_blank" rel="noopener noreferrer">Voir le projet <span aria-hidden="true">↗</span></a>
@@ -1572,19 +1615,27 @@
             <div class="project-details">
               <section class="detail-section" aria-label="Problématique et objectifs">
                 <h4>Problématique et objectifs</h4>
-                <p>Le jeu WDBC contient 569 échantillons décrits par 30 mesures cellulaires et classés bénins (code 4) ou malins (code 2). Le projet compare plusieurs méthodes pour prédire la classe à partir de ces mesures. Cette étude pédagogique ne constitue pas un outil de diagnostic clinique.</p>
+                <p>L'étude comparative se base sur un extrait du jeu de données Wisconsin Diagnostic Breast Cancer (WBDC), contenant 569 échantillons de 30 mesures cellulaires et classés benins ou malins. Le projet vise à comparer plusieurs méthodes de classification à travers des prédictions de malignité d'un échantillon. Cette étude pédagogique ne constitue pas un outil de diagnostic clinique.</p>
               </section>
               <section class="detail-section" aria-label="Approches et choix techniques">
                 <h4>Approches et choix techniques</h4>
-                <p>Le rapport décrit un réseau feedforward non linéaire, un classifieur linéaire dont les poids sont optimisés par PSO et une variante de réseau à activations linéaires. Dans le script versionné, les deux couches du réseau utilisent des activations linéaires ; un seuil de 3 convertit les sorties en codes 2 ou 4. Les résultats sur l’ensemble des 569 échantillons sont à distinguer d’une évaluation indépendante.</p>
+                <p>Le script MATLAB compare deux approches sur le set de données WBDC : un réseau feedforward entraîné par rétropropagation et un classifieur linéaire dont les poids sont recherchés par optimisation par essaim particulaire (PSO). Dans le réseau versionné, les deux couches utilisent une activation linéaire ; les valeurs de sortie sont converties en codes de classe 2 (malin) ou 4 (bénin) à l’aide d’un seuil fixé à 3.</p> 
+                <br>
+                <p>Les entrées sont utilisées à leur échelle d’origine. Le rapport présente aussi une expérience avec un réseau à activations non linéaires, mais celle-ci n’est pas reproduite par le script versionné. Les résultats affichés sur les 569 échantillons ne constituent pas une évaluation indépendante : les données participent à l’apprentissage ou à la sélection des modèles. Les scores doivent donc être interprétés comme des résultats d’expérimentation pédagogique, et non comme une mesure fiable de généralisation ou de performance clinique.</p>
               </section>
               <section class="detail-section" aria-label="Résultats et limites">
                 <h4>Résultats et limites</h4>
-                <p>Les graphiques de prédictions et les matrices de confusion montrent les erreurs des différentes méthodes. Le rapport et les matrices ne concordent pas toujours, et l’exactitude globale masque certaines erreurs sur les échantillons malins. L’évaluation réutilise les données d’apprentissage ou de sélection : elle ne mesure pas la généralisation sur des données indépendantes et ne permet aucune conclusion clinique.</p>
+                <p>Sur les 569 échantillons, le réseau feedforward non linéaire obtient 99,12 % d’exactitude, contre 97,53 % pour le classifieur linéaire optimisé par PSO. Le réseau neuronal fait mieux sur ces résultats, mais la comparaison n’est pas concluante sur la généralisation: les deux scores ne sont pas calculés sur des données externes.</p>
               </section>
               <section class="detail-section" aria-label="Compétences et technologies">
                 <h4>Compétences et technologies</h4>
-                <p>MATLAB ; classification supervisée ; réseaux feedforward et à activations linéaires ; optimisation des poids par PSO ; validation croisée et lecture de matrices de confusion.</p>
+                <ul>
+                  <li>MATLAB pour implémenter et comparer les expériences de classification.</li>
+                  <li>Classification supervisée à partir des 30 variables du jeu WDBC.</li>
+                  <li>Réseaux feedforward, dont une implémentation versionnée à activations linéaires.</li>
+                  <li>Optimisation par essaim particulaire des poids d’un classifieur linéaire.</li>
+                  <li>Validation croisée et analyse des matrices de confusion, avec limites d’évaluation identifiées.</li>
+                </ul>
               </section>
               <section class="detail-section" aria-label="Ressources">
                 <h4>Ressources</h4>
@@ -1609,8 +1660,10 @@
               <div class="project-visual"><img src="assets/projects/pca-regression.png" alt="Comparaison des prédictions par moindres carrés et par ACP"></div>
               <div class="project-summary">
                 <span class="project-type">Identification de systèmes · données</span>
-                <h3>Identification de procédé par LSE, ACP et PCR</h3>
-                <p>Des scripts MATLAB estiment la sortie d’un procédé à partir de trois variables et examinent l’effet de leur échelle et de leur corrélation. Les moindres carrés et la régression fondée sur l’ACP sont comparés selon le prétraitement ; la PCR intervient dans l’expérience de colinéarité.</p>
+                <h3>Identification de modèles par LSE, PCA et PCR</h3>
+                <p>Estimations d'un procédé chimique par trois méthodes mathématiques et examens des effets respectifs.
+
+                Des scripts MATLAB estiment la sortie d’un procédé à partir de trois variables et examinent l’effet de leur échelle et de leur corrélation. Les moindres carrés et la régression fondée sur l’ACP sont comparés selon le prétraitement ; la PCR intervient dans l’expérience de colinéarité.</p>
                 <div class="project-actions">
                   <button class="see-more" type="button" aria-expanded="false">Plus de détails <span aria-hidden="true">↓</span></button>
                   <a class="project-link project-link--summary" href="https://github.com/mlmdc/PCA_PCR_model_identification" target="_blank" rel="noopener noreferrer">Voir le projet <span aria-hidden="true">↗</span></a>
@@ -1620,19 +1673,27 @@
             <div class="project-details">
               <section class="detail-section" aria-label="Problématique et objectifs">
                 <h4>Problématique et objectifs</h4>
-                <p>À partir de 21 observations, le projet estime la sortie <code>I_EFF</code> à partir de trois variables. Il étudie comment leur échelle et leur corrélation influencent les paramètres et les prédictions du modèle.</p>
+                <p> Le projet a pour objectif de comparer l’influence de différentes méthodes de préparation des données sur les performances d’une estimation par la méthode des moindres carrés (LSE). Trois approches sont étudiées : l’utilisation des données brutes, l’application d’une analyse en composantes principales (PCA) et le recours à une régression sur composantes principales (PCR).</p>
+                <br>
+                <p>La variable de sortie I_EFF est estimée à partir de trois variables explicatives : A_FLOW, T_H2O et C_ACID. À l’aide de scripts MATLAB, l’étude évalue l’impact des différentes méthodes de préparation des données sur les paramètres du modèle et la précision des prédictions. Une attention particulière est portée à l’influence de l’échelle des variables et de leurs corrélations sur les résultats obtenus.</p>
               </section>
               <section class="detail-section" aria-label="Approches et choix techniques">
                 <h4>Approches et choix techniques</h4>
-                <p>Le script MATLAB compare les moindres carrés (LSE) et une régression fondée sur l’ACP sur les données brutes, normalisées entre 0 et 1 ou standardisées par score-z ; le nombre de composantes vise 95 % de variance cumulée. Une expérience distincte utilise la PCR et une entrée synthétique corrélée pour observer l’évolution des coefficients. Le script comprend aussi une boucle de validation croisée en sept plis.</p>
+                <p>Le script MATLAB compare les estimations par moindres carrés sur les différentes méthodes ainsi que sur différentes normalisations, comme le min-max ou le z-score ; le nombre de composantes vise 95 % de variance cumulée. Une expérience distincte utilise la PCR et une entrée synthétique corrélée pour observer l’évolution des coefficients. Le script comprend aussi une boucle de validation croisée en sept plis.</p>
               </section>
               <section class="detail-section" aria-label="Résultats et limites">
                 <h4>Résultats et limites</h4>
-                <p>Les figures fournies montrent les courbes ajustées, les erreurs et l’évolution des coefficients selon l’échelle et la corrélation. Elles illustrent le comportement des méthodes sur 21 observations, sans démontrer qu’une méthode est systématiquement plus précise. Les courbes interpolées ne représentent pas de nouvelles mesures ; la boucle de validation croisée ne fournit pas un score agrégé indépendant. L’expérience de colinéarité peut varier d’une exécution à l’autre.</p>
+                <p>Les figures fournies montrent les courbes ajustées, les erreurs et l’évolution des coefficients selon l’échelle et la corrélation. Elles illustrent le comportement des méthodes sur 21 observations. L’expérience de colinéarité peut varier d’une exécution à l’autre.</p>
               </section>
               <section class="detail-section" aria-label="Compétences et technologies">
                 <h4>Compétences et technologies</h4>
-                <p>MATLAB ; régression par moindres carrés ; ACP et PCR ; normalisation et standardisation ; analyse de colinéarité ; validation croisée.</p>
+                <ul>
+                  <li>MATLAB pour le traitement des données et la comparaison des modèles.</li>
+                  <li>Régression par moindres carrés et régression fondée sur l’ACP.</li>
+                  <li>Normalisation min–max et standardisation par score-z.</li>
+                  <li>Étude de la colinéarité par variable synthétique et régression PCR.</li>
+                  <li>Validation croisée en sept plis, avec prise en compte des limites du protocole.</li>
+                </ul>
               </section>
               <section class="detail-section" aria-label="Ressources">
                 <h4>Ressources</h4>
@@ -1656,8 +1717,10 @@
               <div class="project-visual"><img src="assets/projects/triangulation.png" alt="Visualisation des cercles de mesure et d’une trajectoire d’estimation de position"></div>
               <div class="project-summary">
                 <span class="project-type">Géolocalisation · optimisation</span>
-                <h3>Estimation de position par distances</h3>
-                <p>Des scripts MATLAB estiment une position à partir de distances mesurées vers trois stations et comparent Gauss–Newton à deux variantes de Levenberg–Marquardt.</p>
+                <h3>Estimation de position par descentes de gradient</h3>
+                <p>Estimation de position robuste par triangulation non linéaire, malgré des mesures de distance bruitées.
+
+                Des scripts MATLAB estiment une position à partir de distances mesurées vers trois stations et comparent Gauss–Newton à deux variantes de Levenberg–Marquardt.</p>
                 <div class="project-actions">
                   <button class="see-more" type="button" aria-expanded="false">Plus de détails <span aria-hidden="true">↓</span></button>
                   <a class="project-link project-link--summary" href="https://github.com/mlmdc/LM_triangulation" target="_blank" rel="noopener noreferrer">Voir le projet <span aria-hidden="true">↗</span></a>
@@ -1667,19 +1730,25 @@
             <div class="project-details">
               <section class="detail-section" aria-label="Problématique et objectifs">
                 <h4>Problématique et objectifs</h4>
-                <p>Les coordonnées de trois stations sont connues ; la position du téléphone est estimée à partir des distances mesurées. Comme le bruit peut empêcher les trois cercles de se croiser exactement, l’estimation minimise l’écart entre les distances mesurées et calculées.</p>
+                <p>Les coordonnées de trois stations téléphoniques sont connues, leurs distances bruitées aussi ; la position du téléphone doit être estimée à partir des distances mesurées. Comme le bruit peut empêcher les trois cercles de se croiser exactement, l’estimation se base sur les méthodes de Gauss-Newton ainsi que des variantes de Levenberg-Marquardt.</p>
               </section>
               <section class="detail-section" aria-label="Approches et choix techniques">
                 <h4>Approches et choix techniques</h4>
-                <p>Le script MATLAB calcule les distances prédites, les résidus et leur jacobienne, puis compare Gauss–Newton, Levenberg–Marquardt (LM) et sa variante pondérée (WLM). LM amortit les mises à jour ; WLM pondère les mesures selon la variance estimée pour chaque station. Trois fonctions MATLAB compilées fournissent les mesures.</p>
+                <p>Le script MATLAB calcule les distances prédites, les résidus et leur jacobienne, puis compare Gauss–Newton, Levenberg–Marquardt (LM) et sa variante pondérée (WLM). Gauss-Newton est brut, LM amortit les mises à jour et WLM pondère les mesures selon la variance estimée pour chaque station. Trois fonctions MATLAB compilées fournissent les mesures bruitées à chaque étape.</p>
               </section>
               <section class="detail-section" aria-label="Résultats et limites">
                 <h4>Résultats et limites</h4>
-                <p>Les mesures fournies alimentent le calcul des résidus et de la jacobienne ; les figures montrent les cercles associés aux distances et les trajectoires estimées par les méthodes comparées. Elles documentent les résultats de l’étude et permettent de comparer les méthodes sur les données du projet.</p>
+                <p>Les mesures fournies alimentent le calcul des résidus et de la jacobienne ; les figures montrent les cercles associés aux distances et les trajectoires estimées par les méthodes comparées. Elles documentent les trianulations et permettent de comparer les méthodes sur les données du projet.</p>
               </section>
               <section class="detail-section" aria-label="Compétences et technologies">
                 <h4>Compétences et technologies</h4>
-                <p>MATLAB ; estimation non linéaire par moindres carrés ; jacobienne et résidus ; méthodes de Gauss–Newton et Levenberg–Marquardt ; pondération par variance.</p>
+                <ul>
+                  <li>MATLAB pour le calcul et la visualisation des estimations.</li>
+                  <li>Estimation de position par moindres carrés non linéaires.</li>
+                  <li>Calcul des résidus et de la jacobienne des distances.</li>
+                  <li>Comparaison des méthodes de Gauss–Newton et de Levenberg–Marquardt.</li>
+                  <li>Pondération des mesures selon leur variance estimée.</li>
+                </ul>
               </section>
               <section class="detail-section" aria-label="Ressources">
                 <h4>Ressources</h4>
@@ -1732,8 +1801,16 @@
             <div class="experience-details" hidden>
               <div class="project-gallery">
                 <figure>
-                  <img src="assets/companies/ifremer.jpg" alt="Logo Ifremer" loading="lazy">
-                  <figcaption>Ifremer · Unité Sous-marins</figcaption>
+                  <img src="assets/experience/nautile-front.png" alt="Vue de face d’un modèle 3D du sous-marin Nautile et de ses équipements" loading="lazy">
+                  <figcaption>Modèle 3D du Nautile, vue de face.</figcaption>
+                </figure>
+                <figure>
+                  <img src="assets/experience/nautile-side.jpg" alt="Vue latérale du sous-marin Nautile" loading="lazy">
+                  <figcaption>Vue latérale du Nautile.</figcaption>
+                </figure>
+                <figure>
+                  <img src="assets/experience/ifremer-site.jpg" alt="Vue du site de l’Ifremer en bord de mer" loading="lazy">
+                  <figcaption>Site de l’Ifremer.</figcaption>
                 </figure>
               </div>
             </div>
@@ -1746,9 +1823,8 @@
                 <h3>Stage assistant ingénieur</h3>
                 <p class="experience-organization">École Centrale de Nantes · Laboratoire GeM</p>
               </div>
-              <div class="experience-brands experience-brands--paired">
-                <img src="assets/companies/centrale-nantes.jpg" alt="Logo de Centrale Nantes" loading="lazy">
-                <img src="assets/companies/gem.jpg" alt="Logo du laboratoire GeM" loading="lazy">
+              <div class="experience-brands">
+                <img src="assets/companies/centrale-nantes-gem.jpg" alt="Logos de Centrale Nantes et du laboratoire GeM" loading="lazy">
               </div>
             </div>
             <ul class="experience-highlights">
@@ -1763,12 +1839,20 @@
             <div class="experience-details" hidden>
               <div class="project-gallery">
                 <figure>
-                  <img src="assets/companies/centrale-nantes.jpg" alt="Logo de Centrale Nantes" loading="lazy">
-                  <figcaption>École Centrale de Nantes</figcaption>
+                  <img src="assets/experience/waam-process.png" alt="Schéma du procédé de fabrication additive WAAM par dépôt de cordon métallique" loading="lazy">
+                  <figcaption>Principe du dépôt de métal par WAAM.</figcaption>
                 </figure>
                 <figure>
-                  <img src="assets/companies/gem.jpg" alt="Logo du laboratoire GeM" loading="lazy">
-                  <figcaption>Laboratoire GeM</figcaption>
+                  <img src="assets/experience/robotic-welding-cell.jpg" alt="Cellule robotisée de fabrication additive métallique au laboratoire" loading="lazy">
+                  <figcaption>Cellule expérimentale de fabrication additive.</figcaption>
+                </figure>
+                <figure>
+                  <img src="assets/experience/thermal-welding-frame.png" alt="Image thermique d’un bain de fusion pendant un dépôt métallique" loading="lazy">
+                  <figcaption>Image thermique du procédé de dépôt.</figcaption>
+                </figure>
+                <figure>
+                  <img src="assets/experience/monitoring-architecture.png" alt="Schéma de principe du monitoring et de l’acquisition multi-capteurs de la cellule robotisée" loading="lazy">
+                  <figcaption>Principe du monitoring multi-capteurs.</figcaption>
                 </figure>
               </div>
             </div>
