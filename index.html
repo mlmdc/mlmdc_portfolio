@@ -1,11 +1,11 @@
 <!doctype html>
-<html lang="fr">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Portfolio de projets en automatisme, systèmes embarqués, modélisation et développement logiciel.">
+  <meta name="description" content="Portfolio of projects in automation, embedded systems, modelling and software development.">
   <meta name="theme-color" content="#f5f3ef">
-  <title>Portfolio - Maël</title>
+  <title>Portfolio - Maël Madec</title>
   <script>
     (() => {
       const root = document.documentElement;
@@ -247,6 +247,47 @@
       white-space: nowrap;
     }
 
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .language-switch {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 0.78rem;
+      font-weight: 700;
+    }
+
+    .language-switch a {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 5px 7px;
+      border: 1px solid transparent;
+      border-radius: 999px;
+      color: var(--muted);
+      text-decoration: none;
+      transition: background-color 180ms ease, border-color 180ms ease, color 180ms ease;
+    }
+
+    .language-flag {
+      width: 20px;
+      height: 14px;
+      flex: 0 0 auto;
+      border-radius: 2px;
+      box-shadow: 0 0 0 1px var(--line);
+    }
+
+    .language-switch a:hover,
+    .language-switch a[aria-current="page"] {
+      border-color: var(--line);
+      background: var(--card);
+      color: var(--accent-dark);
+    }
+
     .topbar nav {
       display: flex;
       align-items: center;
@@ -266,6 +307,11 @@
       padding-left: 20px;
     }
 
+    .topbar nav.language-switch a + a {
+      margin-left: 0;
+      padding-left: 7px;
+    }
+
     .topbar nav a + a::before,
     .cv-link::before {
       position: absolute;
@@ -275,6 +321,10 @@
       content: "·";
       font-size: 0.95rem;
       transform: translateY(-50%);
+    }
+
+    .topbar nav.language-switch a + a::before {
+      content: none;
     }
 
     .cv-link::before {
@@ -1269,7 +1319,29 @@
 <body>
   <div class="page">
     <header class="topbar">
-      <a class="wordmark" href="#accueil">Mael Madec</a>
+      <div class="brand">
+        <a class="wordmark" href="#accueil">Maël Madec</a>
+        <nav class="language-switch" aria-label="Language">
+          <a href="?lang=fr#accueil" lang="fr" aria-label="Français" title="Français">
+            <svg class="language-flag" viewBox="0 0 24 16" aria-hidden="true" focusable="false">
+              <rect width="8" height="16" fill="#0055a4"/>
+              <rect x="8" width="8" height="16" fill="#fff"/>
+              <rect x="16" width="8" height="16" fill="#ef4135"/>
+            </svg>
+            <span>FR</span>
+          </a>
+          <a href="?lang=en#accueil" lang="en" aria-label="English" title="English">
+            <svg class="language-flag" viewBox="0 0 60 30" aria-hidden="true" focusable="false">
+              <rect width="60" height="30" fill="#012169"/>
+              <path d="m0 0 60 30M60 0 0 30" stroke="#fff" stroke-width="6"/>
+              <path d="m0 0 60 30M60 0 0 30" stroke="#c8102e" stroke-width="2.5"/>
+              <path d="M30 0v30M0 15h60" stroke="#fff" stroke-width="10"/>
+              <path d="M30 0v30M0 15h60" stroke="#c8102e" stroke-width="6"/>
+            </svg>
+            <span>EN</span>
+          </a>
+        </nav>
+      </div>
       <div class="header-actions">
         <nav aria-label="Navigation principale">
           <a class="nav-link" href="#projets">Projets</a>
@@ -1964,6 +2036,295 @@
   </dialog>
   <script>
     (() => {
+      const requestedLanguage = new URLSearchParams(window.location.search).get("lang");
+      const browserLanguages = navigator.languages && navigator.languages.length
+        ? navigator.languages
+        : [navigator.language];
+      const browserPrefersFrench = browserLanguages.some(locale => /^fr(?:-|$)/i.test(locale));
+      const language = requestedLanguage === "fr" || requestedLanguage === "en"
+        ? requestedLanguage
+        : browserPrefersFrench ? "fr" : "en";
+      const isEnglish = language === "en";
+      const translations = {
+        projects: [
+          {
+            type: "Robotics · control",
+            title: "Programming a UR5e robot to solve a tangram",
+            summary: "A Python/Pygame interface lets users arrange tangram pieces and send pick-and-place sequences to a UR5e robot. A camera locates the pieces, and calibration maps their positions to the robot's coordinate frame.",
+            details: [
+              "The project connects a tangram layout drawn on screen to its physical assembly by a UR5e arm. Starting from randomly placed pieces, the system identifies, picks and places each piece in the selected arrangement.",
+              "A Python/Pygame editor supports dragging, snapping, 15-degree rotations and undo. Camera coordinates are calibrated to the robot frame; the layout is converted into 6D poses and sent over TCP to a PolyScope program.",
+              "The editor, piece detection and pose transmission form an end-to-end control workflow. The repository includes a calibration example, and both programs run on the UR5e. Collision detection and safety checks remain the operator's responsibility."
+            ],
+            skills: ["Python and Pygame for the 2D editor.", "Mapping image and layout coordinates to robot poses.", "TCP communication with the UR controller.", "PolyScope integration with the gripper."],
+            captions: ["System architecture.", "Tangram composition editor.", "Example layout."],
+            alts: ["Tangram editor, TCP/IP communication and UR5e architecture.", "Tangram editor with its seven movable pieces.", "Example layout created in the Tangram editor."],
+            visualAlt: "Diagram of the Tangram interface connected to a UR5e robot",
+            links: ["Source code and resources"]
+          },
+          {
+            type: "Embedded systems · mechatronics",
+            title: "DC motor control",
+            summary: "An embedded control project using a DC motor and STM32F411 to regulate speed, with supporting modelling, firmware and measurement tools.",
+            details: [
+              "The goal is to design embedded control for speed, torque and position using a DC motor and STM32 board. The implemented PID controller regulates speed; torque and position are project objectives, not completed features.",
+              "An encoder provides speed feedback, a discrete PID computes the command, and PWM drives the motor power stage. The project also models the motor under no-load and loaded conditions to inform controller design.",
+              "The firmware combines encoder and ADC acquisition, filtering, PID, PWM, telemetry and serial communication. It also implements bidirectional control, anti-windup and automatic PID parameter updates; a working example is provided."
+            ],
+            skills: ["STM32 firmware with STM32Cube HAL.", "Encoder speed measurement and ADC/DMA acquisition.", "PWM power-stage control and discrete speed PID.", "UART commands and telemetry.", "Motor modelling and PID studies in Python."],
+            captions: ["DC motor under study.", "Motor control and measurement interface.", "Simulated responses under no-load and loaded conditions.", "Example serial measurements from the real motor."],
+            alts: ["DC motor used as the reference for the study.", "Motor control and measurement interface.", "Comparison of simulated motor responses under no-load and loaded conditions.", "Example of serial motor-speed measurements."],
+            visualAlt: "DC motor studied in the control project",
+            links: ["Source code and notebooks"]
+          },
+          {
+            type: "Mechatronics · vibration mechanics",
+            title: "Flexion XS: vibration measurement, control and analysis",
+            summary: "An STM32F411 experimental platform for measuring the vibrations of an instrumented beam, supported by analysis notebooks and recorded measurements.",
+            details: [
+              "This educational platform uses an STM32F411RE to characterise the vibrations of a beam-like ruler and compare measurements with a mechanical model. The study covers natural frequencies, damping, mode shapes and parameter estimation.",
+              "The STM32 drives an excitation motor and acquires accelerometer and motor-speed signals. A Python tool controls the rig over serial; measurements are saved for offline analysis in free and harmonic response.",
+              "Notebooks estimate frequency response, natural frequencies and damping, then reconstruct mode shapes and compare them with an Euler–Bernoulli finite-element beam model using the MAC criterion. Results are illustrative; identification of the third mode and repeatability need further work."
+            ],
+            skills: ["STM32F411 acquisition and experimental-rig control.", "Python serial tool for commands and measurements.", "Frequency-response and modal-parameter analysis.", "Euler–Bernoulli finite-element beam modelling.", "Mode-shape comparison using the MAC criterion."],
+            captions: ["Flexion XS experimental rig.", "Experimental rig overview.", "Example vibration measurement.", "Comparison of measured and modelled mode shapes."],
+            alts: ["Experimental rig with vibrating ruler and motor.", "Overview diagram of the experimental rig.", "Example time-domain vibration response.", "Comparison of measured mode shape with the model."],
+            visualAlt: "Flexion XS experimental rig with ruler, motor and measurement electronics",
+            links: ["Firmware, measurements and analysis"]
+          },
+          {
+            type: "Modelling · control",
+            title: "Fuzzy modelling and control of a helicopter crane",
+            summary: "A theoretical study of fuzzy modelling using helicopter-crane data, followed by predictive control evaluated in simulation.",
+            details: [
+              "The project compares parametric, fuzzy and Takagi–Sugeno neuro-fuzzy models of a helicopter crane using supplied static data. It also studies predictive control of the fuzzy model; this is a simulation exercise, not control of a real crane.",
+              "MATLAB scripts analyse responses to PRBS and step inputs across operating regions. Gustafson–Kessel clustering identifies five regions; Gaussian membership functions weight local second-order ARX models, which are compared with a NARX network.",
+              "Local models are converted to state-space form and combined in a predictive controller. The simulator follows stepped references with an 80-sample prediction horizon and bounded input. Results are qualitative simulations; aggregate error metrics and some run parameters are not documented."
+            ],
+            skills: ["System identification using PRBS and step signals.", "Gustafson–Kessel fuzzy clustering.", "Local ARX estimation using weighted least squares.", "Comparison with NARX and Takagi–Sugeno models.", "State-space modelling and predictive-control simulation in MATLAB."],
+            captions: ["Qualitative step-response tracking.", "Response to a chirp reference.", "Clustering of operating regions."],
+            alts: ["Controller response to stepped references.", "Controller response to a chirp reference.", "Operating regions identified by Gustafson–Kessel clustering."],
+            visualAlt: "Controller response curves from step tests",
+            links: ["Source code, figures and resources"]
+          },
+          {
+            type: "Full-stack software development",
+            title: "Reignib",
+            summary: "A student project to build a narrative card game and explore object-oriented Python programming and software project practices.",
+            details: [
+              "Inspired by Nerial's Reigns, this student project applies object-oriented Python to a complete software project. A card game provides a practical setting for collaboration, version control and continuous integration.",
+              "The game is built in Python with Pyglet for graphics and input. Object-oriented components handle cards, menus, statistics and events; card data and effects are stored in CSV files. Git and GitLab CI/CD support development and integration.",
+              "The result is a playable prototype with player choices, indicators, menus, audio and local saves. The aim was to practise software development and project-management methods, not to ship a commercial game."
+            ],
+            skills: ["Python programming.", "Object-oriented software design.", "Software project planning and team coordination.", "Version control with Git.", "GitLab CI/CD and database development."],
+            captions: ["The game's visual world.", "A character from the game."],
+            alts: ["Urban landscape from the world of Reignib.", "Illustrated portrait of a Reignib character."],
+            visualAlt: "Illustration from the Reignib game",
+            links: ["UML design document", "Source code and resources"]
+          },
+          {
+            type: "Optimisation · machine learning",
+            title: "Breast-cancer classification with PSO and neural networks",
+            summary: "A comparison of particle-swarm optimisation and neural-network approaches using the Wisconsin Diagnostic Breast Cancer dataset.",
+            details: [
+              "This educational study compares classification methods on 569 samples with 30 cell measurements from the Wisconsin Diagnostic Breast Cancer dataset. It is not a clinical diagnostic tool.",
+              "MATLAB scripts compare a feedforward neural network with a linear classifier whose weights are optimised using particle swarm optimisation (PSO). The versioned network uses linear activations and a threshold to map outputs to class codes. The reported results use the same samples for training or model selection, so they are not an independent evaluation.",
+              "The report gives 99.12% accuracy for a nonlinear feedforward network and 97.53% for the PSO linear classifier on these samples. The comparison does not establish generalisation or clinical performance."
+            ],
+            skills: ["MATLAB classification experiments.", "Supervised classification using the WDBC features.", "Feedforward neural networks.", "Particle-swarm optimisation of a linear classifier.", "Cross-validation and confusion-matrix analysis, with evaluation limitations identified."],
+            captions: ["PSO model predictions.", "Neural-network confusion matrix."],
+            alts: ["PSO classification output compared with reference labels.", "Neural-network confusion matrix."],
+            visualAlt: "PSO classification compared with reference labels",
+            links: ["Project report (PDF)", "Source code and results"]
+          },
+          {
+            type: "System identification · data science",
+            title: "Model identification with LSE, PCA and PCR",
+            summary: "MATLAB experiments compare least-squares and principal-component methods for estimating a chemical process, including the effects of scaling and correlation.",
+            details: [
+              "The project estimates process output I_EFF from A_FLOW, T_H2O and C_ACID. It compares least squares (LSE) on raw data, principal component analysis (PCA) and principal component regression (PCR), focusing on the effects of scaling and correlation.",
+              "MATLAB scripts compare min–max and z-score scaling, use enough components to explain 95% of cumulative variance, and run seven-fold cross-validation. A separate PCR experiment introduces a correlated synthetic input to study coefficient behaviour.",
+              "The figures show fitted curves, errors and coefficient changes for 21 observations. The collinearity experiment can vary between runs, so results should be read in that context."
+            ],
+            skills: ["MATLAB data processing and model comparison.", "Least-squares and principal-component regression.", "Min–max scaling and z-score standardisation.", "Collinearity analysis with a synthetic variable.", "Seven-fold cross-validation, with protocol limitations considered."],
+            captions: ["Fits on standardised data.", "Error comparison between LSE and PCA models."],
+            alts: ["Least-squares and PCA predictions on standardised data.", "Error comparison between LSE and PCA models."],
+            visualAlt: "Comparison of least-squares and PCA predictions",
+            links: ["Scripts, data and additional figures"]
+          },
+          {
+            type: "Geolocation · optimisation",
+            title: "Position estimation with gradient-based methods",
+            summary: "Robust position estimation by nonlinear triangulation with noisy distance measurements, comparing Gauss–Newton and Levenberg–Marquardt methods.",
+            details: [
+              "The locations of three phone stations and their noisy distance measurements are known; the phone's position must be estimated. Since noise can prevent the three circles from intersecting, the project uses nonlinear least-squares optimisation.",
+              "MATLAB computes predicted distances, residuals and their Jacobian, then compares Gauss–Newton, Levenberg–Marquardt (LM) and weighted LM (WLM). WLM weights measurements using the estimated variance for each station.",
+              "The supplied measurements feed the residual and Jacobian calculations. Figures show the distance circles and estimated trajectories for the compared methods, documenting their behaviour on the project data."
+            ],
+            skills: ["MATLAB computation and visualisation.", "Nonlinear least-squares position estimation.", "Distance residual and Jacobian calculations.", "Gauss–Newton and Levenberg–Marquardt methods.", "Measurement weighting based on estimated variance."],
+            captions: ["WLM triangulation visualisation.", "LM triangulation visualisation."],
+            alts: ["Measurement circles and position trajectory estimated by WLM.", "Measurement circles and position trajectory estimated by LM."],
+            visualAlt: "Measurement circles and a position-estimation trajectory",
+            links: ["Project report (PDF)", "Source code and figures"]
+          }
+        ],
+        experience: [
+          {
+            date: "September 2025 – March 2026",
+            title: "Final-year engineering internship",
+            organization: "Ifremer · Submersibles Unit",
+            highlights: [
+              "Contributed to innovation work on the Nautile's manipulator arms.",
+              "Prepared a state-of-the-art review of underwater robotics and the Nautile.",
+              "Developed simulation, modelling and algorithm tools in Python, C++, and ROS 2 to characterise multi-axis manipulator performance.",
+              "Designed data-fusion algorithms to estimate arm pose in complex underwater environments."
+            ],
+            captions: ["Nautile 3D model, front view.", "Side view of the Nautile.", "Ifremer's coastal site."],
+            alts: ["Front view of the Nautile submarine 3D model and equipment.", "Side view of the Nautile submarine.", "View of Ifremer's coastal site."]
+          },
+          {
+            date: "September 2024 – February 2025",
+            title: "Assistant engineering internship",
+            organization: "Centrale Nantes · GeM Laboratory",
+            highlights: [
+              "Designed real-time monitoring for metal additive manufacturing, including multi-sensor acquisition, processing and data fusion in Python/C++.",
+              "Modelled and simulated sensors in Python/MATLAB for characterisation, correction and calibration."
+            ],
+            captions: ["WAAM metal deposition process.", "Experimental additive-manufacturing cell.", "Thermal image of the deposition process.", "Multi-sensor monitoring architecture."],
+            alts: ["Diagram of the WAAM wire-arc additive manufacturing process.", "Robotic metal additive-manufacturing cell in the laboratory.", "Thermal image of the melt pool during metal deposition.", "Diagram of monitoring and multi-sensor acquisition for the robotic cell."]
+          },
+          {
+            date: "July–August 2022 and 2024",
+            title: "Brewery operator",
+            organization: "Brasserie de Bretagne & Brasserie Poem",
+            highlights: ["Production, quality control and sales in craft breweries."],
+            captions: ["Brasserie de Bretagne."],
+            alts: ["Brasserie de Bretagne logo."]
+          }
+        ]
+      };
+
+      const applyEnglish = () => {
+        const setText = (element, value) => {
+          if (element) element.textContent = value;
+        };
+        const setFirstText = (element, value) => {
+          const textNode = Array.from(element.childNodes).find(node => node.nodeType === Node.TEXT_NODE);
+          if (textNode) textNode.nodeValue = value;
+        };
+        const root = document.documentElement;
+        root.lang = language;
+
+        const languageLinks = document.querySelectorAll(".language-switch a");
+        languageLinks.forEach(link => {
+          link.setAttribute("aria-current", link.lang === language ? "page" : "false");
+          if (link.lang !== language) link.removeAttribute("aria-current");
+        });
+        document.querySelector(".language-switch").setAttribute("aria-label", isEnglish ? "Language" : "Langue");
+
+        if (!isEnglish) {
+          document.title = "Portfolio - Maël";
+          document.querySelector('meta[name="description"]').content =
+            "Portfolio de projets en automatisme, systèmes embarqués, modélisation et développement logiciel.";
+          return;
+        }
+
+        document.title = "Portfolio - Maël Madec";
+        document.querySelector('meta[name="description"]').content =
+          "Portfolio of projects in automation, embedded systems, modelling and software development.";
+        document.querySelector(".header-actions nav").setAttribute("aria-label", "Main navigation");
+        ["Projects", "Experience", "Contact"].forEach((label, index) => setText(document.querySelectorAll(".nav-link")[index], label));
+        const resumeLink = document.querySelector(".cv-link");
+        resumeLink.setAttribute("aria-label", "Open the PDF CV in a new tab");
+        resumeLink.href = "assets/cv-en.pdf";
+        resumeLink.lastChild.textContent = " CV";
+        document.querySelector("#theme-switch").setAttribute("aria-label", "Dark mode");
+        setText(document.querySelector(".eyebrow"), "Robotics · control systems · embedded systems");
+        setText(document.querySelector("#dynamic-interest"), "Robotics and autonomous systems");
+        setText(document.querySelector(".hero-copy"), "Systems engineering and robotics, from modelling to implementation. This portfolio presents projects in robotics, embedded systems, data analysis and software development.");
+        setFirstText(document.querySelector(".hero-button"), "Explore projects ");
+        setFirstText(document.querySelector(".hero-button--secondary"), "Get in touch ");
+        setText(document.querySelector("#projects-title"), "Projects");
+        setText(document.querySelector("#experience-title"), "Professional experience");
+        setText(document.querySelector("#contact-title"), "Get in touch");
+        setText(document.querySelector(".contact-intro p"), "For opportunities in robotics, systems or engineering, find me on LinkedIn and GitHub.");
+        setText(document.querySelectorAll(".footer-bottom p")[1].firstChild, "Source code licensed under ");
+        const dialog = document.querySelector(".image-lightbox");
+        dialog.setAttribute("aria-label", "Image preview");
+        dialog.querySelector(".image-lightbox-close").setAttribute("aria-label", "Close image preview");
+        setText(dialog.querySelector(".image-lightbox-close"), "Close");
+        document.querySelectorAll(".project-link--summary").forEach(link => setFirstText(link, "View project "));
+
+        document.querySelectorAll(".project-card").forEach((card, index) => {
+          const copy = translations.projects[index];
+          if (!copy) return;
+          setText(card.querySelector(".project-type"), copy.type);
+          setText(card.querySelector("h3"), copy.title);
+          setText(card.querySelector(".project-summary > p"), copy.summary);
+          card.querySelector(".project-visual img").alt = copy.visualAlt;
+          const sections = card.querySelectorAll(".detail-section");
+          ["Goals and scope", "Approach and technical choices", "Results and limitations", "Skills and technologies", "Resources"]
+            .forEach((label, sectionIndex) => {
+              const section = sections[sectionIndex];
+              if (!section) return;
+              setText(section.querySelector("h4"), label);
+              section.setAttribute("aria-label", label);
+            });
+          copy.details.forEach((text, sectionIndex) => {
+            const section = sections[sectionIndex];
+            const paragraph = section && section.querySelector("p");
+            if (!paragraph) return;
+            setText(paragraph, text);
+            Array.from(section.querySelectorAll("p")).slice(1).forEach(extra => extra.remove());
+            section.querySelectorAll("br").forEach(lineBreak => lineBreak.remove());
+          });
+          const skills = sections[3] && sections[3].querySelector("ul");
+          if (skills) {
+            skills.replaceChildren(...copy.skills.map(skill => {
+              const item = document.createElement("li");
+              item.textContent = skill;
+              return item;
+            }));
+          }
+          const galleryFigures = Array.from(sections[4].querySelectorAll("figure"));
+          galleryFigures.forEach((figure, figureIndex) => {
+            if (copy.captions[figureIndex]) setText(figure.querySelector("figcaption"), copy.captions[figureIndex]);
+            if (copy.alts[figureIndex]) figure.querySelector("img").alt = copy.alts[figureIndex];
+          });
+          card.querySelectorAll(".project-details .project-link").forEach((link, linkIndex) => {
+            if (copy.links[linkIndex]) setFirstText(link, `${copy.links[linkIndex]} `);
+          });
+          const toggle = card.querySelector(".see-more");
+          setFirstText(toggle, "More details ");
+          toggle.setAttribute("aria-label", `Show details for ${copy.title}`);
+        });
+
+        document.querySelectorAll(".experience-card").forEach((card, index) => {
+          const copy = translations.experience[index];
+          if (!copy) return;
+          setText(card.querySelector(".experience-date"), copy.date);
+          setText(card.querySelector("h3"), copy.title);
+          setText(card.querySelector(".experience-organization"), copy.organization);
+          card.querySelectorAll(".experience-highlights li").forEach((item, itemIndex) => {
+            if (copy.highlights[itemIndex]) setText(item, copy.highlights[itemIndex]);
+          });
+          card.querySelectorAll(".experience-details figure").forEach((figure, figureIndex) => {
+            if (copy.captions[figureIndex]) setText(figure.querySelector("figcaption"), copy.captions[figureIndex]);
+            if (copy.alts[figureIndex]) figure.querySelector("img").alt = copy.alts[figureIndex];
+          });
+          const brandImage = card.querySelector(".experience-brands img");
+          if (brandImage) {
+            brandImage.alt = [
+              "Ifremer logo",
+              "Centrale Nantes and GeM Laboratory logos",
+              "Brasserie de Bretagne logo"
+            ][index];
+          }
+          setFirstText(card.querySelector(".experience-toggle"), "More details ");
+        });
+      };
+
+      applyEnglish();
       document.documentElement.classList.add("js");
       document.querySelector("#year").textContent = new Date().getFullYear();
       const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -2051,6 +2412,9 @@
           "Modélisation des systèmes",
           "Analyse de données"
         ];
+        if (isEnglish) {
+          interests.splice(0, interests.length, "Robotics", "Embedded systems", "Mechatronics", "Control systems", "Systems modelling", "Data analysis");
+        }
         let index = 0;
         window.setInterval(() => {
           index = (index + 1) % interests.length;
@@ -2218,6 +2582,32 @@
       lightbox.addEventListener("click", event => {
         if (event.target === lightbox) lightbox.close();
       });
+
+      if (isEnglish) {
+        const updateDetailLabels = () => {
+          document.querySelectorAll(".see-more, .experience-toggle").forEach(button => {
+            button.firstChild.textContent = `${button.getAttribute("aria-expanded") === "true" ? "Hide" : "More"} details `;
+          });
+        };
+        document.addEventListener("click", event => {
+          if (event.target instanceof Element && event.target.closest(".see-more, .experience-toggle")) {
+            window.setTimeout(updateDetailLabels);
+          }
+        });
+        document.querySelectorAll(".project-gallery").forEach(gallery => {
+          const label = gallery.closest(".project-card, .experience-card").querySelector("h3").textContent;
+          gallery.setAttribute("aria-label", `Gallery of ${label}`);
+          gallery.querySelector(".project-gallery-track").setAttribute("aria-label", `Images of ${label}`);
+          gallery.querySelector(".gallery-control--previous").setAttribute("aria-label", "Scroll images left");
+          gallery.querySelector(".gallery-control--next").setAttribute("aria-label", "Scroll images right");
+          gallery.querySelectorAll(".image-lightbox-trigger").forEach(button => {
+            button.setAttribute("aria-label", `Enlarge image: ${button.querySelector("img").alt}`);
+          });
+        });
+        document.querySelectorAll(".project-visual-trigger").forEach(button => {
+          button.setAttribute("aria-label", `Show details: ${button.querySelector("img").alt}`);
+        });
+      }
     })();
   </script>
 </body>
