@@ -1409,13 +1409,13 @@
             <div class="project-details">
               <section class="detail-section" aria-label="Problématique et objectifs">
                 <h4>Problématique et objectifs</h4>
-                <p>Le projet vise à relier une disposition dessinée des sept pièces de Tangram à une réalisation de cette disposition par un bras <a href="https://www.universal-robots.com/media/1820975/07_2021_ur5e_fact_sheet_fr_web.pdf" target="_blank" rel="noopener noreferrer">robot UR5e</a>. Seuls le programme de <strong>reconnaissance par caméra</strong> et la <strong>calibration du repère</strong> ont été initialement fournis. <br> <br>
+                <p>Le projet vise à relier une disposition dessinée des sept pièces de Tangram à une réalisation de cette disposition par un bras <a href="https://www.universal-robots.com/media/1820975/07_2021_ur5e_fact_sheet_fr_web.pdf" target="_blank" rel="noopener noreferrer">robot UR5e</a>. Seuls le programme de <strong>reconnaissance par caméra</strong> et la <strong>calibration du repère</strong> ont été initialement fournis. </p> <br>
 
-                À partir de pièces placées aléatoirement sur un repère, le robot doit identifier leurs positions, les saisir et les placer selon la disposition. Le programme <strong>Python</strong>, quant à lui, doit permettre de dessiner les pièces, de vérifier les collisions possibles et de transformer leurs positions en poses robotiques (positions et orientations).</p>
+                <p>À partir de pièces placées aléatoirement sur un repère, le robot doit identifier leurs positions, les saisir et les placer selon la disposition. Le programme <strong>Python</strong>, quant à lui, doit permettre de dessiner les pièces, de vérifier les collisions possibles et de transformer leurs positions en poses robotiques (positions et orientations).</p>
               </section>
               <section class="detail-section" aria-label="Approches et choix techniques">
                 <h4>Approches et choix techniques</h4>
-                <p>Python et <a href="https://www.pygame.org/" target="_blank" rel="noopener noreferrer">Pygame</a> fournissent un éditeur 2D avec déplacement, alignement magnétique, rotations par pas de 15° et annulation des actions. La caméra capture le plateau et associe les repères locaux détectés aux coordonnées du référentiel global du robot. L’export convertit la disposition 2D en poses 6D, transmises par TCP à un programme <a href="https://www.universal-robots.com/fr/produits/polyscope-5/" target="_blank" rel="noopener noreferrer"><i>Universal Robot PolyScope 5</i></a> qui pilote l’effecteur final. L’édition s’effectue sur PC et le contrôleur UR du robot exécute les mouvements.</p>
+                <p>Python et <a href="https://www.pygame.org/" target="_blank" rel="noopener noreferrer">Pygame</a> fournissent un éditeur 2D avec déplacement, alignement magnétique, rotations par pas de 15° et annulation des actions. La caméra capture le plateau et associe les repères locaux détectés aux coordonnées du référentiel global du robot. L’export convertit la disposition 2D en poses 6D, transmises par TCP à un programme <a href="https://www.universal-robots.com/fr/produits/polyscope-5/" target="_blank" rel="noopener noreferrer"><i>Universal Robot</i> PolyScope 5</a> qui pilote l’effecteur final. L’édition s’effectue sur PC et le contrôleur UR du robot exécute les mouvements.</p>
               </section>
               <section class="detail-section" aria-label="Résultats et limites">
                 <h4>Résultats et limites</h4>
@@ -1467,13 +1467,13 @@
             <div class="project-details">
               <section class="detail-section" aria-label="Problématique et objectifs">
                 <h4>Problématique et objectifs</h4>
-                <p>À partir d’un moteur à courant continu et d’une carte STM32 vierge, la problématique consiste à concevoir une commande embarquée pour piloter le moteur en vitesse, en couple et en position. Il faut développer l’acquisition des mesures et le pilotage de l’actionneur, puis structurer les boucles de commande adaptées aux trois grandeurs voulues. Dans le périmètre réalisé ici, la commande PID porte sur la vitesse et la position, avec le couple comme objectif.</p>
+                <p>À partir d’un moteur à courant continu et d’une carte STM32, la problématique consiste à concevoir une commande embarquée pour piloter le moteur en vitesse, en couple et en position. Il faut développer l’acquisition des mesures et le pilotage de l’actionneur, puis structurer les boucles de commande adaptées aux trois grandeurs voulues. Dans le périmètre réalisé ici, la commande PID porte sur la vitesse et la position, avec le couple comme objectif.</p>
               </section>
               <section class="detail-section" aria-label="Approches et choix techniques">
                 <h4>Approches et choix techniques</h4>
-                <p>La carte STM32 et le micrologiciel développé ferment la boucle de vitesse entre le moteur et la carte : l’encodeur directement relié au moteur fournit le retour de vitesse, le PID calcule la commande et la carte envoie un signal PWM à l’étage de puissance relié au moteur, le tout complété par des mesures de tension et de courant. Des échanges série complètent cette chaîne. <br><br>
-
-                En parallèle, le modèle mathématique du moteur, à vide comme en charge, est construit à partir de mesures et de simulations. Le <strong>correcteur PID</strong> discret est lui-même conçu sur ces bases pour être ensuite intégré à la carte STM32.</p>
+                <p>La carte STM32 et le micrologiciel développé ferment la boucle de vitesse entre le moteur et la carte : l’encodeur directement relié au moteur fournit le retour de vitesse, le PID calcule la commande et la carte envoie un signal PWM à l’étage de puissance relié au moteur, le tout complété par des mesures de tension et de courant. Des échanges série complètent cette chaîne.</p> 
+                <br>
+                <p>En parallèle, le modèle mathématique du moteur, à vide comme en charge, est construit à partir de mesures et de simulations. Le <strong>correcteur PID</strong> discret est lui-même conçu sur ces bases pour être ensuite intégré à la carte STM32.</p>
               </section>
               <section class="detail-section" aria-label="Résultats et limites">
                 <h4>Résultats et limites</h4>
@@ -1547,7 +1547,7 @@
               <section class="detail-section" aria-label="Compétences et technologies">
                 <h4>Compétences et technologies</h4>
                 <ul>
-                  <li>STM32F411 pour l’acquisition analogique et le pilotage de la maquette.</li>
+                  <li>Carte STM32 pour l’acquisition analogique et le pilotage de la maquette.</li>
                   <li>Communication série et outil Python pour commander la plateforme et récupérer les mesures.</li>
                   <li>Analyse fréquentielle et estimation des paramètres modaux.</li>
                   <li>Modèle éléments finis de poutre d’Euler–Bernoulli.</li>
@@ -1662,8 +1662,9 @@
               </section>
               <section class="detail-section" aria-label="Approches et choix techniques">
                 <h4>Approches et choix techniques</h4>
-                <p>Le jeu est entièrement développé en <strong>Python</strong>, avec <a href="https://pyglet.org/" target="_blank" rel="noopener noreferrer">Pyglet</a> comme bibliothèque graphique pour gérer l’affichage et les entrées.
-                Sa structure <strong>orientée objet</strong> répartit les fonctionnalités entre des classes dédiées aux cartes, aux menus, aux statistiques et à la gestion des événements, qu’ils soient narratifs ou techniques. Les données des cartes et leurs effets sont stockés au format CSV, dans le cadre de l’apprentissage <i>ex nihilo</i> de la gestion des données. Git et GitLab CI/CD accompagnent le suivi des versions et l’intégration du code tout au long du projet.</p>
+                <p>Le jeu est entièrement développé en <strong>Python</strong>, avec <a href="https://pyglet.org/" target="_blank" rel="noopener noreferrer">Pyglet</a> comme bibliothèque graphique pour gérer l’affichage et les entrées.</p>
+                <br>
+                <p>Sa structure <strong>orientée objet</strong> répartit les fonctionnalités entre des classes dédiées aux cartes, aux menus, aux statistiques et à la gestion des événements, qu’ils soient narratifs ou techniques. Les données des cartes et leurs effets sont stockés au format CSV, dans le cadre de l’apprentissage <i>ex nihilo</i> de la gestion des données. Git et GitLab CI/CD accompagnent le suivi des versions et l’intégration du code tout au long du projet.</p>
               </section>
               <section class="detail-section" aria-label="Résultats et limites">
                 <h4>Résultats et limites</h4>
@@ -1714,11 +1715,11 @@
             <div class="project-details">
               <section class="detail-section" aria-label="Problématique et objectifs">
                 <h4>Problématique et objectifs</h4>
-                <p>L’étude comparative s’appuie sur un extrait du jeu de données Wisconsin Diagnostic Breast Cancer (WDBC), qui contient 569 échantillons décrits par 30 mesures cellulaires et classés comme bénins ou malins. Le projet vise à comparer plusieurs méthodes de <strong>classification</strong> à partir des prédictions de malignité des échantillons. Cette étude pédagogique ne constitue pas un outil de diagnostic clinique ; elle vise à approfondir les apprentissages.</p>
+                <p>L’étude comparative s’appuie sur un extrait du jeu de données Wisconsin Diagnostic Breast Cancer (WDBC), qui contient 569 échantillons décrits par 30 mesures cellulaires et classés comme bénins ou malins. Le projet vise à comparer deux méthodes de <strong>classification</strong>, <a href="https://en.wikipedia.org/wiki/Particle_swarm_optimization" target="_blank" rel="noopener noreferrer">l'optimisation par essaim particulaire</a> et par <a href="https://fr.wikipedia.org/wiki/R%C3%A9seau_de_neurones_feedforward" target="_blank" rel="noopener noreferrer">réseau de neurones feedforward</a>, à partir des prédictions de malignité des échantillons. Cette étude pédagogique ne constitue pas un outil de diagnostic clinique, elle vise à approfondir les apprentissages.</p>
               </section>
               <section class="detail-section" aria-label="Approches et choix techniques">
                 <h4>Approches et choix techniques</h4>
-                <p>Le script <i>MATLAB</i> compare deux approches sur le jeu de données WDBC : un réseau de neurones <strong>feedforward</strong>, entraîné par rétropropagation, et un classifieur linéaire dont les poids sont optimisés par <strong>essaim particulaire</strong> (PSO). Le jeu de données est divisé en plusieurs sous-ensembles afin de réaliser des <strong>validations croisées</strong>. La comparaison porte sur le meilleur résultat obtenu lors de ces validations. Les valeurs de sortie sont converties en codes de classe 2 (malin) ou 4 (bénin) à l’aide d’un seuil fixé à 3.</p>
+                <p>Le script <i>MATLAB</i> compare deux approches sur le jeu de données WDBC : un réseau de neurones feedforward, entraîné par rétropropagation, et un classifieur linéaire dont les poids sont optimisés par essaim particulaire. Le jeu de données est divisé en plusieurs sous-ensembles afin de réaliser des <strong>validations croisées</strong>. La comparaison porte sur le meilleur résultat obtenu lors de ces validations. Les valeurs de sortie sont converties en codes de classe 2 (malin) ou 4 (bénin) à l’aide d’un seuil fixé à 3.</p>
                 <br>
                 <p>Les entrées sont utilisées à leur échelle d’origine, sans normalisation. Le rapport présente aussi une expérience avec un réseau à activations non linéaires, mais celle-ci n’est pas reproduite dans le script versionné. Les résultats obtenus sur les 569 échantillons ne constituent pas une évaluation indépendante : les données participent à l’apprentissage ou à la sélection des modèles. Les scores doivent donc être interprétés comme des résultats d’expérimentation pédagogique, et non comme une mesure fiable de la capacité de généralisation ou des performances cliniques.</p>
               </section>
@@ -1770,13 +1771,13 @@
             <div class="project-details">
               <section class="detail-section" aria-label="Problématique et objectifs">
                 <h4>Problématique et objectifs</h4>
-                <p>Le projet a pour objectif de comparer l’influence de différentes méthodes de préparation des données sur les performances d’une estimation par la <strong>méthode des moindres carrés</strong> (LSE). Trois approches sont étudiées : l’utilisation des données brutes, l’application d’une <strong>analyse en composantes principales</strong> (PCA) et le recours à une <strong>régression sur composantes principales</strong> (PCR).</p>
+                <p>Le projet a pour objectif de comparer l’influence de différentes méthodes de préparation des données sur les performances d’une estimation par la <a href="https://en.wikipedia.org/wiki/Least_squares" target="_blank" rel="noopener noreferrer">méthode des moindres carrés (LSE)</a>. Trois approches sont étudiées : l’utilisation des données brutes, l’application d’une <a href="https://fr.wikipedia.org/wiki/Analyse_en_composantes_principales" target="_blank" rel="noopener noreferrer">analyse en composantes principales (PCA)</a> et le recours à une <a href="https://en.wikipedia.org/wiki/Principal_component_regression" target="_blank" rel="noopener noreferrer">régression sur composantes principales (PCR)</a>.</p>
                 <br>
                 <p>La variable de sortie I_EFF est estimée à partir de trois variables explicatives : A_FLOW, T_H2O et C_ACID. À l’aide de scripts <i>MATLAB</i>, l’étude évalue l’impact des différentes méthodes de préparation des données sur les paramètres du modèle final et la précision des prédictions. Une attention particulière est portée à l’influence de l’échelle des variables et de leurs corrélations sur les résultats obtenus.</p>
               </section>
               <section class="detail-section" aria-label="Approches et choix techniques">
                 <h4>Approches et choix techniques</h4>
-                <p>Le script <i>MATLAB</i> compare les estimations par moindres carrés selon différentes méthodes et différentes <strong>normalisations</strong>, comme la normalisation min–max ou la standardisation par score-z. Le nombre de composantes est choisi pour expliquer 95 % de la variance cumulée. Une expérience distincte utilise la PCR et une entrée synthétique corrélée pour observer l’évolution des coefficients. Le script comprend aussi une validation croisée en sept plis.</p>
+                <p>Le script <i>MATLAB</i> compare les estimations par moindres carrés selon différentes méthodes et différentes <strong>normalisations</strong>, comme la <a href="https://en.wikipedia.org/wiki/Feature_scaling" target="_blank" rel="noopener noreferrer">normalisation min-max</a> ou la <a href="https://fr.wikipedia.org/wiki/Score_z" target="_blank" rel="noopener noreferrer">standardisation par score-z</a>. Le nombre de composantes est choisi pour expliquer 95 % de la variance cumulée. Une expérience distincte utilise la PCR et une entrée synthétique corrélée pour observer l’évolution des coefficients. Le script comprend aussi une validation croisée en sept plis.</p>
               </section>
               <section class="detail-section" aria-label="Résultats et limites">
                 <h4>Résultats et limites</h4>
