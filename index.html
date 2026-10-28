@@ -569,23 +569,8 @@
       padding: 30px;
     }
 
-    .project-meta {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 10px;
-    }
-
-    .project-icon {
-      display: block;
-      width: 56px;
-      height: 56px;
-      flex: 0 0 56px;
-      object-fit: contain;
-    }
-
     .project-card h3 {
-      margin: 0 0 9px;
+      margin: 10px 0 9px;
       font-size: clamp(1.2rem, 2.4vw, 1.55rem);
       line-height: 1.25;
       letter-spacing: -0.035em;
@@ -1410,12 +1395,9 @@
         <div class="project-list">
           <article class="project-card reveal">
             <div class="project-card-header">
-              <div class="project-visual"><img src="assets/projects/tangram-ur5e.svg" alt="Schéma de l’interface Tangram reliée à un robot UR5e"></div>
+              <div class="project-visual"><img src="assets/icons/ur5e_tangram_icon.png" alt="Illustration du projet de pilotage d’un robot UR5e pour un tangram"></div>
               <div class="project-summary">
-                <div class="project-meta">
-                  <img class="project-icon" src="assets/icons/ur5e_tangram_icon.png" alt="" aria-hidden="true">
-                  <span class="project-type">Robotique · commande</span>
-                </div>
+                <span class="project-type">Robotique · commande</span>
                 <h3>Pilotage d’un UR5e pour un tangram</h3>
                 <p>Une interface Python/Pygame permet de composer un tangram, puis de transmettre au robot UR5e une séquence de prises et de dépôts. Une caméra repère les pièces sur le plateau et la calibration associe ces repères au référentiel du robot.</p>
                 <div class="project-actions">
@@ -1471,12 +1453,9 @@
 
           <article class="project-card reveal reveal-delay-1">
             <div class="project-card-header">
-              <div class="project-visual"><img src="assets/projects/s7-motor.png" alt="Moteur à courant continu étudié pour le projet d’asservissement"></div>
+              <div class="project-visual"><img src="assets/icons/dc_motor_icon.png" alt="Illustration du projet de contrôle-commande d’un moteur à courant continu"></div>
               <div class="project-summary">
-                <div class="project-meta">
-                  <img class="project-icon" src="assets/icons/dc_motor_icon.png" alt="" aria-hidden="true">
-                  <span class="project-type">Systèmes embarqués · Mécatronique</span>
-                </div>
+                <span class="project-type">Systèmes embarqués · Mécatronique</span>
                 <h3>Contrôle-commande d'un moteur à courant continu</h3>
                 <p>Projet associant un moteur à courant continu, une carte STM32F411 et un développement logiciel pour contrôler le moteur en vitesse et en couple. </p>
                 <div class="project-actions">
@@ -1539,12 +1518,9 @@
 
           <article class="project-card reveal reveal-delay-2">
             <div class="project-card-header">
-              <div class="project-visual"><img src="assets/projects/flexion-xs-rig.jpg" alt="Montage expérimental Flexion XS avec réglette, moteur et électronique de mesure"></div>
+              <div class="project-visual"><img src="assets/icons/flexion_xs_icons.png" alt="Illustration du projet expérimental Flexion XS"></div>
               <div class="project-summary">
-                <div class="project-meta">
-                  <img class="project-icon" src="assets/icons/flexion_xs_icons.png" alt="" aria-hidden="true">
-                  <span class="project-type">Mécatronique · Mécanique vibratoire</span>
-                </div>
+                <span class="project-type">Mécatronique · Mécanique vibratoire</span>
                 <h3>Flexion XS : mesure, contrôle et analyse vibratoire</h3>
                 <p>Plateforme STM32F411 d'expérimentation sur les vibrations d'une réglette instrumentée. Les mesures et notebooks associés servent de support pédagogique pour analyser la réponse vibratoire.</p>
                 <div class="project-actions">
@@ -1605,12 +1581,9 @@
 
           <article class="project-card reveal reveal-delay-2">
             <div class="project-card-header">
-              <div class="project-visual"><img src="assets/projects/helicrane-response.png" alt="Courbes de réponse du contrôleur lors d’essais en échelon"></div>
+              <div class="project-visual"><img src="assets/icons/helicrane_control_icon.png" alt="Illustration du projet de modélisation et commande floues d’une grue volante"></div>
               <div class="project-summary">
-                <div class="project-meta">
-                  <img class="project-icon" src="assets/icons/helicrane_control_icon.png" alt="" aria-hidden="true">
-                  <span class="project-type">Modélisation · commande</span>
-                </div>
+                <span class="project-type">Modélisation · commande</span>
                 <h3>Modélisation et commande floues d’une grue volante</h3>
                 <p>Travail théorique et pédagogique sur la modélisation floue de données associées à une grue volante, puis la commande du modèle en simulation.</p>
                 <div class="project-actions">
@@ -1669,12 +1642,9 @@
 
           <article class="project-card reveal reveal-delay-3">
             <div class="project-card-header">
-              <div class="project-visual"><img src="assets/projects/reignib.jpg" alt="Illustration du jeu Reignib"></div>
+              <div class="project-visual"><img src="assets/icons/reignib_icon.png" alt="Illustration du projet de jeu de cartes narratif Reignib"></div>
               <div class="project-summary">
-                <div class="project-meta">
-                  <img class="project-icon" src="assets/icons/reignib_icon.png" alt="" aria-hidden="true">
-                  <span class="project-type">Développement logiciel fullstack</span>
-                </div>
+                <span class="project-type">Développement logiciel fullstack</span>
                 <h3>Reignib</h3>
                 <p>Projet étudiant de développement d’un jeu de cartes narratif, permettant d’explorer la programmation orientée objet en Python et les méthodes de gestion de projet informatique.</p>
                 <div class="project-actions">
@@ -1728,12 +1698,9 @@
 
           <article class="project-card reveal">
             <div class="project-card-header">
-              <div class="project-visual"><img src="assets/projects/pso-classification.png" alt="Résultat de classification par PSO comparé aux étiquettes de référence"></div>
+              <div class="project-visual"><img src="assets/icons/pso_nn_icons.png" alt="Illustration du projet de classification par essaim particulaire et réseau de neurones"></div>
               <div class="project-summary">
-                <div class="project-meta">
-                  <img class="project-icon" src="assets/icons/pso_nn_icons.png" alt="" aria-hidden="true">
-                  <span class="project-type">Optimisation · Machine learning</span>
-                </div>
+                <span class="project-type">Optimisation · Machine learning</span>
                 <h3>Classification par essaim de neurones et réseau de neurones</h3>
                 <p>Étude comparative de méthodes de classification de cancers du sein par essaim particulaire et machine learning. </p>
                 <div class="project-actions">
@@ -1787,12 +1754,9 @@
 
           <article class="project-card reveal reveal-delay-1">
             <div class="project-card-header">
-              <div class="project-visual"><img src="assets/projects/pca-regression.png" alt="Comparaison des prédictions par moindres carrés et par ACP"></div>
+              <div class="project-visual"><img src="assets/icons/LSE_PCA_icon.png" alt="Illustration du projet d’identification de modèles par LSE et ACP"></div>
               <div class="project-summary">
-                <div class="project-meta">
-                  <img class="project-icon" src="assets/icons/LSE_PCA_icon.png" alt="" aria-hidden="true">
-                  <span class="project-type">Identification de systèmes · Data science</span>
-                </div>
+                <span class="project-type">Identification de systèmes · Data science</span>
                 <h3>Identification de modèles par LSE, PCA et PCR</h3>
                 <p>Estimations d'un procédé chimique par trois méthodes mathématiques et examens des effets respectifs.
 
@@ -1847,12 +1811,9 @@
 
           <article class="project-card reveal reveal-delay-2">
             <div class="project-card-header">
-              <div class="project-visual"><img src="assets/projects/triangulation.png" alt="Visualisation des cercles de mesure et d’une trajectoire d’estimation de position"></div>
+              <div class="project-visual"><img src="assets/icons/nl_triang_icon.png" alt="Illustration du projet d’estimation de position par triangulation non linéaire"></div>
               <div class="project-summary">
-                <div class="project-meta">
-                  <img class="project-icon" src="assets/icons/nl_triang_icon.png" alt="" aria-hidden="true">
-                  <span class="project-type">Géolocalisation · optimisation</span>
-                </div>
+                <span class="project-type">Géolocalisation · optimisation</span>
                 <h3>Estimation de position par descentes de gradient</h3>
                 <p>Estimation de position robuste par triangulation non linéaire, malgré des mesures de distance bruitées.
 
