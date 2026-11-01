@@ -1,6 +1,6 @@
 # Maël Madec's Portfolio
 
-A personal portfolio showcasing projects, professional experience, and contact information. Built with HTML, CSS, and JavaScript, with no external dependencies or build step.
+A personal portfolio showcasing projects, professional experience, and contact information.
 
 ## License
 
