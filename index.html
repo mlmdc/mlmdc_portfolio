@@ -2118,58 +2118,59 @@
           {
             type: "Robotics · control",
             title: "Programming a UR5e robot to solve a tangram",
-            summary: "A Python/Pygame interface lets users arrange tangram pieces and send pick-and-place sequences to a UR5e robot. A camera locates the pieces, and calibration maps their positions to the robot's coordinate frame.",
+            summary: "A Python/Pygame interface lets users arrange a tangram, then sends a sequence of movements to a UR5e robot to recreate it. A camera locates the pieces, and calibration maps their positions to the robot's coordinate frame.",
             details: [
-              "The project connects a tangram layout drawn on screen to its physical assembly by a UR5e arm. Starting from randomly placed pieces, the system identifies, picks and places each piece in the selected arrangement.",
-              "A Python/Pygame editor supports dragging, snapping, 15-degree rotations and undo. Camera coordinates are calibrated to the robot frame; the layout is converted into 6D poses and sent over TCP to a PolyScope program.",
-              "The editor, piece detection and pose transmission form an end-to-end control workflow. The repository includes a calibration example, and both programs run on the UR5e. Collision detection and safety checks remain the operator's responsibility."
+              "The project connects a layout of all seven Tangram pieces drawn on screen to its assembly by a <a href=\"https://www.universal-robots.com/media/1820975/07_2021_ur5e_fact_sheet_fr_web.pdf\" target=\"_blank\" rel=\"noopener noreferrer\">UR5e robot</a>. Initially, only the <strong>camera-based recognition</strong> program and <strong>reference-frame calibration</strong> were provided. Starting from randomly placed pieces, the robot identifies, picks and places them according to the selected layout; the <strong>Python</strong> program lets users draw the pieces, check for possible collisions and convert their positions into robot poses.",
+              "Python and <a href=\"https://www.pygame.org/\" target=\"_blank\" rel=\"noopener noreferrer\">Pygame</a> provide a 2D editor with dragging, snapping, 15-degree rotations and undo. The camera maps detected local reference points to the robot's global coordinate frame. The layout is converted into 6D poses and sent over TCP to a <a href=\"https://www.universal-robots.com/fr/produits/polyscope-5/\" target=\"_blank\" rel=\"noopener noreferrer\"><em>Universal Robots</em> PolyScope 5</a> program, which controls the end effector.",
+              "The editor, piece localisation and pose transmission form a control pipeline through to the robot program. The project includes a calibration example. <strong>Both programs run directly on the UR5e.</strong> Collision detection and safety checks remain the user's responsibility."
             ],
-            skills: ["Python and Pygame for the 2D editor.", "Mapping image and layout coordinates to robot poses.", "TCP communication with the UR controller.", "PolyScope integration with the gripper."],
-            captions: ["UR5e collaborative robot.", "Randomly arranged tangram pieces.", "Tangram pieces brought together in a composition.", "Tangram pieces arranged across the editor.", "Tangram pieces in different orientations."],
-            alts: ["UR5e collaborative robot.", "Tangram pieces arranged randomly in the editor.", "Tangram pieces brought together in a composition.", "Tangram pieces arranged across the editor.", "Tangram pieces in different orientations in the editor."],
+            skills: ["Python and Pygame for the 2D editor.", "Converting image and layout coordinates into robot poses.", "TCP communication between the PC and UR controller.", "PolyScope program integration with the gripper."],
+            captions: ["UR5e collaborative robot.", "Tangram pieces arranged randomly.", "Tangram composition with collision handling.", "Pieces arranged across the editor.", "Pieces in different orientations."],
+            alts: ["UR5e collaborative robot.", "Tangram pieces arranged randomly in the editor.", "Tangram pieces brought together in a composition.", "Tangram pieces distributed across the editor.", "Tangram pieces in different orientations in the editor."],
             visualAlt: "Diagram of the Tangram interface connected to a UR5e robot",
             links: ["Source code and resources"]
           },
           {
             type: "Embedded systems · mechatronics",
             title: "DC motor control",
-            summary: "An embedded control project using a DC motor and STM32F411 to regulate speed, with supporting modelling, firmware and measurement tools.",
+            summary: "A project combining a DC motor, an STM32F411 board and embedded software to control motor speed and torque.",
             details: [
-              "The goal is to design embedded control for speed, torque and position using a DC motor and STM32 board. The implemented PID controller regulates speed; torque and position are project objectives, not completed features.",
-              "An encoder provides speed feedback, a discrete PID computes the command, and PWM drives the motor power stage. The project also models the motor under no-load and loaded conditions to inform controller design.",
-              "The firmware combines encoder and ADC acquisition, filtering, PID, PWM, telemetry and serial communication. It also implements bidirectional control, anti-windup and automatic PID parameter updates; a working example is provided."
+              "Using a DC motor and STM32 board, the project aims to develop embedded control for speed, torque and position. This involves acquiring measurements, driving the actuator and structuring control loops for the three target quantities. In the implemented scope, PID control covers speed and position, with torque as an objective.",
+              "The STM32 board and firmware close the speed-control loop: an encoder connected directly to the motor provides speed feedback, the PID computes the command, and the board sends a PWM signal to the motor's power stage. Voltage and current measurements, along with serial communication, complete the setup. In parallel, measured and simulated data are used to model the motor under no-load and loaded conditions. The discrete <strong>PID controller</strong> is designed on this basis for integration into the STM32.",
+              "The firmware combines encoder and ADC acquisition, filtering, PID computation, PWM generation, telemetry and serial communication. It also implements bidirectional control, anti-windup and automatic PID parameter updates. A working example is available in the linked project."
             ],
-            skills: ["STM32 firmware with STM32Cube HAL.", "Encoder speed measurement and ADC/DMA acquisition.", "PWM power-stage control and discrete speed PID.", "UART commands and telemetry.", "Motor modelling and PID studies in Python."],
-            captions: ["DC motor under study.", "Motor control and measurement interface.", "Simulated responses under no-load and loaded conditions.", "Example serial measurements from the real motor."],
-            alts: ["DC motor used as the reference for the study.", "Motor control and measurement interface.", "Comparison of simulated motor responses under no-load and loaded conditions.", "Example of serial motor-speed measurements."],
+            skills: ["STM32 firmware development with STM32CubeIDE.", "Encoder speed measurement and ADC voltage acquisition with DMA.", "PWM power-stage control and discrete PID speed regulation.", "Motor modelling under no-load and loaded conditions.", "PID coefficient configuration and updates.", "UART commands and telemetry."],
+            captions: ["Example of motor speed control under no-load and loaded conditions.", "Comparison of dynamic models under no-load and loaded conditions.", "Control and measurement interface mock-up developed during the project."],
+            alts: ["Example of serial motor-speed measurements.", "Comparison of simulated motor responses under no-load and loaded conditions.", "Motor control and measurement interface developed during the project."],
             visualAlt: "DC motor studied in the control project",
+            resourceNote: "The model responses are <strong>simulations</strong>; the serial-measurement example shows <strong>data acquired from the real motor</strong>.",
             links: ["Source code and notebooks"]
           },
           {
             type: "Mechatronics · vibration mechanics",
             title: "Flexion XS: vibration measurement, control and analysis",
-            summary: "An STM32F411 experimental platform for measuring the vibrations of an instrumented beam, supported by analysis notebooks and recorded measurements.",
+            summary: "An educational experimental platform for studying the vibrations of an instrumented ruler and understanding vibration mechanics.",
             details: [
-              "This educational platform uses an STM32F411RE to characterise the vibrations of a beam-like ruler and compare measurements with a mechanical model. The study covers natural frequencies, damping, mode shapes and parameter estimation.",
-              "The STM32 drives an excitation motor and acquires accelerometer and motor-speed signals. A Python tool controls the rig over serial; measurements are saved for offline analysis in free and harmonic response.",
-              "Notebooks estimate frequency response, natural frequencies and damping, then reconstruct mode shapes and compare them with an Euler–Bernoulli finite-element beam model using the MAC criterion. Results are illustrative; identification of the third mode and repeatability need further work."
+              "This educational platform, based on an <a href=\"https://www.st.com/en/microcontrollers-microprocessors/stm32f411re.html\" target=\"_blank\" rel=\"noopener noreferrer\">STM32F411RE</a>, characterises the vibrations of a ruler modelled as a beam and uses measurements to determine a mechanical model. The study covers natural frequencies, damping, mode shapes and different parameter-estimation models.",
+              "The STM32 board acquires the required signals, including motor speed and accelerometer measurements, while controlling the actuators. Measurements are sent over a serial connection and processed by Python scripts, then saved for offline analysis, including under harmonic excitation. Notebooks analyse frequency response, estimate natural frequencies and damping, and reconstruct mode shapes for comparison with an Euler–Bernoulli finite-element beam model using the MAC criterion.",
+              "Experimental results and analysis notebooks cover free and harmonic responses. They illustrate measurement and analysis methods in an educational setting. Identification of the third mode and repeatability require further work; the results do not constitute definitive model validation."
             ],
-            skills: ["STM32F411 acquisition and experimental-rig control.", "Python serial tool for commands and measurements.", "Frequency-response and modal-parameter analysis.", "Euler–Bernoulli finite-element beam modelling.", "Mode-shape comparison using the MAC criterion."],
-            captions: ["Flexion XS experimental rig.", "Experimental rig overview.", "Example vibration measurement.", "Comparison of measured and modelled mode shapes."],
-            alts: ["Experimental rig with vibrating ruler and motor.", "Overview diagram of the experimental rig.", "Example time-domain vibration response.", "Comparison of measured mode shape with the model."],
+            skills: ["STM32 board for analogue acquisition and experimental-rig control.", "Serial communication and Python tool for platform control and measurements.", "Frequency analysis and modal-parameter estimation.", "Euler–Bernoulli finite-element beam model.", "Mode-shape comparison using the MAC criterion."],
+            captions: ["Example vibration measurement.", "Comparison of mode shapes.", "Complete Flexion XS experimental rig, top view.", "Flexion XS experimental rig, top view, without extra cables.", "Conceptual overall electronic diagram of the rig."],
+            alts: ["Example time-domain measurement of the vibration response.", "Comparison of measured mode shape with the model.", "Complete experimental setup with vibrating ruler and motor, viewed from above.", "Experimental setup with vibrating ruler and motor, viewed from above, without extra cables.", "Overall conceptual diagram of the experimental rig."],
             visualAlt: "Flexion XS experimental rig with ruler, motor and measurement electronics",
             links: ["Firmware, measurements and analysis"]
           },
           {
             type: "Modelling · control",
             title: "Fuzzy modelling and control of a helicopter crane",
-            summary: "A theoretical study of fuzzy modelling using helicopter-crane data, followed by predictive control evaluated in simulation.",
+            summary: "A theoretical and educational study of fuzzy modelling of a helicopter crane, followed by simulation-based control.",
             details: [
-              "The project compares parametric, fuzzy and Takagi–Sugeno neuro-fuzzy models of a helicopter crane using supplied static data. It also studies predictive control of the fuzzy model; this is a simulation exercise, not control of a real crane.",
-              "MATLAB scripts analyse responses to PRBS and step inputs across operating regions. Gustafson–Kessel clustering identifies five regions; Gaussian membership functions weight local second-order ARX models, which are compared with a NARX network.",
-              "Local models are converted to state-space form and combined in a predictive controller. The simulator follows stepped references with an 80-sample prediction horizon and bounded input. Results are qualitative simulations; aggregate error metrics and some run parameters are not documented."
+              "Using supplied static data, the project studies the representation of an <a href=\"https://en.wikipedia.org/wiki/Aerial_crane\" target=\"_blank\" rel=\"noopener noreferrer\">aerial crane</a> through several models, from parametric to <a href=\"https://en.wikipedia.org/wiki/Fuzzy_logic\" target=\"_blank\" rel=\"noopener noreferrer\">fuzzy</a> and <a href=\"https://en.wikipedia.org/wiki/Neuro-fuzzy\" target=\"_blank\" rel=\"noopener noreferrer\">neuro-fuzzy</a> models, and implements and compares them. A second part explores predictive control of the best fuzzy model as a theoretical simulation exercise, not control of a real crane.",
+              "<em>MATLAB</em> scripts and a supplied compiled <em>MATLAB</em> simulator are used to study the crane's dynamics and operating range from pseudo-random binary sequence (PRBS) and step inputs. Gustafson–Kessel clustering divides observations into five operating regions. Gaussian membership functions weight regularised weighted least-squares estimates of local second-order ARX models with a two-sample delay; their responses are compared with a NARX network with input and output delays and ten hidden neurons.",
+              "The local models are converted to state-space representations and combined in a predictive controller. Simulation follows a first-order reference with stepped setpoints, an 80-sample prediction horizon and a control input limited to 0–1.3. Figures show qualitative model and controller responses, not measurements from a real helicopter crane. The repository provides no aggregate error metric; the goal is to learn modelling and control methods, not deploy them."
             ],
-            skills: ["System identification using PRBS and step signals.", "Gustafson–Kessel fuzzy clustering.", "Local ARX estimation using weighted least squares.", "Comparison with NARX and Takagi–Sugeno models.", "State-space modelling and predictive-control simulation in MATLAB."],
+            skills: ["System identification using PRBS and step signals.", "Gustafson–Kessel fuzzy clustering.", "Local ARX model estimation using weighted least squares.", "NARX model estimation and neuro-fuzzy model assembly.", "State-space modelling and predictive-control simulation in <em>MATLAB</em>."],
             captions: ["Qualitative step-response tracking.", "Response to a chirp reference.", "Clustering of operating regions."],
             alts: ["Controller response to stepped references.", "Controller response to a chirp reference.", "Operating regions identified by Gustafson–Kessel clustering."],
             visualAlt: "Controller response curves from step tests",
@@ -2178,13 +2179,13 @@
           {
             type: "Full-stack software development",
             title: "Reignib",
-            summary: "A student project to build a narrative card game and explore object-oriented Python programming and software project practices.",
+            summary: "A student project to develop a narrative card game and practise object-oriented Python programming and software project management.",
             details: [
-              "Inspired by Nerial's Reigns, this student project applies object-oriented Python to a complete software project. A card game provides a practical setting for collaboration, version control and continuous integration.",
-              "The game is built in Python with Pyglet for graphics and input. Object-oriented components handle cards, menus, statistics and events; card data and effects are stored in CSV files. Git and GitLab CI/CD support development and integration.",
+              "Inspired by Nerial's game <a href=\"https://store.steampowered.com/app/474750/Reigns/\" target=\"_blank\" rel=\"noopener noreferrer\">Reigns</a>, this student project applies object-oriented Python programming within a complete technical project. Developing a card game provides a practical framework for organising work, collaborating on code, and using version-control and continuous-integration tools.",
+              "The game is developed entirely in <strong>Python</strong>, using <a href=\"https://pyglet.org/\" target=\"_blank\" rel=\"noopener noreferrer\">Pyglet</a> for graphics and input. Its <strong>object-oriented</strong> structure uses dedicated classes for cards, menus, statistics and narrative or technical events. Card data and effects are stored in CSV files as part of learning data management <em>from scratch</em>; Git and GitLab CI/CD support version tracking and integration throughout the project.",
               "The result is a playable prototype with player choices, indicators, menus, audio and local saves. The aim was to practise software development and project-management methods, not to ship a commercial game."
             ],
-            skills: ["Python programming.", "Object-oriented software design.", "Software project planning and team coordination.", "Version control with Git.", "GitLab CI/CD and database development."],
+            skills: ["Python programming.", "Object-oriented software design and development.", "Software project management and development coordination.", "Version control with Git.", "GitLab CI/CD and delivery workflows.", "Database management and development."],
             captions: ["The game's visual world.", "A character from the game."],
             alts: ["Urban landscape from the world of Reignib.", "Illustrated portrait of a Reignib character."],
             visualAlt: "Illustration from the Reignib game",
@@ -2193,45 +2194,45 @@
           {
             type: "Optimisation · machine learning",
             title: "Breast-cancer classification with PSO and neural networks",
-            summary: "A comparison of particle-swarm optimisation and neural-network approaches using the Wisconsin Diagnostic Breast Cancer dataset.",
+            summary: "A comparison of breast-cancer classification methods based on particle-swarm optimisation and neural networks.",
             details: [
-              "This educational study compares classification methods on 569 samples with 30 cell measurements from the Wisconsin Diagnostic Breast Cancer dataset. It is not a clinical diagnostic tool.",
-              "MATLAB scripts compare a feedforward neural network with a linear classifier whose weights are optimised using particle swarm optimisation (PSO). The versioned network uses linear activations and a threshold to map outputs to class codes. The reported results use the same samples for training or model selection, so they are not an independent evaluation.",
-              "The report gives 99.12% accuracy for a nonlinear feedforward network and 97.53% for the PSO linear classifier on these samples. The comparison does not establish generalisation or clinical performance."
+              "This educational comparison uses 569 samples with 30 cell measurements from the Wisconsin Diagnostic Breast Cancer (WDBC) dataset, labelled benign or malignant. It compares two methods of <strong>classification</strong>: <a href=\"https://en.wikipedia.org/wiki/Particle_swarm_optimization\" target=\"_blank\" rel=\"noopener noreferrer\">particle swarm optimisation</a> and <a href=\"https://fr.wikipedia.org/wiki/R%C3%A9seau_de_neurones_feedforward\" target=\"_blank\" rel=\"noopener noreferrer\">feedforward neural networks</a> to predict malignancy. It is not a clinical diagnostic tool.",
+              "<em>MATLAB</em> scripts compare a backpropagation-trained feedforward neural network with a linear classifier whose weights are optimised using particle swarm optimisation (PSO). The dataset is split into subsets to perform <strong>cross-validation</strong>, and the comparison uses the best validation result. Outputs are converted to class codes 2 (malignant) or 4 (benign) using a threshold of 3. Inputs are not normalised. The report also describes a nonlinear-activation network experiment that is not reproduced in the versioned script. As the 569 samples are used for training or model selection, the results are not an independent evaluation.",
+              "On the 569 samples, the report gives 99.12% accuracy for the nonlinear feedforward network and 97.53% for the PSO linear classifier. Although the neural network scores higher here, the comparison does not establish generalisation: neither score is calculated on external data."
             ],
-            skills: ["MATLAB classification experiments.", "Supervised classification using the WDBC features.", "Feedforward neural networks.", "Particle-swarm optimisation of a linear classifier.", "Cross-validation and confusion-matrix analysis, with evaluation limitations identified."],
-            captions: ["PSO model predictions.", "Neural-network confusion matrix.", "Model outputs on sorted samples."],
-            alts: ["PSO classification output compared with reference labels.", "Neural-network confusion matrix.", "PSO classifier and neural-network outputs on sorted samples."],
+            skills: ["Supervised classification using the 30 WDBC features.", "Feedforward neural networks, including a versioned linear-activation implementation.", "Particle-swarm optimisation of a linear classifier's weights.", "Cross-validation and confusion-matrix analysis."],
+            captions: ["Model outputs on sorted samples.", "PSO predictions on a reduced sample.", "Example of the neural network's confusion matrix."],
+            alts: ["PSO classifier and neural-network outputs on sorted samples.", "PSO classification output compared with reference labels.", "Neural-network confusion matrix."],
             visualAlt: "PSO classification compared with reference labels",
             links: ["Project report (PDF)", "Source code and results"]
           },
           {
             type: "System identification · data science",
             title: "Model identification with LSE, PCA and PCR",
-            summary: "MATLAB experiments compare least-squares and principal-component methods for estimating a chemical process, including the effects of scaling and correlation.",
+            summary: "Estimation of a chemical process using three mathematical methods, with a study of their effects on the results.",
             details: [
-              "The project estimates process output I_EFF from A_FLOW, T_H2O and C_ACID. It compares least squares (LSE) on raw data, principal component analysis (PCA) and principal component regression (PCR), focusing on the effects of scaling and correlation.",
-              "MATLAB scripts compare min–max and z-score scaling, use enough components to explain 95% of cumulative variance, and run seven-fold cross-validation. A separate PCR experiment introduces a correlated synthetic input to study coefficient behaviour.",
-              "The figures show fitted curves, errors and coefficient changes for 21 observations. The collinearity experiment can vary between runs, so results should be read in that context."
+              "The project compares the effect of different data-preparation methods on <a href=\"https://en.wikipedia.org/wiki/Least_squares\" target=\"_blank\" rel=\"noopener noreferrer\">least-squares estimation (LSE)</a>. It considers raw data, <a href=\"https://fr.wikipedia.org/wiki/Analyse_en_composantes_principales\" target=\"_blank\" rel=\"noopener noreferrer\">principal component analysis (PCA)</a> and <a href=\"https://en.wikipedia.org/wiki/Principal_component_regression\" target=\"_blank\" rel=\"noopener noreferrer\">principal component regression (PCR)</a>. <em>MATLAB</em> scripts estimate I_EFF from A_FLOW, T_H2O and C_ACID, examining how variable scaling and correlation affect model parameters and prediction accuracy.",
+              "The <em>MATLAB</em> script compares least-squares estimates with different methods and <strong>normalisation</strong> techniques, including <a href=\"https://en.wikipedia.org/wiki/Feature_scaling\" target=\"_blank\" rel=\"noopener noreferrer\">min–max scaling</a> and <a href=\"https://fr.wikipedia.org/wiki/Score_z\" target=\"_blank\" rel=\"noopener noreferrer\">z-score standardisation</a>. The number of components is chosen to explain 95% of cumulative variance. A separate PCR experiment uses a correlated synthetic input to observe coefficient changes, and the script also includes seven-fold cross-validation.",
+              "The figures show fitted curves, errors and coefficient changes for 21 observations across the different scaling and correlation methods. The collinearity experiment can vary between runs."
             ],
-            skills: ["MATLAB data processing and model comparison.", "Least-squares and principal-component regression.", "Min–max scaling and z-score standardisation.", "Collinearity analysis with a synthetic variable.", "Seven-fold cross-validation, with protocol limitations considered."],
-            captions: ["Fits on standardised data.", "Error comparison between LSE and PCA models.", "Effect of standardisation methods on LSE outputs."],
-            alts: ["Least-squares and PCA predictions on standardised data.", "Error comparison between LSE and PCA models.", "Original and min-max- and z-score-standardised LSE outputs compared."],
+            skills: ["Least-squares and principal-component regression.", "Min–max scaling and z-score standardisation.", "Collinearity analysis using a synthetic variable and PCR.", "Seven-fold cross-validation, with protocol limitations considered."],
+            captions: ["Effect of standardisation methods on LSE outputs.", "Fits on standardised data.", "Error comparison between two models."],
+            alts: ["Original and min–max- and z-score-standardised LSE outputs compared.", "Least-squares and PCA predictions on standardised data.", "Error comparison between LSE and PCA models."],
             visualAlt: "Comparison of least-squares and PCA predictions",
             links: ["Scripts, data and additional figures"]
           },
           {
             type: "Geolocation · optimisation",
             title: "Position estimation with gradient-based methods",
-            summary: "Robust position estimation by nonlinear triangulation with noisy distance measurements, comparing Gauss–Newton and Levenberg–Marquardt methods.",
+            summary: "Robust position estimation by nonlinear triangulation despite noisy distance measurements.",
             details: [
-              "The locations of three phone stations and their noisy distance measurements are known; the phone's position must be estimated. Since noise can prevent the three circles from intersecting, the project uses nonlinear least-squares optimisation.",
-              "MATLAB computes predicted distances, residuals and their Jacobian, then compares Gauss–Newton, Levenberg–Marquardt (LM) and weighted LM (WLM). WLM weights measurements using the estimated variance for each station.",
-              "The supplied measurements feed the residual and Jacobian calculations. Figures show the distance circles and estimated trajectories for the compared methods, documenting their behaviour on the project data."
+              "The coordinates of three phone stations and their noisy distances from the phone are known; the phone's position must be estimated. Noise can prevent the three circles from intersecting exactly, so the task is to estimate their intersection using <strong>Gauss–Newton</strong>, <strong>Levenberg–Marquardt</strong> and damped variants.",
+              "The <em>MATLAB</em> script computes predicted distances, residuals and their Jacobian, then compares Gauss–Newton, Levenberg–Marquardt (LM) and weighted LM (WLM). Gauss–Newton is undamped and serves as a baseline; LM damps updates, while WLM weights measurements using the estimated variance for each station. Three compiled <em>MATLAB</em> functions provide noisy measurements at each step.",
+              "The supplied measurements feed the residual and Jacobian calculations. Figures show the distance circles and trajectories estimated by the compared methods, documenting and comparing the triangulations on the project data."
             ],
-            skills: ["MATLAB computation and visualisation.", "Nonlinear least-squares position estimation.", "Distance residual and Jacobian calculations.", "Gauss–Newton and Levenberg–Marquardt methods.", "Measurement weighting based on estimated variance."],
-            captions: ["WLM triangulation visualisation.", "WLM parameter gradients over the iterations.", "LM parameter errors over the iterations.", "Error over the iterations."],
-            alts: ["Measurement circles and position trajectory estimated by WLM.", "Gradient of each WLM parameter over the iterations.", "Error of each LM parameter over the iterations.", "Evolution of the error over the iterations."],
+            skills: ["Nonlinear least-squares position estimation.", "Distance residual and Jacobian calculations.", "Comparison of Gauss–Newton and Levenberg–Marquardt methods.", "Measurement weighting based on estimated variance."],
+            captions: ["WLM visualisation.", "WLM parameter gradients over 5,000 iterations.", "LM parameter errors over the iterations.", "Error over 5,000 iterations."],
+            alts: ["Measurement circles and position trajectory estimated by WLM.", "Gradient of each WLM parameter over 5,000 WLM iterations.", "Error of each LM parameter over the iterations.", "Evolution of the error over 5,000 iterations."],
             visualAlt: "Measurement circles and a position-estimation trajectory",
             links: ["Project report (PDF)", "Source code and figures"]
           }
@@ -2275,6 +2276,9 @@
       const applyEnglish = () => {
         const setText = (element, value) => {
           if (element) element.textContent = value;
+        };
+        const setRichText = (element, value) => {
+          if (element) element.innerHTML = value;
         };
         const setFirstText = (element, value) => {
           const textNode = Array.from(element.childNodes).find(node => node.nodeType === Node.TEXT_NODE);
@@ -2344,7 +2348,7 @@
             const section = sections[sectionIndex];
             const paragraph = section && section.querySelector("p");
             if (!paragraph) return;
-            setText(paragraph, text);
+            setRichText(paragraph, text);
             Array.from(section.querySelectorAll("p")).slice(1).forEach(extra => extra.remove());
             section.querySelectorAll("br").forEach(lineBreak => lineBreak.remove());
           });
@@ -2352,7 +2356,7 @@
           if (skills) {
             skills.replaceChildren(...copy.skills.map(skill => {
               const item = document.createElement("li");
-              item.textContent = skill;
+              setRichText(item, skill);
               return item;
             }));
           }
@@ -2361,6 +2365,7 @@
             if (copy.captions[figureIndex]) setText(figure.querySelector("figcaption"), copy.captions[figureIndex]);
             if (copy.alts[figureIndex]) figure.querySelector("img").alt = copy.alts[figureIndex];
           });
+          if (copy.resourceNote) setRichText(sections[4].querySelector("p"), copy.resourceNote);
           card.querySelectorAll(".project-details .project-link").forEach((link, linkIndex) => {
             if (copy.links[linkIndex]) setFirstText(link, `${copy.links[linkIndex]} `);
           });
