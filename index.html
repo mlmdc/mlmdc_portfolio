@@ -999,6 +999,39 @@
       border-top: 1px solid var(--line);
     }
 
+    .experience-narrative {
+      display: grid;
+      gap: 18px;
+      margin-bottom: 24px;
+    }
+
+    .experience-narrative section {
+      display: grid;
+      gap: 8px;
+    }
+
+    .experience-narrative h4 {
+      margin: 0;
+      font-size: 1rem;
+    }
+
+    .experience-narrative p,
+    .experience-narrative ul {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    .experience-narrative ul {
+      display: grid;
+      gap: 6px;
+      padding-left: 20px;
+    }
+
+    .experience-narrative li > ul {
+      margin-top: 6px;
+    }
+
     .experience-details .project-gallery {
       border: 0;
       border-radius: 10px;
@@ -1962,18 +1995,73 @@
               </button>
             </div>
             <div class="experience-details" hidden>
+              <div class="experience-narrative">
+                <section>
+                  <h4>Contexte</h4>
+                  <p>À la suite de l’adoption, en 2023, d’un amendement porté par le sénateur Philippe Folliot dans le cadre de la loi de programmation militaire 2024–2030, la Marine nationale est associée à l’Ifremer pour poursuivre l’exploitation du Nautile jusqu’en 2030 au moins. En janvier 2024, l’Ifremer annonce la modernisation du sous-marin, organisée en plusieurs étapes, afin de prolonger ses opérations au-delà de 2035. Le stage s’inscrit dans la pré-étude de cette modernisation.</p>
+                </section>
+                <section>
+                  <h4>Actions</h4>
+                  <ul>
+                    <li>Étude bibliographique et état des lieux du Nautile en 2026 :
+                      <ul>
+                        <li>Étude des alimentations hydrauliques et électriques du sous-marin ;</li>
+                        <li>Cartographie de l’expérience pilote opérationnelle et en télémanipulation ;</li>
+                        <li>Rédaction d’études internes sur les capacités du Nautile ;</li>
+                        <li>État de l’art et veille technologique sur la robotique sous-marine, particulièrement la télémanipulation sous-marine ;</li>
+                        <li>Étude technique et opérationnelle des engins sous-marins dans le monde ;</li>
+                        <li>Études et essais de nouveaux composants pour la flotte océanographique française (encodeurs, valves, algorithmes).</li>
+                      </ul>
+                    </li>
+                    <li>Développement de modélisations, d’estimations et de simulations temps réel en milieu marin :
+                      <ul>
+                        <li>Modélisations sur Autodesk Inventor et Blender ;</li>
+                        <li>Mise en place et développement sur le moteur de simulation spécialisé Stonefish (ROS 2, XML, C++ et Docker) ;</li>
+                        <li>Développement descriptif de scénarios de travail du Nautile et de ses bras manipulateurs ;</li>
+                        <li>Développement d’un contrôleur intermédiaire ROS 2–Python–MATLAB ;</li>
+                        <li>Développement d’algorithmes d’estimation de poses et de contrôle-commande des bras manipulateurs.</li>
+                      </ul>
+                    </li>
+                    <li>Modélisations des bras manipulateurs et analyses associées :
+                      <ul>
+                        <li>Modélisations, analyses cinématiques et dynamiques de bras manipulateurs sur des scénarios précis ;</li>
+                        <li>Recherche de métriques de performances des bras pour créer des comparaisons objectives ;</li>
+                        <li>Simulations des espaces de travail contraints et des opérations des bras ;</li>
+                        <li>Développement logiciel (Python, ROS 2) des outils et scénarios de simulation.</li>
+                      </ul>
+                    </li>
+                  </ul>
+                </section>
+                <section>
+                  <h4>Résultats</h4>
+                  <ul>
+                    <li>État de l’art et état des lieux du Nautile réalisés pour la pré-étude de modernisation.</li>
+                    <li>Composants étudiés et évalués en vue d’une intégration éventuelle dans les engins de la flotte océanographique française.</li>
+                    <li>Nautile modélisé et exploité en simulation temps réel pour les essais et le développement.</li>
+                    <li>Corpus de données constitué pour comparer et sélectionner de nouveaux bras manipulateurs.</li>
+                  </ul>
+                </section>
+                <section>
+                  <h4>Environnement technique</h4>
+                  <p><strong>Développement :</strong> ROS 2, Docker, Stonefish, C++, Python, MATLAB.<br><strong>Outils :</strong> STM32CubeIDE, Git, GitLab, Autodesk Inventor, Blender.<br><strong>Méthodes :</strong> robotique, analyse de données et simulation temps réel.</p>
+                </section>
+                <section>
+                  <h4>À propos de l’Ifremer</h4>
+                  <p>L’Ifremer est un établissement public à caractère industriel et commercial (EPIC), placé sous la tutelle des ministères chargés de la Transition écologique et de l’Enseignement supérieur et de la Recherche. Basée à Toulon, l’Unité des sous-marins développe et suit les systèmes et méthodes d’intervention, de reconnaissance et de surveillance sous-marines, à des fins opérationnelles ou exploratoires.</p>
+                </section>
+              </div>
               <div class="project-gallery">
                 <figure>
                   <img src="assets/experience/nautile-front.png" alt="Vue de face d’un modèle 3D du sous-marin Nautile et de ses équipements" loading="lazy">
                   <figcaption>Modèle 3D du Nautile, vue de face.</figcaption>
                 </figure>
                 <figure>
-                  <img src="assets/experience/nautile-side.jpg" alt="Vue latérale du sous-marin Nautile" loading="lazy">
-                  <figcaption>Vue latérale du Nautile.</figcaption>
+                  <img src="assets/experience/nautile-side-view.png" alt="Vue latérale gauche du sous-marin Nautile" loading="lazy">
+                  <figcaption>Vue latérale gauche du Nautile.</figcaption>
                 </figure>
                 <figure>
-                  <img src="assets/experience/ifremer-site.jpg" alt="Vue du site de l’Ifremer en bord de mer" loading="lazy">
-                  <figcaption>Site de l’Ifremer.</figcaption>
+                  <img src="assets/experience/ifremer-toulon-base.jpg" alt="Vue de la base Ifremer de Toulon" loading="lazy">
+                  <figcaption>Base Ifremer de Toulon.</figcaption>
                 </figure>
               </div>
             </div>
@@ -2000,6 +2088,76 @@
               </button>
             </div>
             <div class="experience-details" hidden>
+              <div class="experience-narrative">
+                <section>
+                  <h4>Contexte</h4>
+                  <p>Ce stage, réalisé à Centrale Nantes au sein du laboratoire GeM, porte sur le monitoring du procédé de fabrication additive métallique WAAM (Wire Arc Additive Manufacturing). L’objectif est de développer des outils de mesure — caméras thermiques et profilomètres —, une plateforme de traitement de données et des algorithmes pour optimiser ce procédé innovant dans le cadre du projet Additive4Rail, en collaboration avec la SNCF, VLM Robotics et d’autres partenaires.</p>
+                </section>
+                <section>
+                  <h4>Actions</h4>
+                  <ul>
+                    <li>Développement d’une passerelle numérique entre le procédé et le PC :
+                      <ul>
+                        <li>Développement logiciel d’un client de communication Python ↔ Siemens ;</li>
+                        <li>Réunions et collaboration avec VLM Robotics pour le suivi du développement du client de communication ;</li>
+                        <li>Intégration de capteurs de monitoring (caméras thermiques, profilomètres, multimètres) ;</li>
+                        <li>Développement d’algorithmes de fusion des données et de synchronisation entre les différents capteurs ;</li>
+                        <li>Développement et intégration d’une interface utilisateur (IHM) ;</li>
+                        <li>Mise en place d’un cycle IVV avec les chercheurs ;</li>
+                        <li>Mise en place d’une démarche CI/CD autour du logiciel avec GitLab.</li>
+                      </ul>
+                    </li>
+                    <li>Développement d’un logiciel pour les caméras thermiques :
+                      <ul>
+                        <li>Conception d’un service à l’architecture modulaire autour du SDK du constructeur ;</li>
+                        <li>Mise en place d’une parallélisation des communications et du traitement des données ;</li>
+                        <li>Développement d’une gestion asynchrone et multi-caméras pour faciliter l’utilisation.</li>
+                      </ul>
+                    </li>
+                    <li>Développement d’un logiciel pour le profilomètre Keyence LJ-V7200 :
+                      <ul>
+                        <li>Exploitation du SDK Keyence pour intégrer le profilomètre dans le flux de données ;</li>
+                        <li>Parallélisation des processus ;</li>
+                        <li>Développement du filtrage des profils, en temps réel et a posteriori ;</li>
+                        <li>Développement d’algorithmes d’extraction d’informations (dimensions, profil et autres caractéristiques) des profils mesurés ;</li>
+                        <li>Développement d’un algorithme de reconstruction 3D à partir de plans de coupe.</li>
+                      </ul>
+                    </li>
+                    <li>Développement d’un algorithme de correction des mesures thermiques :
+                      <ul>
+                        <li>Recherche et développement d’un algorithme de correction des mesures des caméras thermiques ;</li>
+                        <li>Développement d’une version rapide pour les calculs en temps réel ;</li>
+                        <li>Mise en place d’expériences pour obtenir des données de référence ;</li>
+                        <li>Intégration dans le flux de mesure temps réel de la plateforme logicielle ;</li>
+                        <li>Validation des algorithmes en conditions réelles.</li>
+                      </ul>
+                    </li>
+                    <li>Réalisation de preuves de concept :
+                      <ul>
+                        <li>Mesures complètes des profils avec fusion des données de plusieurs capteurs ;</li>
+                        <li>Mesures multi-matériaux corrigées en temps réel.</li>
+                      </ul>
+                    </li>
+                  </ul>
+                </section>
+                <section>
+                  <h4>Résultats</h4>
+                  <ul>
+                    <li>Plateforme de connexion temps réel fonctionnelle et maintenable, intégrant l’ensemble des capteurs.</li>
+                    <li>Réduction de l’erreur des caméras thermiques de 40 % à moins de 0,1 %.</li>
+                    <li>Génération de profils 3D en temps réel.</li>
+                    <li>Preuves de concept réalisées pour de futures évolutions.</li>
+                  </ul>
+                </section>
+                <section>
+                  <h4>Environnement technique</h4>
+                  <p><strong>Méthodes :</strong> fabrication additive, WAAM, CI/CD avec GitLab.<br><strong>Équipements et outils :</strong> GitLab, profilomètre Keyence LJ-V7200, caméras thermiques.<br><strong>Procédés :</strong> traitement de données temps réel, fusion de capteurs.<br><strong>Langages et outils de développement :</strong> Git, Python, C++.</p>
+                </section>
+                <section>
+                  <h4>À propos du laboratoire GeM</h4>
+                  <p>Le GeM (Institut de Recherche en Génie Civil et Mécanique) est un laboratoire commun à Centrale Nantes, Nantes Université et au CNRS. Ses recherches portent sur la mécanique, les matériaux et les structures, en associant expérimentation, modélisation et simulation numérique. Elles couvrent notamment les matériaux, les procédés de fabrication, la durabilité et le comportement des structures, avec de nombreuses applications industrielles.</p>
+                </section>
+              </div>
               <div class="project-gallery">
                 <figure>
                   <img src="assets/experience/waam-process.png" alt="Schéma du procédé de fabrication additive WAAM par dépôt de cordon métallique" loading="lazy">
@@ -2041,6 +2199,58 @@
               </button>
             </div>
             <div class="experience-details" hidden>
+              <div class="experience-narrative">
+                <section>
+                  <h4>Contexte</h4>
+                  <p>Opérations courantes en brasserie artisanale à la Brasserie Poem, à Brest, et à la Brasserie de Bretagne, à Concarneau, pendant les étés 2022 et 2024 : préparation des brassins et brassage, conditionnement de produits intermédiaires ou finis en bouteilles et en fûts, et nettoyage des outils et des espaces de production.</p>
+                </section>
+                <section>
+                  <h4>Actions</h4>
+                  <ul>
+                    <li>Vente au détail en brasserie :
+                      <ul>
+                        <li>Préparation de coffrets personnalisés ;</li>
+                        <li>Service au bar ;</li>
+                        <li>Vente aux particuliers.</li>
+                      </ul>
+                    </li>
+                    <li>Conditionnement du produit intermédiaire :
+                      <ul>
+                        <li>Conditionnement en bouteilles : désinfection et tirage ;</li>
+                        <li>Conditionnement en fûts : nettoyage, désinfection et remplissage ;</li>
+                        <li>Étiquetage et réassort ;</li>
+                        <li>Gestion des stocks et des productions.</li>
+                      </ul>
+                    </li>
+                    <li>Préparation des brassins et brassage :
+                      <ul>
+                        <li>Gestion des stocks d’ingrédients ;</li>
+                        <li>Transformation des ingrédients ;</li>
+                        <li>Brassage de différentes recettes de moûts ;</li>
+                        <li>Mise en cuve.</li>
+                      </ul>
+                    </li>
+                    <li>Nettoyage des outils et des espaces de production :
+                      <ul>
+                        <li>Nettoyage des réservoirs, des cuves et des espaces selon les normes HACCP ;</li>
+                        <li>Nettoyage des outils afin d’en maintenir le bon fonctionnement.</li>
+                      </ul>
+                    </li>
+                  </ul>
+                </section>
+                <section>
+                  <h4>Résultats</h4>
+                  <ul>
+                    <li>Participation à la production de plusieurs dizaines de brassins.</li>
+                    <li>Nettoyages réalisés selon les normes HACCP, sans détérioration des productions.</li>
+                    <li>Environ une centaine de ventes assurées.</li>
+                  </ul>
+                </section>
+                <section>
+                  <h4>Environnement technique</h4>
+                  <p>Brassage, conditionnement alimentaire, contrôle qualité, HACCP et vente au détail.</p>
+                </section>
+              </div>
               <div class="project-gallery">
                 <figure>
                   <img src="assets/companies/brasserie-de-bretagne.png" alt="Logo de la Brasserie de Bretagne" loading="lazy">
@@ -2248,8 +2458,42 @@
               "Developed simulation, modelling and algorithm tools in Python, C++, and ROS 2 to characterise multi-axis manipulator performance.",
               "Designed data-fusion algorithms to estimate arm pose in complex underwater environments."
             ],
-            captions: ["Nautile 3D model, front view.", "Side view of the Nautile.", "Ifremer's coastal site."],
-            alts: ["Front view of the Nautile submarine 3D model and equipment.", "Side view of the Nautile submarine.", "View of Ifremer's coastal site."]
+            narrative: "<section><h4>Context</h4><p>Following the adoption in 2023 of an amendment introduced by Senator Philippe Folliot during work on the 2024–2030 Military Programming Law, the French Navy joined Ifremer in continuing to operate the Nautile until at least 2030. In January 2024, Ifremer announced a multi-stage modernisation programme to extend the submersible’s operations beyond 2035, supported by its titanium pilot sphere. This internship contributed to the programme’s preliminary study.</p></section><section><h4>Nautile review and technology watch</h4><ul><li>Reviewed the Nautile’s 2026 status, including its hydraulic and electrical power systems.</li><li>Mapped pilot operation, operational experience and teleoperation, and prepared internal studies of the submersible’s capabilities.</li><li>Surveyed underwater robotics and teleoperation, and assessed underwater vehicles worldwide from technical and operational perspectives.</li><li>Studied and tested components for the French Oceanographic Fleet, including encoders, valves and algorithms.</li></ul></section><section><h4>Modelling, simulation and control</h4><ul><li>Modelled the Nautile and its equipment in Autodesk Inventor and Blender, then integrated the model into Stonefish for real-time marine-environment simulation.</li><li>Developed Nautile work scenarios and manipulator-arm scenarios using ROS 2, C++, XML and Docker.</li><li>Developed an intermediate ROS 2–Python–MATLAB controller and algorithms for arm-pose estimation and control.</li><li>Performed kinematic and dynamic analyses of the arms in operational scenarios, investigated performance metrics, and simulated constrained workspaces.</li></ul></section><section><h4>Outcomes</h4><ul><li>Completed a state-of-the-art review and status assessment of the Nautile for the preliminary modernisation study.</li><li>Evaluated components for potential integration into French Oceanographic Fleet vehicles.</li><li>Built and used a Nautile model in real-time simulation for testing and development.</li><li>Compiled a data corpus to support the comparison and selection of new manipulator arms.</li></ul></section><section><h4>Technical environment</h4><p><strong>Development:</strong> ROS 2, Docker, Stonefish, C++, Python, MATLAB.<br><strong>Tools:</strong> STM32CubeIDE, Git, GitLab, Autodesk Inventor, Blender.<br><strong>Methods:</strong> robotics, data analysis and real-time simulation.</p></section><section><h4>About Ifremer</h4><p>Ifremer is a French public industrial and commercial establishment, overseen by the ministries responsible for ecological transition and higher education and research. Based in Toulon, its Submersibles Unit develops and maintains underwater intervention, reconnaissance and surveillance systems and methods for operational and exploratory purposes.</p></section>",
+            actions: [
+              {
+                heading: "Bibliographic research and 2026 status review of the Nautile:",
+                items: [
+                  "Study of the submersible’s hydraulic and electrical power supplies;",
+                  "Mapping of operational piloting experience and teleoperation;",
+                  "Writing internal studies on the Nautile’s capabilities;",
+                  "State-of-the-art review and technology watch on underwater robotics, particularly underwater teleoperation;",
+                  "Technical and operational study of underwater vehicles worldwide;",
+                  "Study and testing of new components for the French Oceanographic Fleet (encoders, valves and algorithms)."
+                ]
+              },
+              {
+                heading: "Development of modelling, estimation and real-time simulation in the marine environment:",
+                items: [
+                  "Modelling in Autodesk Inventor and Blender;",
+                  "Setup and development using the specialised Stonefish simulation engine (ROS 2, XML, C++ and Docker);",
+                  "Descriptive development of Nautile work scenarios and its manipulator arms;",
+                  "Development of an intermediate ROS 2–Python–MATLAB controller;",
+                  "Development of pose-estimation and control algorithms for the manipulator arms."
+                ]
+              },
+              {
+                heading: "Manipulator-arm modelling and related analyses:",
+                items: [
+                  "Kinematic and dynamic modelling and analysis of manipulator arms for specific scenarios;",
+                  "Research into arm performance metrics to enable objective comparisons;",
+                  "Simulation of constrained workspaces and arm operations;",
+                  "Software development (Python, ROS 2) for simulation tools and scenarios."
+                ]
+              }
+            ],
+            removeFollowingActionSection: true,
+            captions: ["Nautile 3D model, front view.", "Nautile, left-side view.", "Ifremer's Toulon base."],
+            alts: ["Front view of the Nautile submarine 3D model and equipment.", "Left-side view of the Nautile submarine.", "View of Ifremer's Toulon base."]
           },
           {
             date: "September 2024 – February 2025",
@@ -2259,6 +2503,56 @@
               "Designed real-time monitoring for metal additive manufacturing, including multi-sensor acquisition, processing and data fusion in Python/C++.",
               "Modelled and simulated sensors in Python/MATLAB for characterisation, correction and calibration."
             ],
+            narrative: "<section><h4>Context</h4><p>This internship at Centrale Nantes, within the GeM laboratory, focused on monitoring WAAM (Wire Arc Additive Manufacturing). The goal was to develop measurement tools (thermal cameras and profile sensors), a data-processing platform and algorithms to optimise this innovative process as part of the Additive4Rail project, in collaboration with SNCF, VLM Robotics and other partners.</p></section><section><h4>Actions</h4><ul></ul></section><section><h4>Results</h4><ul><li>Functional, maintainable real-time connection platform integrating all sensors.</li><li>Reduced thermal-camera measurement error from 40% to below 0.1%.</li><li>Real-time 3D profiles.</li><li>Proofs of concept for potential future developments.</li></ul></section><section><h4>Technical environment</h4><p><strong>Methods:</strong> additive manufacturing, WAAM, GitLab CI/CD.<br><strong>Equipment and tools:</strong> GitLab, Keyence LJ-V7200 profile sensor, thermal cameras.<br><strong>Processes:</strong> real-time data processing, sensor fusion.<br><strong>Languages and development tools:</strong> Git, Python, C++.</p></section><section><h4>About GeM</h4><p>GeM (Research Institute in Civil and Mechanical Engineering) is a joint laboratory of Centrale Nantes, Nantes Université and CNRS. Its work focuses on mechanics, materials and structures, combining experimental research, modelling and numerical simulation. Its research includes materials, manufacturing processes, durability and structural behaviour, with many industrial applications.</p></section>",
+            actions: [
+              {
+                heading: "Development of a digital process-to-PC gateway:",
+                items: [
+                  "Software development of a Python ↔ Siemens communication client;",
+                  "Meetings and collaboration with VLM Robotics to track development of the communication client;",
+                  "Integration of monitoring sensors (thermal cameras, profile sensors and multimeters);",
+                  "Development of data-fusion and synchronisation algorithms for the different sensors;",
+                  "Development and integration of a user interface (HMI);",
+                  "Setup of an integration, verification and validation (IVV) cycle with researchers;",
+                  "Implementation of a GitLab CI/CD approach for the software."
+                ]
+              },
+              {
+                heading: "Development of thermal-camera software:",
+                items: [
+                  "Design of a modular service built around the manufacturer's SDK;",
+                  "Parallelisation of communications and data processing;",
+                  "Asynchronous, multi-camera handling to simplify use."
+                ]
+              },
+              {
+                heading: "Development of software for the Keyence LJ-V7200 profile sensor:",
+                items: [
+                  "Use of the Keyence SDK to integrate the sensor into the data pipeline;",
+                  "Parallelisation of processes;",
+                  "Real-time and post-processing filtering of acquired profiles;",
+                  "Algorithms to extract dimensions, profile and other information from measured profiles;",
+                  "3D reconstruction algorithm from cross-sectional planes."
+                ]
+              },
+              {
+                heading: "Development of a thermal-measurement correction algorithm:",
+                items: [
+                  "Research and development of a correction algorithm for thermal-camera measurements;",
+                  "Development of a fast version for real-time computation;",
+                  "Design of experiments to obtain reference data;",
+                  "Integration into the platform's real-time measurement pipeline;",
+                  "Validation of algorithms under real-world conditions."
+                ]
+              },
+              {
+                heading: "Proofs of concept:",
+                items: [
+                  "Complete profile measurements using data fusion from multiple sensors;",
+                  "Real-time corrected measurements across multiple materials."
+                ]
+              }
+            ],
             captions: ["WAAM metal deposition process.", "Experimental additive-manufacturing cell.", "Thermal image of the deposition process.", "Multi-sensor monitoring architecture."],
             alts: ["Diagram of the WAAM wire-arc additive manufacturing process.", "Robotic metal additive-manufacturing cell in the laboratory.", "Thermal image of the melt pool during metal deposition.", "Diagram of monitoring and multi-sensor acquisition for the robotic cell."]
           },
@@ -2267,6 +2561,7 @@
             title: "Brewery operator",
             organization: "Brasserie de Bretagne & Brasserie Poem",
             highlights: ["Production, quality control and sales in craft breweries."],
+            narrative: "<section><h4>Context</h4><p>Day-to-day work at two craft breweries—Brasserie Poem in Brest and Brasserie de Bretagne in Concarneau—during the summers of 2022 and 2024. Duties included preparing and brewing batches, packaging intermediate or finished products in bottles and kegs, and cleaning production equipment and areas.</p></section><section><h4>Actions</h4><ul><li>Retail sales at the brewery:<ul><li>Preparing custom gift packs;</li><li>Bar service;</li><li>Sales to individual customers.</li></ul></li><li>Packaging intermediate product:<ul><li>Bottling: sanitation and filling;</li><li>Keg packaging: cleaning, sanitation and filling;</li><li>Labelling and replenishment;</li><li>Managing stock and production.</li></ul></li><li>Batch preparation and brewing:<ul><li>Managing ingredient stock;</li><li>Processing ingredients;</li><li>Brewing different wort recipes;</li><li>Transferring wort to tanks.</li></ul></li><li>Cleaning equipment and production areas:<ul><li>Cleaning tanks, vessels and production areas in accordance with HACCP standards;</li><li>Cleaning equipment to maintain proper operation.</li></ul></li></ul></section><section><h4>Results</h4><ul><li>Contributed to the production of several dozen batches.</li><li>Completed HACCP-compliant cleaning without compromising production.</li><li>Handled approximately one hundred sales.</li></ul></section><section><h4>Technical environment</h4><p>Brewing, food packaging, quality control, HACCP and retail sales.</p></section>",
             captions: ["Brasserie de Bretagne."],
             alts: ["Brasserie de Bretagne logo."]
           }
@@ -2383,6 +2678,34 @@
           card.querySelectorAll(".experience-highlights li").forEach((item, itemIndex) => {
             if (copy.highlights[itemIndex]) setText(item, copy.highlights[itemIndex]);
           });
+          if (copy.narrative) {
+            const narrative = card.querySelector(".experience-narrative");
+            setRichText(narrative, copy.narrative);
+            if (isEnglish && copy.actions) {
+              const sections = narrative.querySelectorAll("section");
+              if (copy.actions) {
+                const actionSection = document.createElement("section");
+                const heading = document.createElement("h4");
+                const list = document.createElement("ul");
+                heading.textContent = "Actions";
+                copy.actions.forEach(action => {
+                  const item = document.createElement("li");
+                  item.append(document.createTextNode(action.heading));
+                  const sublist = document.createElement("ul");
+                  action.items.forEach(subaction => {
+                    const subitem = document.createElement("li");
+                    subitem.textContent = subaction;
+                    sublist.append(subitem);
+                  });
+                  item.append(sublist);
+                  list.append(item);
+                });
+                actionSection.append(heading, list);
+                sections[1].replaceWith(actionSection);
+                if (copy.removeFollowingActionSection) sections[2].remove();
+              }
+            }
+          }
           card.querySelectorAll(".experience-details figure").forEach((figure, figureIndex) => {
             if (copy.captions[figureIndex]) setText(figure.querySelector("figcaption"), copy.captions[figureIndex]);
             if (copy.alts[figureIndex]) figure.querySelector("img").alt = copy.alts[figureIndex];
