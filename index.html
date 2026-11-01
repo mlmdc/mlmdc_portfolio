@@ -857,6 +857,45 @@
       cursor: pointer;
     }
 
+    .image-lightbox-navigation {
+      position: absolute;
+      top: 50%;
+      display: grid;
+      width: 42px;
+      height: 52px;
+      place-items: center;
+      border: 1px solid var(--gallery-control-border);
+      border-radius: 20px;
+      background: var(--gallery-control-background);
+      color: var(--ink);
+      font-size: 1.5rem;
+      line-height: 1;
+      cursor: pointer;
+      transform: translateY(-50%);
+    }
+
+    .image-lightbox-navigation[hidden] {
+      display: none;
+    }
+
+    .image-lightbox-navigation:hover:not(:disabled) {
+      border-color: var(--accent);
+      background: var(--gallery-control-hover);
+    }
+
+    .image-lightbox-navigation:disabled {
+      opacity: 0.4;
+      cursor: default;
+    }
+
+    .image-lightbox-navigation--previous {
+      left: 10px;
+    }
+
+    .image-lightbox-navigation--next {
+      right: 10px;
+    }
+
     .experience {
       padding: 0 0 88px;
     }
@@ -1434,16 +1473,24 @@
                 <h4>Ressources</h4>
                 <div class="project-gallery">
                   <figure>
-                    <img src="assets/projects/tangram-ur5e.svg" alt="Architecture de l’interface, de la communication TCP/IP et du robot UR5e" loading="lazy">
-                    <figcaption>Architecture du système.</figcaption>
+                    <img src="assets/projects/tangram-ur5e.jpg" alt="Robot collaboratif UR5e" loading="lazy">
+                    <figcaption>Robot collaboratif UR5e.</figcaption>
                   </figure>
                   <figure>
-                    <img src="assets/projects/tangram-editor-detail.png" alt="Éditeur Tangram et ses sept pièces manipulables" loading="lazy">
-                    <figcaption>Éditeur de composition.</figcaption>
+                    <img src="assets/projects/tangram-random-layout.png" alt="Pièces de tangram disposées aléatoirement dans l’éditeur" loading="lazy">
+                    <figcaption>Pièces disposées aléatoirement.</figcaption>
                   </figure>
                   <figure>
-                    <img src="assets/projects/tangram-layout-detail.png" alt="Exemple de disposition composée avec l’éditeur Tangram" loading="lazy">
-                    <figcaption>Exemple de disposition.</figcaption>
+                    <img src="assets/projects/tangram-touching-layout.png" alt="Pièces de tangram rapprochées dans une composition" loading="lazy">
+                    <figcaption>Pièces rapprochées dans une composition.</figcaption>
+                  </figure>
+                  <figure>
+                    <img src="assets/projects/tangram-layout-balanced.png" alt="Pièces de tangram réparties sur l’éditeur" loading="lazy">
+                    <figcaption>Pièces réparties sur l’éditeur.</figcaption>
+                  </figure>
+                  <figure>
+                    <img src="assets/projects/tangram-layout-rotated.png" alt="Pièces de tangram orientées différemment dans l’éditeur" loading="lazy">
+                    <figcaption>Pièces orientées différemment.</figcaption>
                   </figure>
                 </div>
                 <a class="project-link" href="https://github.com/mlmdc/UR_tangram_control" target="_blank" rel="noopener noreferrer">Code source et ressources <span aria-hidden="true">↗</span></a>
@@ -1752,6 +1799,10 @@
                     <img src="assets/projects/pso-confusion-detail.png" alt="Matrice de confusion du réseau de neurones" loading="lazy">
                     <figcaption>Matrice de confusion du réseau.</figcaption>
                   </figure>
+                  <figure>
+                    <img src="assets/projects/pso-sorted-arrays.png" alt="Sorties du classifieur PSO et du réseau neuronal sur les échantillons triés" loading="lazy">
+                    <figcaption>Sorties des modèles sur les échantillons triés.</figcaption>
+                  </figure>
                 </div>
                 <a class="project-link" href="https://github.com/mlmdc/PSO_NN_bc/blob/main/VAJA4.pdf" target="_blank" rel="noopener noreferrer">Rapport du projet (PDF) <span aria-hidden="true">↗</span></a>
                 <a class="project-link" href="https://github.com/mlmdc/PSO_NN_bc" target="_blank" rel="noopener noreferrer">Code source et résultats <span aria-hidden="true">↗</span></a>
@@ -1808,6 +1859,10 @@
                     <img src="assets/projects/pca-error-detail.png" alt="Comparaison des erreurs entre les modèles LSE et ACP" loading="lazy">
                     <figcaption>Erreurs des modèles comparés.</figcaption>
                   </figure>
+                  <figure>
+                    <img src="assets/projects/pca-lse-standardizations.png" alt="Comparaison des sorties LSE originales et standardisées par min-max et score Z" loading="lazy">
+                    <figcaption>Effet des méthodes de standardisation sur les sorties LSE.</figcaption>
+                  </figure>
                 </div>
                 <a class="project-link" href="https://github.com/mlmdc/PCA_PCR_model_identification" target="_blank" rel="noopener noreferrer">Scripts, données et autres figures <span aria-hidden="true">↗</span></a>
               </section>
@@ -1858,8 +1913,16 @@
                     <figcaption>Visualisation associée à WLM.</figcaption>
                   </figure>
                   <figure>
-                    <img src="assets/projects/triangulation-lm-detail.png" alt="Cercles de mesure et trajectoire estimée par LM" loading="lazy">
-                    <figcaption>Visualisation associée à LM.</figcaption>
+                    <img src="assets/projects/triangulation-wlm-gradient.png" alt="Gradient de chacun des paramètres selon le nombre d’itérations de WLM" loading="lazy">
+                    <figcaption>Gradient des paramètres au fil des itérations de WLM.</figcaption>
+                  </figure>
+                  <figure>
+                    <img src="assets/projects/triangulation-lm-parameter-errors.png" alt="Erreur de chacun des paramètres selon le nombre d’itérations de LM" loading="lazy">
+                    <figcaption>Erreurs des paramètres au fil des itérations de LM.</figcaption>
+                  </figure>
+                  <figure>
+                    <img src="assets/projects/triangulation-error-history.png" alt="Évolution de l’erreur au cours des itérations" loading="lazy">
+                    <figcaption>Évolution de l’erreur au cours des itérations.</figcaption>
                   </figure>
                 </div>
                 <a class="project-link" href="https://github.com/mlmdc/LM_triangulation/blob/main/Report.pdf" target="_blank" rel="noopener noreferrer">Rapport du projet (PDF) <span aria-hidden="true">↗</span></a>
@@ -2032,6 +2095,8 @@
     <form method="dialog">
       <button class="image-lightbox-close" aria-label="Fermer l’aperçu">Fermer</button>
     </form>
+    <button class="image-lightbox-navigation image-lightbox-navigation--previous" type="button" aria-label="Image précédente">‹</button>
+    <button class="image-lightbox-navigation image-lightbox-navigation--next" type="button" aria-label="Image suivante">›</button>
     <figure>
       <img alt="">
       <figcaption></figcaption>
@@ -2060,8 +2125,8 @@
               "The editor, piece detection and pose transmission form an end-to-end control workflow. The repository includes a calibration example, and both programs run on the UR5e. Collision detection and safety checks remain the operator's responsibility."
             ],
             skills: ["Python and Pygame for the 2D editor.", "Mapping image and layout coordinates to robot poses.", "TCP communication with the UR controller.", "PolyScope integration with the gripper."],
-            captions: ["System architecture.", "Tangram composition editor.", "Example layout."],
-            alts: ["Tangram editor, TCP/IP communication and UR5e architecture.", "Tangram editor with its seven movable pieces.", "Example layout created in the Tangram editor."],
+            captions: ["UR5e collaborative robot.", "Randomly arranged tangram pieces.", "Tangram pieces brought together in a composition.", "Tangram pieces arranged across the editor.", "Tangram pieces in different orientations."],
+            alts: ["UR5e collaborative robot.", "Tangram pieces arranged randomly in the editor.", "Tangram pieces brought together in a composition.", "Tangram pieces arranged across the editor.", "Tangram pieces in different orientations in the editor."],
             visualAlt: "Diagram of the Tangram interface connected to a UR5e robot",
             links: ["Source code and resources"]
           },
@@ -2135,8 +2200,8 @@
               "The report gives 99.12% accuracy for a nonlinear feedforward network and 97.53% for the PSO linear classifier on these samples. The comparison does not establish generalisation or clinical performance."
             ],
             skills: ["MATLAB classification experiments.", "Supervised classification using the WDBC features.", "Feedforward neural networks.", "Particle-swarm optimisation of a linear classifier.", "Cross-validation and confusion-matrix analysis, with evaluation limitations identified."],
-            captions: ["PSO model predictions.", "Neural-network confusion matrix."],
-            alts: ["PSO classification output compared with reference labels.", "Neural-network confusion matrix."],
+            captions: ["PSO model predictions.", "Neural-network confusion matrix.", "Model outputs on sorted samples."],
+            alts: ["PSO classification output compared with reference labels.", "Neural-network confusion matrix.", "PSO classifier and neural-network outputs on sorted samples."],
             visualAlt: "PSO classification compared with reference labels",
             links: ["Project report (PDF)", "Source code and results"]
           },
@@ -2150,8 +2215,8 @@
               "The figures show fitted curves, errors and coefficient changes for 21 observations. The collinearity experiment can vary between runs, so results should be read in that context."
             ],
             skills: ["MATLAB data processing and model comparison.", "Least-squares and principal-component regression.", "Min–max scaling and z-score standardisation.", "Collinearity analysis with a synthetic variable.", "Seven-fold cross-validation, with protocol limitations considered."],
-            captions: ["Fits on standardised data.", "Error comparison between LSE and PCA models."],
-            alts: ["Least-squares and PCA predictions on standardised data.", "Error comparison between LSE and PCA models."],
+            captions: ["Fits on standardised data.", "Error comparison between LSE and PCA models.", "Effect of standardisation methods on LSE outputs."],
+            alts: ["Least-squares and PCA predictions on standardised data.", "Error comparison between LSE and PCA models.", "Original and min-max- and z-score-standardised LSE outputs compared."],
             visualAlt: "Comparison of least-squares and PCA predictions",
             links: ["Scripts, data and additional figures"]
           },
@@ -2165,8 +2230,8 @@
               "The supplied measurements feed the residual and Jacobian calculations. Figures show the distance circles and estimated trajectories for the compared methods, documenting their behaviour on the project data."
             ],
             skills: ["MATLAB computation and visualisation.", "Nonlinear least-squares position estimation.", "Distance residual and Jacobian calculations.", "Gauss–Newton and Levenberg–Marquardt methods.", "Measurement weighting based on estimated variance."],
-            captions: ["WLM triangulation visualisation.", "LM triangulation visualisation."],
-            alts: ["Measurement circles and position trajectory estimated by WLM.", "Measurement circles and position trajectory estimated by LM."],
+            captions: ["WLM triangulation visualisation.", "WLM parameter gradients over the iterations.", "LM parameter errors over the iterations.", "Error over the iterations."],
+            alts: ["Measurement circles and position trajectory estimated by WLM.", "Gradient of each WLM parameter over the iterations.", "Error of each LM parameter over the iterations.", "Evolution of the error over the iterations."],
             visualAlt: "Measurement circles and a position-estimation trajectory",
             links: ["Project report (PDF)", "Source code and figures"]
           }
@@ -2256,6 +2321,8 @@
         dialog.setAttribute("aria-label", "Image preview");
         dialog.querySelector(".image-lightbox-close").setAttribute("aria-label", "Close image preview");
         setText(dialog.querySelector(".image-lightbox-close"), "Close");
+        dialog.querySelector(".image-lightbox-navigation--previous").setAttribute("aria-label", "Previous image");
+        dialog.querySelector(".image-lightbox-navigation--next").setAttribute("aria-label", "Next image");
         document.querySelectorAll(".project-link--summary").forEach(link => setFirstText(link, "View project "));
 
         document.querySelectorAll(".project-card").forEach((card, index) => {
@@ -2431,7 +2498,21 @@
       const lightbox = document.querySelector(".image-lightbox");
       const lightboxImage = lightbox.querySelector("img");
       const lightboxCaption = lightbox.querySelector("figcaption");
+      const lightboxPrevious = lightbox.querySelector(".image-lightbox-navigation--previous");
+      const lightboxNext = lightbox.querySelector(".image-lightbox-navigation--next");
       let lightboxScrollPosition = 0;
+      let lightboxGalleryFigures = [];
+      let lightboxFigureIndex = 0;
+
+      const updateLightboxImage = () => {
+        const figure = lightboxGalleryFigures[lightboxFigureIndex];
+        const image = figure.querySelector("img");
+        lightboxImage.src = image.currentSrc || image.src;
+        lightboxImage.alt = image.alt;
+        lightboxCaption.textContent = figure.querySelector("figcaption")?.textContent || image.alt;
+        lightboxPrevious.disabled = lightboxFigureIndex === 0;
+        lightboxNext.disabled = lightboxFigureIndex === lightboxGalleryFigures.length - 1;
+      };
 
       const setCardExpanded = (card, expanded) => {
         document.querySelectorAll(".project-card").forEach(otherCard => {
@@ -2512,10 +2593,13 @@
           figure.insertBefore(trigger, image);
           trigger.append(image);
           trigger.addEventListener("click", () => {
+            lightboxGalleryFigures = figures;
+            lightboxFigureIndex = figures.indexOf(figure);
             lightboxScrollPosition = window.scrollY;
-            lightboxImage.src = image.currentSrc || image.src;
-            lightboxImage.alt = image.alt;
-            lightboxCaption.textContent = figure.querySelector("figcaption")?.textContent || image.alt;
+            updateLightboxImage();
+            const hasMultipleImages = lightboxGalleryFigures.length > 1;
+            lightboxPrevious.hidden = !hasMultipleImages;
+            lightboxNext.hidden = !hasMultipleImages;
             lightbox.showModal();
             window.scrollTo({ top: lightboxScrollPosition, left: 0, behavior: "instant" });
           });
@@ -2576,6 +2660,32 @@
       document.querySelectorAll(".project-gallery").forEach(gallery => {
         const card = gallery.closest(".project-card, .experience-card");
         initializeGallery(gallery, card.querySelector("h3").textContent);
+      });
+
+      lightboxPrevious.addEventListener("click", () => {
+        if (lightboxFigureIndex > 0) {
+          lightboxFigureIndex -= 1;
+          updateLightboxImage();
+        }
+      });
+
+      lightboxNext.addEventListener("click", () => {
+        if (lightboxFigureIndex < lightboxGalleryFigures.length - 1) {
+          lightboxFigureIndex += 1;
+          updateLightboxImage();
+        }
+      });
+
+      lightbox.addEventListener("keydown", event => {
+        if (event.key === "ArrowLeft" && lightboxFigureIndex > 0) {
+          event.preventDefault();
+          lightboxFigureIndex -= 1;
+          updateLightboxImage();
+        } else if (event.key === "ArrowRight" && lightboxFigureIndex < lightboxGalleryFigures.length - 1) {
+          event.preventDefault();
+          lightboxFigureIndex += 1;
+          updateLightboxImage();
+        }
       });
 
       lightbox.addEventListener("close", () => {
