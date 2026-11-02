@@ -1171,6 +1171,50 @@
       color: var(--accent-dark);
     }
 
+    .legal-notice {
+      position: fixed;
+      inset: 0;
+      width: min(520px, calc(100% - 32px));
+      max-width: none;
+      max-height: min(80vh, 560px);
+      margin: auto;
+      padding: 28px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: var(--card);
+      color: var(--ink);
+      box-shadow: 0 24px 80px var(--shadow);
+    }
+
+    .legal-notice::backdrop {
+      background: rgb(20 26 23 / 68%);
+    }
+
+    .legal-notice h2 {
+      margin: 0 0 18px;
+      padding-right: 90px;
+      font-size: 1.4rem;
+    }
+
+    .legal-notice p {
+      margin: 0 0 12px;
+      color: var(--muted);
+      overflow-wrap: anywhere;
+    }
+
+    .legal-notice-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      padding: 6px 10px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: var(--surface-alt);
+      color: var(--ink);
+      font: inherit;
+      cursor: pointer;
+    }
+
     html.js .reveal {
       opacity: 0;
       transform: translateY(24px);
@@ -2311,10 +2355,21 @@
     <footer>
       <div class="footer-bottom">
         <p>© <span id="year">2026</span> Maël Madec</p>
-        <p>Code source sous licence <a href="LICENSE">MIT</a>.</p>
+        <p>Code source sous licence <a href="LICENSE">MIT</a>. <a href="#legal-notice" id="legal-notice-link">Mentions légales</a></p>
       </div>
     </footer>
   </div>
+  <img src="https://mlmdc.goatcounter.com/count?p=/test" alt="">
+  <dialog class="legal-notice" id="legal-notice" aria-labelledby="legal-notice-title">
+    <form method="dialog">
+      <button class="legal-notice-close" id="legal-notice-close">Fermer</button>
+    </form>
+    <h2 id="legal-notice-title">Mentions légales</h2>
+    <p><strong id="legal-publisher-label">Éditeur :</strong> <span id="legal-publisher-value">Maël Madec — site édité à titre non professionnel.</span></p>
+    <p><strong id="legal-contact-label">Contact :</strong> <a href="mailto:m.madec01@gmail.com">m.madec01@gmail.com</a></p>
+    <p><strong id="legal-director-label">Directeur de la publication :</strong> <span id="legal-director-value">Maël Madec.</span></p>
+    <p><strong id="legal-host-label">Hébergement :</strong> <span id="legal-host-value">GitHub Pages, service de GitHub, Inc., 88 Colin P Kelly Jr. St., San Francisco, CA 94107, États-Unis.</span></p>
+  </dialog>
   <dialog class="image-lightbox" aria-label="Aperçu de l’image">
     <form method="dialog">
       <button class="image-lightbox-close" aria-label="Fermer l’aperçu">Fermer</button>
@@ -2631,6 +2686,18 @@
         setText(document.querySelector(".contact-intro p"), "For opportunities in robotics, systems or engineering, find me on LinkedIn and GitHub.");
         setText(document.querySelector(".contact-link-label--email"), "Email");
         setText(document.querySelectorAll(".footer-bottom p")[1].firstChild, "Source code licensed under ");
+        setText(document.querySelector("#legal-notice-link"), "Legal notice");
+        const legalNotice = document.querySelector("#legal-notice");
+        legalNotice.setAttribute("aria-label", "Legal notice");
+        setText(legalNotice.querySelector("#legal-notice-title"), "Legal notice");
+        setText(legalNotice.querySelector("#legal-notice-close"), "Close");
+        setText(legalNotice.querySelector("#legal-publisher-label"), "Publisher:");
+        setText(legalNotice.querySelector("#legal-publisher-value"), " Maël Madec — this website is published for non-professional purposes.");
+        setText(legalNotice.querySelector("#legal-contact-label"), "Contact:");
+        setText(legalNotice.querySelector("#legal-director-label"), "Publication director:");
+        setText(legalNotice.querySelector("#legal-director-value"), " Maël Madec.");
+        setText(legalNotice.querySelector("#legal-host-label"), "Hosting:");
+        setText(legalNotice.querySelector("#legal-host-value"), " GitHub Pages, a service provided by GitHub, Inc., 88 Colin P Kelly Jr. St., San Francisco, CA 94107, United States.");
         const dialog = document.querySelector(".image-lightbox");
         dialog.setAttribute("aria-label", "Image preview");
         dialog.querySelector(".image-lightbox-close").setAttribute("aria-label", "Close image preview");
@@ -2839,6 +2906,15 @@
       }
 
       const lightbox = document.querySelector(".image-lightbox");
+      const legalNotice = document.querySelector("#legal-notice");
+      const legalNoticeLink = document.querySelector("#legal-notice-link");
+      legalNoticeLink.addEventListener("click", event => {
+        event.preventDefault();
+        legalNotice.showModal();
+      });
+      legalNotice.addEventListener("click", event => {
+        if (event.target === legalNotice) legalNotice.close();
+      });
       const lightboxImage = lightbox.querySelector("img");
       const lightboxCaption = lightbox.querySelector("figcaption");
       const lightboxPrevious = lightbox.querySelector(".image-lightbox-navigation--previous");
