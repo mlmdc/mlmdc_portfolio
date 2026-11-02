@@ -1240,6 +1240,14 @@
       margin: 0;
     }
 
+    .goatcounter-pixel {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      opacity: 0;
+      pointer-events: none;
+    }
+
     @media (max-width: 900px) {
       .contact-links {
         grid-template-columns: 1fr;
@@ -2355,8 +2363,7 @@
       </div>
     </footer>
   </div>
-  <script data-goatcounter="https://mlmdc.goatcounter.com/count"
-          async src="//gc.zgo.at/count.js"></script>
+  <img class="goatcounter-pixel" id="goatcounter-pixel" width="1" height="1" alt="" aria-hidden="true">
   <dialog class="legal-notice" id="legal-notice" aria-labelledby="legal-notice-title">
     <form method="dialog">
       <button class="legal-notice-close" id="legal-notice-close">Fermer</button>
@@ -2389,6 +2396,8 @@
         ? requestedLanguage
         : browserPrefersFrench ? "fr" : "en";
       const isEnglish = language === "en";
+      document.getElementById("goatcounter-pixel").src =
+        `https://mlmdc.goatcounter.com/count?p=/portfolio_${language}`;
       const translations = {
         projects: [
           {
