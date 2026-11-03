@@ -1478,7 +1478,7 @@
             <path d="M11 1.75v4h4M7.2 10.4h5.6M7.2 13.2h5.6" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
             <path d="M7.2 16.1h3.8" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
           </svg>
-          CV
+          Resume
         </a>
         <label class="theme-toggle">
           <input id="theme-switch" type="checkbox" role="switch" aria-label="Mode sombre">
@@ -2780,9 +2780,9 @@
         document.querySelector(".header-actions nav").setAttribute("aria-label", "Main navigation");
         ["Projects", "Experience", "Contact"].forEach((label, index) => setText(document.querySelectorAll(".nav-link")[index], label));
         const resumeLink = document.querySelector(".cv-link");
-        resumeLink.setAttribute("aria-label", "Open the PDF CV in a new tab");
+        resumeLink.setAttribute("aria-label", "Open the PDF resume in a new tab");
         resumeLink.href = "assets/cv-en.pdf";
-        resumeLink.lastChild.textContent = " CV";
+        resumeLink.lastChild.textContent = " Resume";
         document.querySelector("#theme-switch").setAttribute("aria-label", "Dark mode");
         setText(document.querySelector(".eyebrow"), "Robotics · control systems · embedded systems");
         setText(document.querySelector("#dynamic-interest"), "Robotics and autonomous systems");
