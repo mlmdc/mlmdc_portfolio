@@ -1523,7 +1523,7 @@
               <div class="project-summary">
                 <span class="project-type">Robotique · commande</span>
                 <h3>Pilotage d’un UR5e pour un tangram</h3>
-                <p>Une interface permet de composer un tangram, puis de transmettre au robot UR5e une séquence de mouvements pour le reconstruire. Une caméra repère les pièces sur le plateau et la calibration associe ces repères au référentiel du robot.</p>
+                <p>Une interface permet de composer un tangram, puis de transmettre au robot UR5e une séquence de mouvements pour le reconstruire.</p>
                 <div class="project-actions">
                   <button class="see-more" type="button" aria-expanded="false">Plus de détails <span aria-hidden="true">↓</span></button>
                   <a class="project-link project-link--summary" href="https://github.com/mlmdc/UR_tangram_control" target="_blank" rel="noopener noreferrer">Voir le projet <span aria-hidden="true">↗</span></a>
@@ -1690,7 +1690,7 @@
                 <h4>Approches et choix techniques</h4>
                 <p>La carte STM32 sert de base à cette plateforme pédagogique : elle acquiert les différents signaux nécessaires (vitesse du moteur, accéléromètre, etc.) tout en pilotant les actionneurs. Les mesures sont transmises par une liaison série et traitées par des scripts Python. Les acquisitions sont enregistrées pour être analysées hors ligne, notamment en régime harmonique.</p>
                 <br>
-                <p>Les notebooks traitent les mesures pour étudier la réponse fréquentielle, estimer les fréquences propres et l’amortissement, puis reconstruire les formes modales. Ces formes sont comparées à celles d’un modèle éléments finis de poutre d’Euler–Bernoulli à l’aide du critère MAC. Les résultats expérimentaux et les étapes de traitement sont consultables dans les notebooks et les fichiers de mesure du projet.</p>
+                <p>Les notebooks traitent les mesures pour étudier la réponse fréquentielle, estimer les fréquences propres et l’amortissement, puis reconstruire les formes modales. Ces formes sont comparées à celles d’un modèle éléments finis de poutre d’Euler-Bernoulli à l’aide du critère MAC. Les résultats expérimentaux et les étapes de traitement sont consultables dans les notebooks et les fichiers de mesure du projet.</p>
               </section>
               <section class="detail-section" aria-label="Résultats et limites">
                 <h4>Résultats et limites</h4>
@@ -1713,7 +1713,7 @@
                     <ul>
                       <li><strong>Embarqué et acquisition :</strong> carte STM32, communication série.</li>
                       <li><strong>Programmation et analyse :</strong> Python.</li>
-                      <li><strong>Modélisation :</strong> éléments finis, poutre d’Euler–Bernoulli, critère MAC.</li>
+                      <li><strong>Modélisation :</strong> éléments finis, poutre d’Euler-Bernoulli, critère MAC.</li>
                     </ul>
                   </li>
                 </ul>
@@ -1771,7 +1771,7 @@
                 <h4>Approches et choix techniques</h4>
                 <p>Les données statiques fournies et un simulateur sont exploités sous <i>MATLAB</i> pour étudier et déterminer la dynamique de la grue volante. Le simulateur est fourni sous forme de fichier <i>MATLAB</i> compilé, et non sous forme de code source. À partir de signaux d’excitation, comme des séquences binaires pseudo-aléatoires (PRBS) et des échelons réguliers, le script détermine le modèle et son domaine de fonctionnement.</p>
                 <br>
-                <p>Pour construire le modèle flou, un algorithme de regroupement de Gustafson–Kessel répartit les observations en cinq zones de fonctionnement. Des fonctions d’appartenance gaussiennes pondèrent ensuite, dans chaque zone, l’estimation par moindres carrés pondérés régularisés d’un modèle ARX local d’ordre 2 et de retard 2. Les réponses locales sont comparées à celles d’un réseau NARX comportant des retards d’entrée et de sortie ainsi qu’une couche cachée de dix neurones.</p>
+                <p>Pour construire le modèle flou, un algorithme de regroupement de Gustafson-Kessel répartit les observations en cinq zones de fonctionnement. Des fonctions d’appartenance gaussiennes pondèrent ensuite, dans chaque zone, l’estimation par moindres carrés pondérés régularisés d’un modèle ARX local d’ordre 2 et de retard 2. Les réponses locales sont comparées à celles d’un réseau NARX comportant des retards d’entrée et de sortie ainsi qu’une couche cachée de dix neurones.</p>
                 <br>
                 <p>Enfin, les modèles locaux sont convertis en représentations d’état, puis combinés dans un contrôleur prédictif. La simulation suit une référence de premier ordre composée de consignes en paliers. L’horizon de prédiction est fixé à 80 échantillons et l’entrée de commande est limitée entre 0 et 1,3. Cette étape évalue le comportement du modèle et du contrôleur dans le simulateur, sans piloter de grue volante réelle.</p>
               </section>
@@ -1795,7 +1795,7 @@
                     <ul>
                       <li><strong>Logiciel :</strong> MATLAB.</li>
                       <li><strong>Identification :</strong> signaux PRBS et échelons, modèles ARX/NARX, moindres carrés pondérés.</li>
-                      <li><strong>Modélisation floue :</strong> clustering de Gustafson–Kessel, modèles neuro-flous.</li>
+                      <li><strong>Modélisation floue :</strong> clustering de Gustafson-Kessel, modèles neuro-flous.</li>
                     </ul>
                   </li>
                 </ul>
@@ -1998,7 +1998,7 @@
                     <ul>
                       <li><strong>Logiciel :</strong> MATLAB.</li>
                       <li><strong>Régression :</strong> moindres carrés, ACP, régression PCR.</li>
-                      <li><strong>Prétraitement et évaluation :</strong> normalisation min–max, score-z, validation croisée à sept plis.</li>
+                      <li><strong>Prétraitement et évaluation :</strong> normalisation min-max, score-z, validation croisée à sept plis.</li>
                     </ul>
                   </li>
                 </ul>
@@ -2040,11 +2040,11 @@
             <div class="project-details">
               <section class="detail-section" aria-label="Problématique et objectifs">
                 <h4>Problématique et objectifs</h4>
-                <p>Les coordonnées de trois stations téléphoniques et les distances bruitées qui les séparent du téléphone sont connues : sa position doit être estimée à partir de ces mesures. Le bruit pouvant empêcher les trois cercles de se croiser exactement, il n’existe pas de solution exacte, mais seulement une estimation du point de croisement. Cette estimation repose sur les méthodes de <strong>Gauss–Newton</strong> et de <strong>Levenberg–Marquardt</strong>, ainsi que sur les variantes amorties de cette dernière.</p>
+                <p>Les coordonnées de trois stations téléphoniques et les distances bruitées qui les séparent du téléphone sont connues : sa position doit être estimée à partir de ces mesures. Le bruit pouvant empêcher les trois cercles de se croiser exactement, il n’existe pas de solution exacte, mais seulement une estimation du point de croisement. Cette estimation repose sur les méthodes de <strong>Gauss-Newton</strong> et de <strong>Levenberg-Marquardt</strong>, ainsi que sur les variantes amorties de cette dernière.</p>
               </section>
               <section class="detail-section" aria-label="Approches et choix techniques">
                 <h4>Approches et choix techniques</h4>
-                <p>Le script <i>MATLAB</i> calcule les distances prédites, les résidus et leur jacobienne, puis compare les méthodes de Gauss–Newton, de Levenberg–Marquardt (LM) et sa variante pondérée (WLM). La méthode de Gauss–Newton est utilisée sans amortissement et sert de base de comparaison ; LM amortit les mises à jour, tandis que WLM pondère les mesures selon la variance estimée pour chaque station. Trois fonctions <i>MATLAB</i> compilées fournissent les mesures bruitées à chaque étape.</p>
+                <p>Le script <i>MATLAB</i> calcule les distances prédites, les résidus et leur jacobienne, puis compare les méthodes de Gauss-Newton, de Levenberg-Marquardt (LM) et sa variante pondérée (WLM). La méthode de Gauss-Newton est utilisée sans amortissement et sert de base de comparaison ; LM amortit les mises à jour, tandis que WLM pondère les mesures selon la variance estimée pour chaque station. Trois fonctions <i>MATLAB</i> compilées fournissent les mesures bruitées à chaque étape.</p>
               </section>
               <section class="detail-section" aria-label="Résultats et limites">
                 <h4>Résultats et limites</h4>
@@ -2063,7 +2063,7 @@
                   <li><strong>Technologies et logiciels</strong>
                     <ul>
                       <li><strong>Logiciel :</strong> MATLAB.</li>
-                      <li><strong>Estimation numérique :</strong> moindres carrés non linéaires, Gauss–Newton, Levenberg–Marquardt.</li>
+                      <li><strong>Estimation numérique :</strong> moindres carrés non linéaires, Gauss-Newton, Levenberg-Marquardt.</li>
                       <li><strong>Mesures et pondération :</strong> résidus, jacobienne des distances, variance estimée.</li>
                     </ul>
                   </li>
@@ -2106,7 +2106,7 @@
           <article class="experience-card reveal">
             <div class="experience-header">
               <div class="experience-heading">
-                <p class="experience-date">Septembre 2025 – mars 2026</p>
+                <p class="experience-date">Septembre 2025 - mars 2026</p>
                 <h3>Stage de fin d’études</h3>
                 <p class="experience-organization">Ifremer · Unité des sous-marins</p>
               </div>
@@ -2129,7 +2129,7 @@
               <div class="experience-narrative">
                 <section>
                   <h4>Contexte</h4>
-                  <p>À la suite de l’adoption, en 2023, d’un amendement porté par le sénateur Philippe Folliot dans le cadre de la loi de programmation militaire 2024–2030, la Marine nationale est associée à l’Ifremer pour poursuivre l’exploitation du Nautile jusqu’en 2030 au moins. En janvier 2024, l’Ifremer annonce la modernisation du sous-marin, organisée en plusieurs étapes, afin de prolonger ses opérations au-delà de 2035. Le stage s’inscrit dans la pré-étude de cette modernisation.</p>
+                  <p>À la suite de l’adoption, en 2023, d’un amendement porté par le sénateur Philippe Folliot dans le cadre de la loi de programmation militaire 2024-2030, la Marine nationale est associée à l’Ifremer pour poursuivre l’exploitation du Nautile jusqu’en 2030 au moins. En janvier 2024, l’Ifremer annonce la modernisation du sous-marin, organisée en plusieurs étapes, afin de prolonger ses opérations au-delà de 2035. Le stage s’inscrit dans la pré-étude de cette modernisation.</p>
                 </section>
                 <section>
                   <h4>Actions</h4>
@@ -2149,7 +2149,7 @@
                         <li>Modélisations sur Autodesk Inventor et Blender ;</li>
                         <li>Mise en place et développement sur le moteur de simulation spécialisé Stonefish (ROS 2, XML, C++ et Docker) ;</li>
                         <li>Développement descriptif de scénarios de travail du Nautile et de ses bras manipulateurs ;</li>
-                        <li>Développement d’un contrôleur intermédiaire ROS 2–Python–MATLAB ;</li>
+                        <li>Développement d’un contrôleur intermédiaire ROS 2-Python-MATLAB ;</li>
                         <li>Développement d’algorithmes d’estimation de poses et de contrôle-commande des bras manipulateurs.</li>
                       </ul>
                     </li>
@@ -2201,7 +2201,7 @@
           <article class="experience-card reveal reveal-delay-1">
             <div class="experience-header">
               <div class="experience-heading">
-                <p class="experience-date">Septembre 2024 – février 2025</p>
+                <p class="experience-date">Septembre 2024 - février 2025</p>
                 <h3>Stage d’assistant ingénieur</h3>
                 <p class="experience-organization">École Centrale de Nantes · Laboratoire GeM</p>
               </div>
@@ -2313,7 +2313,7 @@
           <article class="experience-card reveal reveal-delay-2">
             <div class="experience-header">
               <div class="experience-heading">
-                <p class="experience-date">Juillet–août 2022 et 2024</p>
+                <p class="experience-date">Juillet-août 2022 et 2024</p>
                 <h3>Opérateur en brasserie</h3>
                 <p class="experience-organization">Brasserie de Bretagne &amp; Brasserie Poem</p>
               </div>
@@ -2482,11 +2482,11 @@
           {
             type: "Robotics · robot programming",
             title: "UR5e Tangram assembly: software and robot programming",
-            summary: "A Python/Pygame application lets users arrange Tangram pieces and sends the resulting poses to a UR5e. The project connects camera-based piece localisation and frame calibration with the robot's coordinate system.",
+            summary: "A Python/Pygame application lets users arrange Tangram pieces and sends the resulting poses to a UR5e.",
             details: [
-              "The project links a Tangram layout created on screen to its assembly by a <a href=\"https://www.universal-robots.com/media/1820975/07_2021_ur5e_fact_sheet_fr_web.pdf\" target=\"_blank\" rel=\"noopener noreferrer\">UR5e robot</a>. The camera-recognition program and reference-frame calibration were provided at the outset; the project work focused on the PC-side editor and the UR5e program. The editor lets users arrange the pieces, check for potential collisions and convert the layout into robot poses.",
-              "The <strong>Python</strong> application, built with <a href=\"https://www.pygame.org/\" target=\"_blank\" rel=\"noopener noreferrer\">Pygame</a>, provides a 2D editor with drag-and-drop, snapping, 15-degree rotations and undo. It converts the layout into six-dimensional poses and sends them over TCP to a <a href=\"https://www.universal-robots.com/fr/produits/polyscope-5/\" target=\"_blank\" rel=\"noopener noreferrer\"><em>Universal Robots</em> PolyScope 5</a> program. The robot program interprets the received poses and controls the end effector.",
-              "The editor, pose conversion, TCP communication and PolyScope program form an end-to-end software and control pipeline. The project includes the PC-side application and the PolyScope program for use with the UR5e, together with a calibration example. Collision detection and safety checks are not implemented and remain the user's responsibility."
+              "The project links a Tangram layout created on a Pygame screen to its assembly by a <a href=\"https://www.universal-robots.com/media/1820975/07_2021_ur5e_fact_sheet_fr_web.pdf\" target=\"_blank\" rel=\"noopener noreferrer\">UR5e robot</a>. The camera-recognition program and reference-frame calibration were provided at the outset. The project work is focused on the PC-side editor and the UR5e program. The editor lets users arrange the pieces, check for potential collisions and convert the layout into robot poses.",
+              "The <strong>Python</strong> application, built with <a href=\"https://www.pygame.org/\" target=\"_blank\" rel=\"noopener noreferrer\">Pygame</a>, provides a 2D editor with drag-and-drop, snapping, 15-degree rotations and undo. It converts the layout into six-dimensional poses and sends them over TCP to a <a href=\"https://www.universal-robots.com/fr/produits/polyscope-5/\" target=\"_blank\" rel=\"noopener noreferrer\"><em>Universal Robots</em> PolyScope 5</a> controller. The robot controller interprets the received poses and controls the end effector.",
+              "The editor, pose conversion, TCP communication and PolyScope program form an end-to-end software and control pipeline. The project includes the PC-side application and the PolyScope program for use with the UR5e, together with a calibration example. Collision detection (for the pieces on the board) and safety checks are not implemented and remain the user's responsibility."
             ],
             skills: [
               "<strong>Professional competencies</strong><ul><li>Design and develop 2D software for defining and validating a parts layout.</li><li>Transform geometric layouts into robot poses and transmit commands to the controller.</li><li>Implement communication between a PC application and the robot program.</li><li>Develop and integrate a PolyScope program to interpret received poses and control the gripper.</li></ul>",
@@ -2500,9 +2500,9 @@
           {
             type: "Embedded systems · mechatronics",
             title: "Embedded control of a DC motor",
-            summary: "An embedded-control project covering DC-motor modelling and speed and position PID control, while considering torque control as a further objective.",
+            summary: "An embedded-control project covering DC-motor modelling and speed and position PID control.",
             details: [
-              "The project develops embedded control for a DC motor, with speed, torque and position as target quantities. The work covers measurement acquisition, actuator drive and the organisation of the control loops. In the implemented scope, PID control is applied to speed and position; torque remains a target rather than a completed control loop.",
+              "The project develops embedded control for a DC motor, with speed, torque and position as target quantities. The work covers measurement acquisition, actuator drive and the organisation of the control loops. In the implemented scope, PID control is applied to speed and position while torque remains a target rather than a completed control loop.",
               "The STM32 board and firmware close the speed-control loop: a motor-mounted encoder supplies speed feedback, a discrete PID controller calculates the command, and the board drives the power stage through PWM. Voltage and current acquisition and serial communication complete the setup. In parallel, measurements and simulations are used to model the motor under no-load and loaded conditions, informing the controller design.",
               "The firmware integrates encoder and ADC acquisition, filtering, PID computation, PWM generation, telemetry and serial communication. It also implements bidirectional control, anti-windup and automatic PID parameter updates. The linked project includes a working example."
             ],
@@ -2521,13 +2521,13 @@
             title: "Flexion XS: vibration measurement, control and analysis",
             summary: "An instrumented experimental platform for investigating structural vibrations, developing the acquisition chain and analysing the resulting measurements.",
             details: [
-              "Built around an <a href=\"https://www.st.com/en/microcontrollers-microprocessors/stm32f411re.html\" target=\"_blank\" rel=\"noopener noreferrer\">STM32F411RE</a>, this experimental platform investigates the vibration of a ruler modelled as a beam. Acquired measurements support mechanical modelling and the study of natural frequencies, damping, mode shapes and parameter-estimation methods.",
-              "The STM32 acquires signals—including motor speed and accelerometer data—and drives the actuators. Measurements are streamed over a serial link, processed with Python scripts and saved for offline analysis. The notebooks examine frequency response, estimate natural frequencies and damping, and reconstruct mode shapes. These are compared with an Euler–Bernoulli finite-element beam model using the MAC criterion.",
-              "The project provides measurement files and notebooks covering free and harmonic responses. They demonstrate the experimental and analysis workflow; identification of the third mode and repeatability still require further work, so the results do not constitute definitive model validation."
+              "Built around an <a href=\"https://www.st.com/en/microcontrollers-microprocessors/stm32f411re.html\" target=\"_blank\" rel=\"noopener noreferrer\">STM32F411RE</a>, this experimental platform investigates the vibration of a metallic ruler modelled as a thin vibrating beam. Acquired measurements support mechanical modelling and the study of natural frequencies, damping, mode shapes and parameter-estimation methods.",
+              "The STM32 acquires signals -including motor speed and accelerometer data- and drives the actuators. Measurements are streamed over a serial link, processed with Python scripts and saved for offline analysis. The notebooks examine frequency response, estimate natural frequencies and damping, and reconstruct mode shapes. These are compared with an Euler-Bernoulli finite-element beam model using the MAC criterion.",
+              "The project provides measurement files and notebooks covering free and harmonic responses. They demonstrate the experimental and analysis workflow. Identification of the third mode and repeatability still require further work, so the results do not constitute definitive model validation."
             ],
             skills: [
               "<strong>Professional competencies</strong><ul><li>Analyse structural vibration using experimental measurements and mechanical models.</li><li>Characterise frequency and modal responses to assess structural dynamics.</li><li>Plan and conduct free-response and harmonic tests.</li><li>Design and evolve the acquisition chain for platform control and measurement processing.</li><li>Develop and improve an experimental platform from instrumentation through data processing.</li><li>Structure the measurement workflow from embedded acquisition to analysis of recorded data.</li></ul>",
-              "<strong>Technologies and software</strong><ul><li><strong>Embedded systems and acquisition:</strong> STM32 board, serial communication.</li><li><strong>Programming and analysis:</strong> Python.</li><li><strong>Modelling:</strong> finite elements, Euler–Bernoulli beam, MAC criterion.</li></ul>"
+              "<strong>Technologies and software</strong><ul><li><strong>Embedded systems and acquisition:</strong> STM32 board, serial communication.</li><li><strong>Programming and analysis:</strong> Python.</li><li><strong>Modelling:</strong> finite elements, Euler-Bernoulli beam, MAC criterion.</li></ul>"
             ],
             captions: ["Example of a vibration measurement.", "Comparison of measured and modelled mode shapes.", "Flexion XS experimental rig, complete top view.", "Flexion XS experimental rig, top view.", "Conceptual overview of the rig's electronics."],
             alts: ["Example time-domain measurement of the vibration response.", "Comparison of measured mode shape with the model.", "Complete experimental setup with vibrating ruler and motor, viewed from above.", "Experimental setup with vibrating ruler and motor, viewed from above, without extra cables.", "Overall conceptual diagram of the experimental rig."],
@@ -2539,16 +2539,16 @@
             title: "Fuzzy modelling and control of an aerial crane",
             summary: "A modelling study of an aerial crane, comparing fuzzy and neuro-fuzzy models before evaluating predictive control in simulation.",
             details: [
-              "Using a supplied static dataset, the project develops and compares parametric, <a href=\"https://en.wikipedia.org/wiki/Fuzzy_logic\" target=\"_blank\" rel=\"noopener noreferrer\">fuzzy</a> and <a href=\"https://en.wikipedia.org/wiki/Neuro-fuzzy\" target=\"_blank\" rel=\"noopener noreferrer\">neuro-fuzzy</a> representations of an <a href=\"https://en.wikipedia.org/wiki/Aerial_crane\" target=\"_blank\" rel=\"noopener noreferrer\">aerial crane</a>. It then investigates predictive control of the selected fuzzy model in simulation; no real crane is controlled.",
-              "<em>MATLAB</em> scripts and a supplied compiled simulator are used to characterise the crane's dynamics and operating range from pseudo-random binary sequence (PRBS) and step inputs. Gustafson–Kessel clustering partitions the observations into five operating regions. Gaussian membership functions weight regularised least-squares estimates of local second-order ARX models with a two-sample delay. Their responses are compared with those of a NARX network with input and output delays and ten hidden neurons.",
-              "The local models are converted to state-space form and combined in a predictive controller. The simulation tracks a first-order reference with stepped setpoints, an 80-sample prediction horizon and a control input limited to 0–1.3. The figures show qualitative simulated responses, not measurements from a real crane. No aggregate error metric is reported; the work demonstrates modelling and control methods rather than a deployable system."
+              "Using a supplied static dataset, the project develops and compares parametric, <a href=\"https://en.wikipedia.org/wiki/Fuzzy_logic\" target=\"_blank\" rel=\"noopener noreferrer\">fuzzy</a> and <a href=\"https://en.wikipedia.org/wiki/Neuro-fuzzy\" target=\"_blank\" rel=\"noopener noreferrer\">neuro-fuzzy</a> representations of an <a href=\"https://en.wikipedia.org/wiki/Aerial_crane\" target=\"_blank\" rel=\"noopener noreferrer\">aerial crane</a>. It then investigates predictive control of the selected fuzzy model in simulation. This project is not intended for real helicrane.",
+              "<em>MATLAB</em> scripts and a supplied compiled simulator are used to characterise the crane's dynamics and operating range from pseudo-random binary sequence (PRBS) and step inputs. Gustafson-Kessel clustering partitions the observations into five operating regions. Gaussian membership functions weight regularised least-squares estimates of local second-order ARX models with a two-sample delay. Their responses are compared with those of a NARX network with input and output delays and ten hidden neurons.",
+              "The local models are converted to state-space form and combined in a predictive controller. The simulation tracks a first-order reference with stepped setpoints, an 80-sample prediction horizon and a control input limited to 0-1.3. The figures show qualitative simulated responses, not measurements from a real crane. No aggregate error metric is reported as the work demonstrates modelling and control methods rather than a deployable system."
             ],
             skills: [
               "<strong>Professional competencies</strong><ul><li>Identify system dynamics from designed excitation signals.</li><li>Develop local and neuro-fuzzy models of a nonlinear system.</li><li>Derive state-space representations and evaluate predictive control in simulation.</li><li>Assess and compare model performance using simulated responses.</li><li>Apply a structured modelling and control workflow to an aerial system.</li></ul>",
-              "<strong>Technologies and software</strong><ul><li><strong>Software:</strong> MATLAB.</li><li><strong>System identification:</strong> PRBS and step signals, ARX/NARX models, weighted least squares.</li><li><strong>Fuzzy modelling:</strong> Gustafson–Kessel clustering, neuro-fuzzy models.</li></ul>"
+              "<strong>Technologies and software</strong><ul><li><strong>Software:</strong> MATLAB.</li><li><strong>System identification:</strong> PRBS and step signals, ARX/NARX models, weighted least squares.</li><li><strong>Fuzzy modelling:</strong> Gustafson-Kessel clustering, neuro-fuzzy models.</li></ul>"
             ],
             captions: ["Qualitative step-response tracking.", "Response to a chirp reference.", "Clustering of operating regions."],
-            alts: ["Controller response to stepped references.", "Controller response to a chirp reference.", "Operating regions identified by Gustafson–Kessel clustering."],
+            alts: ["Controller response to stepped references.", "Controller response to a chirp reference.", "Operating regions identified by Gustafson-Kessel clustering."],
             visualAlt: "Controller response curves from step tests",
             links: ["Source code, figures and resources"]
           },
@@ -2576,7 +2576,7 @@
             summary: "A comparative study of neural-network and particle-swarm approaches to breast-cancer classification using the WDBC dataset.",
             details: [
               "This educational study uses 569 samples and 30 cell measurements from the Wisconsin Diagnostic Breast Cancer (WDBC) dataset, labelled benign or malignant. It compares <a href=\"https://en.wikipedia.org/wiki/Particle_swarm_optimization\" target=\"_blank\" rel=\"noopener noreferrer\">particle swarm optimisation</a> with <a href=\"https://fr.wikipedia.org/wiki/R%C3%A9seau_de_neurones_feedforward\" target=\"_blank\" rel=\"noopener noreferrer\">feedforward neural networks</a> for binary classification. The work is for methodological study and is not a clinical diagnostic tool.",
-              "<em>MATLAB</em> scripts compare a feedforward neural network trained by backpropagation with a linear classifier whose weights are optimised using particle swarm optimisation (PSO). The data are divided into subsets for <strong>cross-validation</strong>, and the comparison reports the best validation result. Outputs are mapped to class codes 2 (malignant) and 4 (benign) using a threshold of 3; inputs are not normalised. The report also describes a nonlinear-activation network experiment that is not reproduced in the versioned script. Because the same 569 samples are used for training or model selection, the results are not an independent evaluation.",
+              "<em>MATLAB</em> scripts compare a feedforward neural network trained by backpropagation with a linear classifier whose weights are optimised using particle swarm optimisation (PSO). The data are divided into subsets for <strong>cross-validation</strong>, and the comparison reports the best validation result. Outputs are mapped to class codes 2 (malignant) and 4 (benign) using a threshold of 3 as inputs are not normalised. The report also describes a nonlinear-activation network experiment that is not reproduced in the versioned script. Because the same 569 samples are used for training or model selection, the results are not an independent evaluation.",
               "The report gives accuracies of 99.12% for the nonlinear feedforward network and 97.53% for the PSO linear classifier on these samples. These figures describe the reported experiment only: neither score is based on external data, so they do not establish generalisation."
             ],
             skills: [
@@ -2594,15 +2594,15 @@
             summary: "A comparison of least-squares, principal-component and principal-component-regression methods for identifying a chemical process.",
             details: [
               "The project examines how data preparation affects <a href=\"https://en.wikipedia.org/wiki/Least_squares\" target=\"_blank\" rel=\"noopener noreferrer\">least-squares estimation (LSE)</a> of a chemical process. It compares raw-data least squares with <a href=\"https://fr.wikipedia.org/wiki/Analyse_en_composantes_principales\" target=\"_blank\" rel=\"noopener noreferrer\">principal component analysis (PCA)</a> and <a href=\"https://en.wikipedia.org/wiki/Principal_component_regression\" target=\"_blank\" rel=\"noopener noreferrer\">principal component regression (PCR)</a>. <em>MATLAB</em> scripts estimate I_EFF from A_FLOW, T_H2O and C_ACID, examining the effects of scaling and correlation on model parameters and predictions.",
-              "The scripts compare estimation results using <strong>normalisation</strong> methods including <a href=\"https://en.wikipedia.org/wiki/Feature_scaling\" target=\"_blank\" rel=\"noopener noreferrer\">min–max scaling</a> and <a href=\"https://fr.wikipedia.org/wiki/Score_z\" target=\"_blank\" rel=\"noopener noreferrer\">z-score standardisation</a>. The number of principal components is selected to explain 95% of the cumulative variance. A separate PCR experiment introduces a correlated synthetic input to examine changes in the estimated coefficients; the script also includes seven-fold cross-validation.",
+              "The scripts compare estimation results using <strong>normalisation</strong> methods including <a href=\"https://en.wikipedia.org/wiki/Feature_scaling\" target=\"_blank\" rel=\"noopener noreferrer\">min-max scaling</a> and <a href=\"https://fr.wikipedia.org/wiki/Score_z\" target=\"_blank\" rel=\"noopener noreferrer\">z-score standardisation</a>. The number of principal components is selected to explain 95% of the cumulative variance. A separate PCR experiment introduces a correlated synthetic input to examine changes in the estimated coefficients; the script also includes seven-fold cross-validation.",
               "The figures show fitted curves, prediction errors and coefficient changes for 21 observations across the scaling and correlation experiments. Results from the collinearity experiment may vary between runs."
             ],
             skills: [
               "<strong>Professional competencies</strong><ul><li>Develop and compare regression models using experimental data.</li><li>Assess collinearity and select an appropriate representation of the variables.</li><li>Prepare data and evaluate model performance while accounting for methodological limitations.</li></ul>",
-              "<strong>Technologies and software</strong><ul><li><strong>Software:</strong> MATLAB.</li><li><strong>Regression:</strong> least squares, PCA, PCR.</li><li><strong>Preprocessing and evaluation:</strong> min–max scaling, z-score standardisation, seven-fold cross-validation.</li></ul>"
+              "<strong>Technologies and software</strong><ul><li><strong>Software:</strong> MATLAB.</li><li><strong>Regression:</strong> least squares, PCA, PCR.</li><li><strong>Preprocessing and evaluation:</strong> min-max scaling, z-score standardisation, seven-fold cross-validation.</li></ul>"
             ],
             captions: ["Effect of standardisation methods on LSE outputs.", "Fits on standardised data.", "Error comparison between two models."],
-            alts: ["Original and min–max- and z-score-standardised LSE outputs compared.", "Least-squares and PCA predictions on standardised data.", "Error comparison between LSE and PCA models."],
+            alts: ["Original and min-max- and z-score-standardised LSE outputs compared.", "Least-squares and PCA predictions on standardised data.", "Error comparison between LSE and PCA models."],
             visualAlt: "Comparison of least-squares and PCA predictions",
             links: ["Scripts, data and additional figures"]
           },
@@ -2611,13 +2611,13 @@
             title: "Position estimation using gradient-based methods",
             summary: "A comparison of nonlinear least-squares methods for estimating position from noisy distance measurements.",
             details: [
-              "Given the coordinates of three reference stations and their noisy distance measurements to a phone, the task is to estimate the phone's position. Because measurement noise may prevent the three distance circles from intersecting at a single point, the position is estimated using <strong>Gauss–Newton</strong>, <strong>Levenberg–Marquardt</strong> and damped variants.",
-              "The <em>MATLAB</em> script calculates predicted distances, residuals and the distance Jacobian, then compares Gauss–Newton, Levenberg–Marquardt (LM) and weighted LM (WLM). Gauss–Newton provides an undamped baseline; LM damps the updates, while WLM weights each station's measurement using its estimated variance. Three compiled <em>MATLAB</em> functions generate noisy measurements at each iteration.",
+              "Given the coordinates of three reference stations and their noisy distance measurements to a phone, the task is to estimate the phone's position. Because measurement noise may prevent the three distance circles from intersecting at a single point, the position is estimated using <strong>Gauss-Newton</strong>, <strong>Levenberg-Marquardt</strong> and damped variants.",
+              "The <em>MATLAB</em> script calculates predicted distances, residuals and the distance Jacobian, then compares Gauss-Newton, Levenberg-Marquardt (LM) and weighted LM (WLM). Gauss-Newton provides an undamped baseline; LM damps the updates, while WLM weights each station's measurement using its estimated variance. Three compiled <em>MATLAB</em> functions generate noisy measurements at each iteration.",
               "The supplied measurements are used in the residual and Jacobian calculations. The figures show the distance circles and position-estimation trajectories for the compared methods, illustrating their triangulation results on the project dataset."
             ],
             skills: [
               "<strong>Professional competencies</strong><ul><li>Formulate and solve a position-estimation problem from distance measurements.</li><li>Assess estimate quality using residuals and model sensitivity.</li><li>Compare iterative optimisation methods and account for measurement uncertainty.</li></ul>",
-              "<strong>Technologies and software</strong><ul><li><strong>Software:</strong> MATLAB.</li><li><strong>Numerical estimation:</strong> nonlinear least squares, Gauss–Newton, Levenberg–Marquardt.</li><li><strong>Measurements and weighting:</strong> residuals, distance Jacobian, estimated variance.</li></ul>"
+              "<strong>Technologies and software</strong><ul><li><strong>Software:</strong> MATLAB.</li><li><strong>Numerical estimation:</strong> nonlinear least squares, Gauss-Newton, Levenberg-Marquardt.</li><li><strong>Measurements and weighting:</strong> residuals, distance Jacobian, estimated variance.</li></ul>"
             ],
             captions: ["Position estimate and distance measurements using WLM.", "WLM parameter gradients over 5,000 iterations.", "LM parameter errors across iterations.", "Error evolution over 5,000 iterations."],
             alts: ["Distance circles and position trajectory estimated using WLM.", "Gradient of each WLM parameter over 5,000 iterations.", "Error for each LM parameter across iterations.", "Error evolution over 5,000 iterations."],
@@ -2627,16 +2627,16 @@
         ],
         experience: [
           {
-            date: "September 2025 – March 2026",
-            title: "Final-year engineering placement",
+            date: "September 2025 - March 2026",
+            title: "Graduate engineer internship",
             organization: "Ifremer · Submersibles Unit",
             highlights: [
               "Contributed to the development of manipulator-arm concepts for the Nautile.",
               "Produced a state-of-the-art review of underwater robotics and the Nautile.",
-              "Developed simulation, modelling and algorithmic tools in Python, C++ and ROS 2 to assess the performance of multi-axis manipulator arms.",
+              "Developed simulation, modelling and algorithmic tools in Python, C++ and ROS 2 to assess the performance of multi-axis manipulator arms in deep water.",
               "Designed data-fusion algorithms to estimate manipulator pose in a complex underwater environment."
             ],
-            narrative: "<section><h4>Context</h4><p>Following the adoption in 2023 of an amendment introduced by Senator Philippe Folliot during work on the 2024–2030 Military Programming Law, the French Navy joined Ifremer in continuing to operate the Nautile until at least 2030. In January 2024, Ifremer announced a multi-stage modernisation programme to extend the submersible’s operations beyond 2035. This internship contributed to the programme’s preliminary study.</p></section><section><h4>Nautile review and technology watch</h4><ul><li>Reviewed the Nautile’s 2026 status, including its hydraulic and electrical power systems.</li><li>Documented piloting experience and teleoperation practices, and prepared internal assessments of the submersible’s capabilities.</li><li>Surveyed underwater robotics and teleoperation, and assessed underwater vehicles worldwide from technical and operational perspectives.</li><li>Studied and tested components for the French Oceanographic Fleet, including encoders, valves and algorithms.</li></ul></section><section><h4>Modelling, simulation and control</h4><ul><li>Modelled the Nautile and its equipment in Autodesk Inventor and Blender, then integrated the model into Stonefish for real-time marine-environment simulation.</li><li>Developed Nautile work scenarios and manipulator-arm scenarios using ROS 2, C++, XML and Docker.</li><li>Developed an intermediate ROS 2–Python–MATLAB controller and algorithms for arm-pose estimation and control.</li><li>Performed kinematic and dynamic analyses of the arms in operational scenarios, investigated performance metrics, and simulated constrained workspaces.</li></ul></section><section><h4>Outcomes</h4><ul><li>Completed a state-of-the-art review and status assessment of the Nautile for the preliminary modernisation study.</li><li>Evaluated components for potential integration into French Oceanographic Fleet vehicles.</li><li>Built and used a Nautile model in real-time simulation for testing and development.</li><li>Compiled a dataset to support the comparison and selection of new manipulator arms.</li></ul></section><section><h4>Technical environment</h4><p><strong>Development:</strong> ROS 2, Docker, Stonefish, C++, Python, MATLAB.<br><strong>Tools:</strong> STM32CubeIDE, Git, GitLab, Autodesk Inventor, Blender.<br><strong>Methods:</strong> robotics, data analysis and real-time simulation.</p></section><section><h4>About Ifremer</h4><p>Ifremer is a French public industrial and commercial establishment, overseen by the ministries responsible for ecological transition and higher education and research. Based in Toulon, its Submersibles Unit develops and maintains underwater intervention, reconnaissance and surveillance systems and methods for operational and exploratory purposes.</p></section>",
+            narrative: "<section><h4>Context</h4><p>Following the adoption in 2023 of an amendment introduced by Senator Philippe Folliot during work on the 2024-2030 Military Programming Law, the French Navy joined Ifremer in continuing to operate the Nautile until at least 2030. In January 2024, Ifremer announced a multi-stage modernisation programme to extend the submersible’s operations beyond 2035. This internship contributed to the programme’s preliminary study.</p></section><section><h4>Nautile review and technology watch</h4><ul><li>Reviewed the Nautile’s 2026 status, including its hydraulic and electrical power systems.</li><li>Documented piloting experience and teleoperation practices, and prepared internal assessments of the submersible’s capabilities.</li><li>Surveyed underwater robotics and teleoperation, and assessed underwater vehicles worldwide from technical and operational perspectives.</li><li>Studied and tested components for the French Oceanographic Fleet, including encoders, valves and algorithms.</li></ul></section><section><h4>Modelling, simulation and control</h4><ul><li>Modelled the Nautile and its equipment in Autodesk Inventor and Blender, then integrated the model into Stonefish for real-time marine-environment simulation.</li><li>Developed Nautile work scenarios and manipulator-arm scenarios using ROS 2, C++, XML and Docker.</li><li>Developed an intermediate ROS 2-Python-MATLAB controller and algorithms for arm-pose estimation and control.</li><li>Performed kinematic and dynamic analyses of the arms in operational scenarios, investigated performance metrics, and simulated constrained workspaces.</li></ul></section><section><h4>Outcomes</h4><ul><li>Completed a state-of-the-art review and status assessment of the Nautile for the preliminary modernisation study.</li><li>Evaluated components for potential integration into French Oceanographic Fleet vehicles.</li><li>Built and used a Nautile model in real-time simulation for testing and development.</li><li>Compiled a dataset to support the comparison and selection of new manipulator arms.</li></ul></section><section><h4>Technical environment</h4><p><strong>Development:</strong> ROS 2, Docker, Stonefish, C++, Python, MATLAB.<br><strong>Tools:</strong> STM32CubeIDE, Git, GitLab, Autodesk Inventor, Blender.<br><strong>Methods:</strong> robotics, data analysis and real-time simulation.</p></section><section><h4>About Ifremer</h4><p>Ifremer is a French public industrial and commercial establishment, overseen by the ministries responsible for ecological transition and higher education and research. Based in Toulon, its Submersibles Unit develops and maintains underwater intervention, reconnaissance and surveillance systems and methods for operational and exploratory purposes.</p></section>",
             actions: [
               {
                 heading: "Literature review and 2026 status assessment of the Nautile:",
@@ -2674,7 +2674,7 @@
             alts: ["Front view of the Nautile submarine 3D model and equipment.", "Left-side view of the Nautile submarine.", "View of Ifremer's Toulon base."]
           },
           {
-            date: "September 2024 – February 2025",
+            date: "September 2024 - February 2025",
             title: "Engineering assistant internship",
             organization: "Centrale Nantes · GeM Laboratory",
             highlights: [
@@ -2735,7 +2735,7 @@
             alts: ["Diagram of the WAAM wire-arc additive manufacturing process.", "Robotic metal additive-manufacturing cell in the laboratory.", "Thermal image of the melt pool during metal deposition.", "Diagram of monitoring and multi-sensor acquisition for the robotic cell."]
           },
           {
-            date: "July–August 2022 and 2024",
+            date: "July-August 2022 and 2024",
             title: "Brewery operator",
             organization: "Brasserie de Bretagne & Brasserie Poem",
             highlights: ["Supported production, quality control and customer service at two craft breweries."],
